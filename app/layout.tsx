@@ -1,16 +1,24 @@
-import { Geist, Geist_Mono, Noto_Sans, Playfair_Display } from "next/font/google"
+import { Lato, Playfair_Display, Poppins } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-const playfairDisplayHeading = Playfair_Display({subsets:['latin'],variable:'--font-heading'});
-
-const notoSans = Noto_Sans({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
+const playfairDisplayHeading = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-heading",
+})
+
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-sans",
+})
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-subheading",
 })
 
 export default function RootLayout({
@@ -22,7 +30,12 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", notoSans.variable, playfairDisplayHeading.variable)}
+      className={cn(
+        "font-sans antialiased",
+        playfairDisplayHeading.variable,
+        lato.variable,
+        poppins.variable
+      )}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
