@@ -17,6 +17,15 @@ function Homepage() {
 						Concept 1
 					</Link>
 				</div>
+				<div>
+					<Link
+						to="/concept/$conceptId"
+						params={{ conceptId: "2" }}
+						className={buttonVariants({ variant: "secondary", size: "sm" })}
+					>
+						Concept 2
+					</Link>
+				</div>
 			</div>
 		</main>
 	);
