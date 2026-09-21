@@ -2,13 +2,22 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRightIcon } from "lucide-react";
 import { Button } from "#/components/ui/button";
 
-export const ConceptOneFooter = () => {
+export const ConceptTwoFooter = () => {
 	return (
 		<footer
 			id="contact"
-			className="flex w-full items-center justify-center bg-brand px-4 pt-16 pb-4"
+			className="relative flex w-full items-center justify-center bg-white px-4 pt-16 pb-4"
 		>
-			<div className="flex w-full flex-col items-center gap-8 border border-brand-light bg-brand p-4">
+			{/* background */}
+			<div className="absolute h-full w-full inset-0">
+				<img
+					src="/images/about/about-bg.jpg"
+					alt=""
+					className="h-full object-cover"
+				/>
+			</div>
+
+			<div className="relative flex w-full flex-col items-center gap-8 border border-brand-light bg-brand p-4 rounded-[8px]">
 				<img
 					alt="Seaview Private Villas"
 					src="/images/logo.png"
@@ -19,8 +28,8 @@ export const ConceptOneFooter = () => {
 					<h2 className="w-full text-center font-bold font-heading text-2xl text-paper leading-8">
 						Let&apos;s craft a stay worth remembering
 					</h2>
-					<Button variant="paper" size="xl">
-						Save Your Stay Now
+					<Button variant="paper" size="xl" className="rounded-[8px]">
+						Book Now
 						<ArrowRightIcon className="size-6" />
 					</Button>
 				</div>
@@ -36,7 +45,7 @@ export const ConceptOneFooter = () => {
 						<li>
 							<Link
 								to="/concept/$conceptId"
-								params={{ conceptId: "1" }}
+								params={{ conceptId: "2" }}
 								className="hover:underline"
 							>
 								Home
@@ -45,7 +54,7 @@ export const ConceptOneFooter = () => {
 						<li>
 							<Link
 								to="/concept/$conceptId"
-								params={{ conceptId: "1" }}
+								params={{ conceptId: "2" }}
 								className="hover:underline"
 							>
 								About Us
@@ -54,7 +63,7 @@ export const ConceptOneFooter = () => {
 						<li>
 							<Link
 								to="/concept/$conceptId"
-								params={{ conceptId: "1" }}
+								params={{ conceptId: "2" }}
 								className="hover:underline"
 							>
 								Villas Highlight
@@ -63,7 +72,7 @@ export const ConceptOneFooter = () => {
 						<li>
 							<Link
 								to="/concept/$conceptId"
-								params={{ conceptId: "1" }}
+								params={{ conceptId: "2" }}
 								className="hover:underline"
 							>
 								The Cave Highlights
@@ -72,7 +81,7 @@ export const ConceptOneFooter = () => {
 						<li>
 							<Link
 								to="/concept/$conceptId"
-								params={{ conceptId: "1" }}
+								params={{ conceptId: "2" }}
 								className="hover:underline"
 							>
 								Experiences/Local Guide
@@ -81,7 +90,7 @@ export const ConceptOneFooter = () => {
 						<li>
 							<Link
 								to="/concept/$conceptId"
-								params={{ conceptId: "1" }}
+								params={{ conceptId: "2" }}
 								className="hover:underline"
 							>
 								Gallery
@@ -90,7 +99,7 @@ export const ConceptOneFooter = () => {
 						<li>
 							<Link
 								to="/concept/$conceptId"
-								params={{ conceptId: "1" }}
+								params={{ conceptId: "2" }}
 								className="hover:underline"
 							>
 								Contact Us
