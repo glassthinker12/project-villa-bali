@@ -200,7 +200,7 @@ export function ConceptOneHeroBackground({
 	}
 
 	return (
-		<section className="relative -mt-20 h-188 w-full overflow-hidden">
+		<section className="relative -mt-20 h-[calc(100vh-8rem)] w-full overflow-hidden">
 			<img
 				src={heroSrc}
 				alt=""
@@ -208,77 +208,87 @@ export function ConceptOneHeroBackground({
 				decoding="async"
 				className="absolute inset-0 size-full object-cover"
 			/>
+
 			<div className="absolute inset-0 bg-[linear-gradient(180.03deg,rgba(36,33,33,0.5)_0%,rgba(36,33,33,0.3)_99.986%)]" />
-			<div className="absolute inset-x-0 top-20 flex h-167 flex-col justify-between px-4 py-8">
-				{children}
-				<div className="flex w-full flex-col gap-4">
-					<div
-						ref={scrollerRef}
-						aria-label="Villa photos"
-						onScroll={updateActiveFromScroll}
-						onPointerDown={handlePointerDown}
-						onPointerMove={handlePointerMove}
-						onPointerUp={handlePointerEnd}
-						onPointerCancel={handlePointerEnd}
-						className={cn(
-							"flex cursor-grab touch-pan-x select-none items-center gap-4",
-							"overflow-x-auto overscroll-x-contain active:cursor-grabbing",
-							"scrollbar-none [-ms-overflow-style:none]",
-							"[&::-webkit-scrollbar]:hidden",
-							!isDragging && "snap-x snap-mandatory",
-						)}
-						role="tablist"
-					>
-						{thumbs.map((src, index) => {
-							const isSelected = index === active;
-							return (
-								<button
-									key={`${src}-${index}`}
-									type="button"
-									role="tab"
-									aria-selected={isSelected}
-									aria-label={`View photo ${index + 1} of ${thumbs.length}`}
-									onClick={() => {
-										if (!skipClickRef.current) {
-											selectSlide(index);
-										}
-									}}
-									className={cn(
-										"h-18 w-27.5 shrink-0 cursor-pointer",
-										"snap-start shadow-[8px_8px_20px_10px_rgba(45,45,45,0.25)]",
-										"outline-none",
-										isSelected && "border-2 border-cream",
-									)}
-								>
+
+			<div className="absolute inset-x-0 top-20 flex h-[calc(100%-8rem)] flex-col justify-between">
+				<div className="w-full flex flex-col gap-4 max-w-6xl mx-auto px-4">
+					{children}
+				</div>
+
+				<div className="absolute bottom-0 left-0 w-full">
+					<div className="max-w-6xl mx-auto px-4">
+						<div className="flex flex-col gap-4 max-w-xl">
+							<div
+								ref={scrollerRef}
+								aria-label="Villa photos"
+								onScroll={updateActiveFromScroll}
+								onPointerDown={handlePointerDown}
+								onPointerMove={handlePointerMove}
+								onPointerUp={handlePointerEnd}
+								onPointerCancel={handlePointerEnd}
+								className={cn(
+									"flex cursor-grab touch-pan-x select-none items-center gap-4",
+									"overflow-x-auto overscroll-x-contain active:cursor-grabbing",
+									"scrollbar-none [-ms-overflow-style:none]",
+									"[&::-webkit-scrollbar]:hidden",
+									!isDragging && "snap-x snap-mandatory",
+								)}
+								role="tablist"
+							>
+								{thumbs.map((src, index) => {
+									const isSelected = index === active;
+									return (
+										<button
+											key={`${src}-${index}`}
+											type="button"
+											role="tab"
+											aria-selected={isSelected}
+											aria-label={`View photo ${index + 1} of ${thumbs.length}`}
+											onClick={() => {
+												if (!skipClickRef.current) {
+													selectSlide(index);
+												}
+											}}
+											className={cn(
+												"h-18 w-27.5 shrink-0 cursor-pointer",
+												"snap-start",
+												"outline-none",
+												"opacity-50",
+												isSelected && "opacity-100 border-2 border-cream",
+											)}
+										>
+											<img
+												src={src}
+												alt=""
+												draggable={false}
+												loading="lazy"
+												decoding="async"
+												className="pointer-events-none size-full object-cover"
+											/>
+										</button>
+									);
+								})}
+							</div>
+							<div className="flex w-full flex-col gap-2">
+								<div className="flex items-center gap-2 overflow-hidden">
 									<img
-										src={src}
+										src="/icons/park.svg"
 										alt=""
-										draggable={false}
-										loading="lazy"
-										decoding="async"
-										className="pointer-events-none size-full object-cover"
+										aria-hidden="true"
+										className="size-6 shrink-0"
 									/>
-								</button>
-							);
-						})}
-					</div>
-					<div className="flex w-full flex-col gap-2">
-						<div className="flex items-center gap-2 overflow-hidden">
-							<img
-								src="/icons/park.svg"
-								alt=""
-								aria-hidden="true"
-								className="size-6 shrink-0"
-							/>
-							<p className="truncate font-medium text-white text-xs leading-5">
-								1BR Clifftop Villa Sofia · Ocean View & Private Cave
-							</p>
+									<p className="truncate font-medium text-white text-xs md:text-base leading-5">
+										1BR Clifftop Villa Sofia · Ocean View & Private Cave
+									</p>
+								</div>
+								<HeroTimer
+									count={thumbs.length}
+									active={active}
+									duration={SLIDE_DURATION}
+								/>
+							</div>
 						</div>
-						<HeroTimer
-							count={thumbs.length}
-							active={active}
-							duration={SLIDE_DURATION}
-						/>
 					</div>
 				</div>
 			</div>

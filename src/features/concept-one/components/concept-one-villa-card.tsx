@@ -1,3 +1,6 @@
+import { Button } from "#/components/ui/button";
+import { ArrowRightIcon } from "lucide-react";
+
 export type ConceptOneVilla = {
 	name: string;
 	price: string;
@@ -11,8 +14,8 @@ type ConceptOneVillaCardProps = {
 
 export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 	return (
-		<article className="flex w-full flex-col gap-4">
-			<div className="relative h-61.75 w-full overflow-hidden">
+		<article className="w-full flex flex-col gap-4">
+			<div className="relative h-61.75 overflow-hidden">
 				<img
 					alt={villa.name}
 					src={villa.image}
@@ -30,10 +33,10 @@ export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 						aria-hidden="true"
 					>
 						<div className="absolute top-1/2 left-1.75 flex -translate-y-1/2 flex-col items-start justify-center overflow-hidden whitespace-nowrap bg-cream p-2 text-center shadow-[8px_8px_20px_10px_rgba(45,45,45,0.15)]">
-							<p className="font-medium text-[10px] text-mist leading-4">
+							<p className="font-medium text-[10px] text-muted-foreground leading-4">
 								Starting from
 							</p>
-							<p className="font-bold font-subheading text-ink text-xl leading-7">
+							<p className="font-bold font-subheading text-xl leading-7">
 								{villa.price}
 							</p>
 						</div>
@@ -48,13 +51,15 @@ export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 						src="/icons/user.svg"
 						className="size-6 shrink-0"
 					/>
-					<p className="truncate text-center text-ink text-xs leading-5.5 sm:text-sm">
+					<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
 						2 Guest
 					</p>
 				</div>
-				<div
-					className="size-2 shrink-0 rotate-45 bg-olive"
+				<img
+					alt=""
 					aria-hidden="true"
+					src="/icons/logo-blue-small.png"
+					className="shrink-0"
 				/>
 				<div className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1">
 					<img
@@ -63,13 +68,15 @@ export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 						src="/icons/bed.svg"
 						className="size-6 shrink-0"
 					/>
-					<p className="truncate text-center text-ink text-xs leading-5.5 sm:text-sm">
+					<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
 						1 Bedroom
 					</p>
 				</div>
-				<div
-					className="size-2 shrink-0 rotate-45 bg-olive"
+				<img
+					alt=""
 					aria-hidden="true"
+					src="/icons/logo-blue-small.png"
+					className="shrink-0"
 				/>
 				<div className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1">
 					<img
@@ -78,11 +85,15 @@ export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 						src="/icons/bathtub.svg"
 						className="size-6 shrink-0"
 					/>
-					<p className="truncate text-center text-ink text-xs leading-5.5 sm:text-sm">
+					<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
 						1 Bathroom
 					</p>
 				</div>
 			</div>
+			<Button variant="outline-ink">
+				See Villa Details
+				<ArrowRightIcon className="size-5" />
+			</Button>
 		</article>
 	);
 };

@@ -11,6 +11,8 @@ const buttonVariants = cva(
 				paper: "bg-paper text-brand hover:bg-paper/90",
 				"outline-brand":
 					"border-[1.5px] border-brand bg-transparent text-brand hover:bg-brand/10",
+				"outline-ink":
+					"border-[1.5px] border-mist bg-transparent text-ink hover:bg-mist/10",
 				default: "bg-primary text-primary-foreground hover:bg-primary/80",
 				outline:
 					"border-border bg-transparent hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-input/30",

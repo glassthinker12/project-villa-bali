@@ -18,7 +18,7 @@ export const Route = createFileRoute("/concept/$conceptId")({
 function ConceptLayoutComponent() {
 	return (
 		<div className="min-h-dvh">
-			<div className="relative mx-auto min-h-dvh w-full max-w-110 overflow-x-clip">
+			<div className="relative mx-auto min-h-dvh w-full overflow-x-clip">
 				<Outlet />
 			</div>
 		</div>

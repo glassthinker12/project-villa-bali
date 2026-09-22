@@ -5,33 +5,37 @@ import { ConceptOneVillaCard } from "./concept-one-villa-card";
 
 export const ConceptOneVillaSection = () => {
 	return (
-		<section className="flex w-full items-center justify-center bg-cream px-4 py-16">
-			<div className="flex w-full flex-col gap-6">
-				<div className="flex w-full flex-col gap-2">
-					<div className="flex w-full items-center justify-between">
-						<p className="whitespace-nowrap font-subheading text-base text-brand leading-6.5">
-							VILLAS OVERVIEW
-						</p>
-						<Button
-							variant="ghost"
-							size="xs"
-							className="text-brand hover:bg-transparent hover:text-brand/90"
-						>
-							See All Villas
-							<ArrowRightIcon />
-						</Button>
+		<section id="villa" className="relative w-full overflow-hidden py-16">
+			<div className="relative flex flex-col items-start gap-6 max-w-6xl mx-auto px-4">
+				<div className="w-full">
+					<div className="w-full flex items-start justify-between">
+						<div>
+							<p className="font-subheading text-base text-brand leading-6.5">
+								VILLAS OVERVIEW
+							</p>
+						</div>
+						<div>
+							<Button
+								variant="link"
+								size="xs"
+								className="text-brand hover:bg-transparent hover:text-brand/90"
+							>
+								See All Villas
+								<ArrowRightIcon />
+							</Button>
+						</div>
 					</div>
-					<h2 className="w-full font-bold font-heading text-4xl text-ink leading-11">
+
+					<h2 className="font-heading font-bold text-4xl leading-11">
 						Our Luxury Villas
 					</h2>
 				</div>
-				<ul className="flex w-full flex-col gap-6">
+
+				<div className="flex w-full flex-col md:flex-row gap-6">
 					{CONCEPT_ONE_VILLAS.map((villa) => (
-						<li key={villa.name}>
-							<ConceptOneVillaCard villa={villa} />
-						</li>
+						<ConceptOneVillaCard key={villa.name} villa={villa} />
 					))}
-				</ul>
+				</div>
 			</div>
 		</section>
 	);

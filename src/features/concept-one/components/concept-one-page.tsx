@@ -1,4 +1,5 @@
 import { ConceptOneAboutSection } from "./concept-one-about-section";
+import { ConceptOneCaveSection } from "./concept-one-cave-section";
 import { ConceptOneFooter } from "./concept-one-footer";
 import { ConceptOneGallerySection } from "./concept-one-gallery-section";
 import { ConceptOneHeroSection } from "./concept-one-hero-section";
@@ -13,6 +14,7 @@ export const ConceptOnePage = () => {
 			<ConceptOneAboutSection />
 			<ConceptOneVillaSection />
 			<ConceptOneGallerySection />
+			<ConceptOneCaveSection />
 			<ConceptOneFooter />
 		</main>
 	);
