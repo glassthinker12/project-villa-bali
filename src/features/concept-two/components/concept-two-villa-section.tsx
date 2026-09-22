@@ -1,19 +1,27 @@
+import { ArrowRightIcon } from "lucide-react";
+import { motion } from "motion/react";
 import { Button } from "#/components/ui/button";
 import { CONCEPT_ONE_VILLAS } from "#/features/concept-one/data/concept-one-data";
-import { ArrowRightIcon } from "lucide-react";
+import { staggerContainer, staggerItem } from "../lib/animation-variants";
 
 export const ConceptTwoVillaSection = () => {
 	return (
 		<section id="villa" className="relative w-full overflow-hidden py-16">
-			<div className="relative flex flex-col items-start gap-6 max-w-6xl mx-auto px-4">
-				<div className="w-full">
-					<div className="w-full flex items-start justify-between">
-						<div>
+			<div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 px-4">
+				<motion.div
+					variants={staggerContainer}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.2 }}
+					className="w-full"
+				>
+					<div className="flex w-full items-start justify-between">
+						<div variants={staggerItem}>
 							<p className="font-subheading text-base text-brand leading-6.5">
 								VILLAS OVERVIEW
 							</p>
 						</div>
-						<div>
+						<div variants={staggerItem}>
 							<Button
 								variant="link"
 								size="xs"
@@ -25,30 +33,41 @@ export const ConceptTwoVillaSection = () => {
 						</div>
 					</div>
 
-					<h2 className="font-heading font-bold text-4xl leading-11">
+					<motion.h2
+						variants={staggerItem}
+						className="font-bold font-heading text-4xl leading-11"
+					>
 						Our Luxury Villas
-					</h2>
-				</div>
+					</motion.h2>
+				</motion.div>
 
-				<div className="flex w-full flex-col gap-6">
+				<motion.div
+					className="flex w-full flex-col gap-6"
+					variants={staggerContainer}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.2 }}
+					transition={{ delayChildren: 0.2, staggerChildren: 0.15 }}
+				>
 					{CONCEPT_ONE_VILLAS.map((villa) => (
-						<div
+						<motion.div
 							key={villa.name}
-							className="h-full md:h-96 flex flex-col md:flex-row-reverse items-stretch border border-olive rounded-[8px] overflow-hidden p-4 gap-4"
+							variants={staggerItem}
+							className="flex h-full flex-col items-stretch gap-4 overflow-hidden rounded-[8px] border border-olive p-4 md:h-96 md:flex-row-reverse"
 						>
-							<div className="shrink-0 w-full md:w-1/2 h-full rounded-[8px] overflow-hidden">
+							<div className="h-full w-full shrink-0 overflow-hidden rounded-[8px] md:w-1/2">
 								<img
 									src={villa.image}
 									alt=""
 									className="h-full w-full object-cover"
 								/>
 							</div>
-							<div className="flex flex-col h-full w-full gap-4">
+							<div className="flex h-full w-full flex-col gap-4">
 								<div className="flex flex-col gap-4">
-									<h3 className="whitespace-nowrap font-bold font-heading text-3xl md:text-4xl text-olive leading-8">
+									<h3 className="whitespace-nowrap font-bold font-heading text-3xl text-olive leading-8 md:text-4xl">
 										{villa.name}
 									</h3>
-									<div className="flex md:hidden w-full items-center justify-center gap-2">
+									<div className="flex w-full items-center justify-center gap-2 md:hidden">
 										<div className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1">
 											<img
 												alt=""
@@ -95,7 +114,7 @@ export const ConceptTwoVillaSection = () => {
 											</p>
 										</div>
 									</div>
-									<div className="hidden md:flex items-center gap-2">
+									<div className="hidden items-center gap-2 md:flex">
 										<div className="flex items-center gap-2">
 											<img
 												alt=""
@@ -134,22 +153,22 @@ export const ConceptTwoVillaSection = () => {
 									</div>
 								</div>
 
-								<div className="mt-auto flex md:flex-col justify-between items-end md:items-start">
+								<div className="mt-auto flex items-end justify-between md:flex-col md:items-start">
 									<div>
-										<p className="font-medium text-xs text-secondary-foreground leading-4">
+										<p className="font-medium text-secondary-foreground text-xs leading-4">
 											Starting from
 										</p>
-										<p className="font-bold font-subheading text-xl leading-7 text-brand">
+										<p className="font-bold font-subheading text-brand text-xl leading-7">
 											{villa.price}
 										</p>
-										<p className="text-xs text-muted-foreground leading-4">
+										<p className="text-muted-foreground text-xs leading-4">
 											Additional charges may apply
 										</p>
 									</div>
 									<div className="mt-4">
 										<Button
 											variant="link"
-											className="text-brand hover:bg-transparent hover:text-brand/90 p-0"
+											className="p-0 text-brand hover:bg-transparent hover:text-brand/90"
 										>
 											See Villa Detail
 											<ArrowRightIcon />
@@ -157,9 +176,9 @@ export const ConceptTwoVillaSection = () => {
 									</div>
 								</div>
 							</div>
-						</div>
+						</motion.div>
 					))}
-				</div>
+				</motion.div>
 			</div>
 		</section>
 	);

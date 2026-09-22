@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { Button } from "#/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
 
@@ -12,11 +13,24 @@ export const ConceptTwoGallerySection = () => {
 	return (
 		<section id="gallery" className="relative w-full overflow-hidden py-16">
 			<div className="relative flex flex-col items-center gap-8 max-w-6xl mx-auto px-4">
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+				<motion.div
+					className="grid grid-cols-1 md:grid-cols-3 gap-4"
+					initial={{ opacity: 0, y: 40 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true, amount: 0.2 }}
+					transition={{ duration: 0.7, ease: "easeOut" }}
+				>
 					<div className="relative h-110 w-full grid grid-cols-2 gap-y-4">
 						{GALLERY_IMAGES.map((gallery, index) => {
 							return (
-								<div key={`gallery-${index + 1}`} className="min-h-0 min-w-0">
+								<motion.div
+									key={`gallery-${index + 1}`}
+									className="min-h-0 min-w-0"
+									initial={{ opacity: 0, scale: 0.95 }}
+									whileInView={{ opacity: 1, scale: 1 }}
+									viewport={{ once: true, amount: 0.3 }}
+									transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
+								>
 									<div
 										className={`h-full w-full ${index === 1 ? "p-4 pr-0" : index === 2 ? "p-4 pl-0" : ""}`}
 									>
@@ -26,12 +40,18 @@ export const ConceptTwoGallerySection = () => {
 											className="h-full w-full object-cover rounded-[8px] overflow-hidden"
 										/>
 									</div>
-								</div>
+								</motion.div>
 							);
 						})}
 					</div>
 
-					<div className="relative h-110 w-full rounded-[8px] overflow-hidden flex items-center justify-center">
+					<motion.div
+						className="relative h-110 w-full rounded-[8px] overflow-hidden flex items-center justify-center"
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						viewport={{ once: true, amount: 0.3 }}
+						transition={{ delay: 0.3, duration: 0.6 }}
+					>
 						{/* background */}
 						<div className="absolute h-full w-full inset-0">
 							<img
@@ -63,12 +83,19 @@ export const ConceptTwoGallerySection = () => {
 								</div>
 							</div>
 						</div>
-					</div>
+					</motion.div>
 
 					<div className="relative h-110 w-full grid grid-cols-2 gap-y-4">
 						{GALLERY_IMAGES.map((gallery, index) => {
 							return (
-								<div key={`gallery-${index + 1}`} className="min-h-0 min-w-0">
+								<motion.div
+									key={`gallery-${index + 1}`}
+									className="min-h-0 min-w-0"
+									initial={{ opacity: 0, scale: 0.95 }}
+									whileInView={{ opacity: 1, scale: 1 }}
+									viewport={{ once: true, amount: 0.3 }}
+									transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
+								>
 									<div
 										className={`h-full w-full ${index === 1 ? "p-4 pr-0" : index === 2 ? "p-4 pl-0" : ""}`}
 									>
@@ -78,11 +105,11 @@ export const ConceptTwoGallerySection = () => {
 											className="h-full w-full object-cover rounded-[8px] overflow-hidden"
 										/>
 									</div>
-								</div>
+								</motion.div>
 							);
 						})}
 					</div>
-				</div>
+				</motion.div>
 			</div>
 		</section>
 	);
