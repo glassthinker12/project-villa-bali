@@ -1,3 +1,4 @@
+import { motion, useScroll, useTransform } from "motion/react";
 import { ConceptOneHeroBackground } from "./concept-one-hero-background";
 
 const HERO_THUMBS = [
@@ -9,24 +10,48 @@ const HERO_THUMBS = [
 ];
 
 export const ConceptOneHeroSection = () => {
+	const { scrollY } = useScroll();
+	const y = useTransform(scrollY, [0, 800], [0, 150]);
+	const opacity = useTransform(scrollY, [0, 600], [1, 0]);
+
 	return (
 		<ConceptOneHeroBackground
 			cover="/images/hero/hero-bg.png"
 			thumbs={HERO_THUMBS}
 		>
-			<div className="flex flex-col gap-2 pt-8 text-white">
-				<p className="uppercase text-base leading-6.5">Welcome To</p>
-				<h1 className="font-heading font-bold text-6xl md:text-8xl leading-14 md:leading-16">
+			<motion.div
+				style={{ y, opacity }}
+				className="flex flex-col gap-2 pt-8 text-white"
+				initial={{ opacity: 0, y: 60 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.8, ease: "easeOut" }}
+			>
+				<motion.p
+					className="text-base uppercase leading-6.5"
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.2, duration: 0.6 }}
+				>
+					Welcome To
+				</motion.p>
+				<motion.h1
+					className="font-bold font-heading text-6xl leading-14 md:text-8xl md:leading-16"
+					initial={{ opacity: 0, y: 30 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.4, duration: 0.6 }}
+				>
 					<span>SEAVIEW</span>
 					<br />
 					<span className="text-5xl md:text-6xl">Private Villas</span>
-				</h1>
+				</motion.h1>
 
-				{/* review */}
-				<div
+				<motion.div
 					role="img"
 					aria-label="5.0 out of 5 stars from Google Reviews"
 					className="flex flex-wrap items-center gap-1"
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.6, duration: 0.6 }}
 				>
 					<p className="font-bold font-subheading text-base text-white leading-6.5">
 						5.0
@@ -44,8 +69,8 @@ export const ConceptOneHeroSection = () => {
 					<p className="text-white text-xs leading-5 underline">
 						from Google Reviews
 					</p>
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 		</ConceptOneHeroBackground>
 	);
 };

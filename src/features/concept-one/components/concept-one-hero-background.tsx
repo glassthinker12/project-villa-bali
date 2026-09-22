@@ -212,13 +212,13 @@ export function ConceptOneHeroBackground({
 			<div className="absolute inset-0 bg-[linear-gradient(180.03deg,rgba(36,33,33,0.5)_0%,rgba(36,33,33,0.3)_99.986%)]" />
 
 			<div className="absolute inset-x-0 top-20 flex h-[calc(100%-8rem)] flex-col justify-between">
-				<div className="w-full flex flex-col gap-4 max-w-6xl mx-auto px-4">
+				<div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4">
 					{children}
 				</div>
 
 				<div className="absolute bottom-0 left-0 w-full">
-					<div className="max-w-6xl mx-auto px-4">
-						<div className="flex flex-col gap-4 max-w-xl">
+					<div className="mx-auto max-w-6xl px-4">
+						<div className="flex max-w-xl flex-col gap-4">
 							<div
 								ref={scrollerRef}
 								aria-label="Villa photos"
@@ -255,7 +255,7 @@ export function ConceptOneHeroBackground({
 												"snap-start",
 												"outline-none",
 												"opacity-50",
-												isSelected && "opacity-100 border-2 border-cream",
+												isSelected && "border-2 border-cream opacity-100",
 											)}
 										>
 											<img
@@ -278,7 +278,7 @@ export function ConceptOneHeroBackground({
 										aria-hidden="true"
 										className="size-6 shrink-0"
 									/>
-									<p className="truncate font-medium text-white text-xs md:text-base leading-5">
+									<p className="truncate font-medium text-white text-xs leading-5 md:text-base">
 										1BR Clifftop Villa Sofia · Ocean View & Private Cave
 									</p>
 								</div>

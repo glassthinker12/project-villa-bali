@@ -1,20 +1,28 @@
 import { ArrowRightIcon } from "lucide-react";
+import { motion } from "motion/react";
 import { Button } from "#/components/ui/button";
 import { CONCEPT_ONE_VILLAS } from "../data/concept-one-data";
+import { staggerContainer, staggerItem } from "../lib/animation-variants";
 import { ConceptOneVillaCard } from "./concept-one-villa-card";
 
 export const ConceptOneVillaSection = () => {
 	return (
 		<section id="villa" className="relative w-full overflow-hidden py-16">
-			<div className="relative flex flex-col items-start gap-6 max-w-6xl mx-auto px-4">
-				<div className="w-full">
-					<div className="w-full flex items-start justify-between">
-						<div>
+			<div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 px-4">
+				<motion.div
+					variants={staggerContainer}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.2 }}
+					className="w-full"
+				>
+					<div className="flex w-full items-start justify-between">
+						<div variants={staggerItem}>
 							<p className="font-subheading text-base text-brand leading-6.5">
 								VILLAS OVERVIEW
 							</p>
 						</div>
-						<div>
+						<div variants={staggerItem}>
 							<Button
 								variant="link"
 								size="xs"
@@ -26,16 +34,32 @@ export const ConceptOneVillaSection = () => {
 						</div>
 					</div>
 
-					<h2 className="font-heading font-bold text-4xl leading-11">
+					<motion.h2
+						variants={staggerItem}
+						className="font-bold font-heading text-4xl leading-11"
+					>
 						Our Luxury Villas
-					</h2>
-				</div>
+					</motion.h2>
+				</motion.div>
 
-				<div className="flex w-full flex-col md:flex-row gap-6">
+				<motion.div
+					className="flex w-full flex-col gap-6 md:flex-row"
+					variants={staggerContainer}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.2 }}
+					transition={{ delayChildren: 0.2, staggerChildren: 0.15 }}
+				>
 					{CONCEPT_ONE_VILLAS.map((villa) => (
-						<ConceptOneVillaCard key={villa.name} villa={villa} />
+						<motion.div
+							key={villa.name}
+							variants={staggerItem}
+							className="flex-1"
+						>
+							<ConceptOneVillaCard villa={villa} />
+						</motion.div>
 					))}
-				</div>
+				</motion.div>
 			</div>
 		</section>
 	);

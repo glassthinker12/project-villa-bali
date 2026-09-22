@@ -1,5 +1,6 @@
-import { Button } from "#/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
+import { motion } from "motion/react";
+import { Button } from "#/components/ui/button";
 
 export type ConceptOneVilla = {
 	name: string;
@@ -14,7 +15,11 @@ type ConceptOneVillaCardProps = {
 
 export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 	return (
-		<article className="w-full flex flex-col gap-4">
+		<motion.article
+			className="flex w-full flex-col gap-4"
+			whileHover={{ y: -4, transition: { duration: 0.2 } }}
+			whileTap={{ scale: 0.98 }}
+		>
 			<div className="relative h-61.75 overflow-hidden">
 				<img
 					alt={villa.name}
@@ -94,6 +99,6 @@ export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 				See Villa Details
 				<ArrowRightIcon className="size-5" />
 			</Button>
-		</article>
+		</motion.article>
 	);
 };
