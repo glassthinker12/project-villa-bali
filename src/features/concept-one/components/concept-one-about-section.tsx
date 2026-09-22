@@ -5,12 +5,13 @@ export const ConceptOneAboutSection = () => {
 	return (
 		<section id="about" className="relative w-full overflow-hidden py-16">
 			{/* background */}
-			<div className="absolute h-full w-full inset-0 opacity-20">
+			<div className="absolute h-full w-full inset-0 opacity-40">
 				<img
 					src="/images/about/about-bg.webp"
 					alt=""
 					className="h-full w-full object-cover object-top"
 				/>
+				<div className="absolute h-full w-full inset-0 bg-[linear-gradient(180deg,#BAE1F6_0%,#FFFAF5_95.89%)] opacity-50" />
 			</div>
 
 			<div className="relative flex flex-col items-center gap-8 max-w-6xl mx-auto px-4">

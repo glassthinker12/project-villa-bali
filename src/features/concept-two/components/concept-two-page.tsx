@@ -1,4 +1,5 @@
 import { ConceptTwoAboutSection } from "./concept-two-about-section";
+import { ConceptTwoCaveSection } from "./concept-two-cave-section";
 import { ConceptTwoFooter } from "./concept-two-footer";
 import { ConceptTwoGallerySection } from "./concept-two-gallery-section";
 import { ConceptTwoHeroSection } from "./concept-two-hero-section";
@@ -13,6 +14,7 @@ export const ConceptTwoPage = () => {
 			<ConceptTwoAboutSection />
 			<ConceptTwoVillaSection />
 			<ConceptTwoGallerySection />
+			<ConceptTwoCaveSection />
 			<ConceptTwoFooter />
 		</main>
 	);

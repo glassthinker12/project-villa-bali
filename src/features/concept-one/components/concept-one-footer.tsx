@@ -39,7 +39,7 @@ export const ConceptOneFooter = () => {
 								designed with care, comfort, and you in mind.
 							</p>
 							<div>
-								<Button variant="paper">
+								<Button variant="paper" size="lg">
 									Save Your Stay Now
 									<ArrowRightIcon className="size-6" />
 								</Button>
