@@ -73,7 +73,7 @@ export const ConceptTwoAboutSection = () => {
 
 				{/* image */}
 				<motion.div
-					className="relative h-48 w-full md:h-110"
+					className="relative h-60 w-full md:h-110"
 					initial={{ opacity: 0 }}
 					whileInView={{ opacity: 1 }}
 					viewport={{ once: true, amount: 0.3 }}
@@ -88,11 +88,11 @@ export const ConceptTwoAboutSection = () => {
 							<div
 								key={`about-${index + 1}`}
 								className={cn(
-									"absolute inset-x-1/2 inset-y-0 h-37.5 w-29 md:h-96.5 md:w-75",
+									"absolute inset-x-1/2 inset-y-0 h-49 w-38 md:h-96.5 md:w-75",
 									index === 0
-										? "-translate-x-35 translate-y-5 -rotate-6 md:-translate-x-90 md:translate-y-10"
+										? "-translate-x-44 translate-y-5 -rotate-6 md:-translate-x-90 md:translate-y-10"
 										: index === 2
-											? "translate-x-5 translate-y-5 rotate-6 md:translate-x-15 md:translate-y-10"
+											? "translate-x-6 translate-y-5 rotate-6 md:translate-x-15 md:translate-y-10"
 											: "-translate-x-1/2",
 									index === 1 ? "z-10" : "",
 								)}
