@@ -3,11 +3,14 @@ import { motion } from "motion/react";
 export const ConceptTwoHeroSection = () => {
 	return (
 		<section className="relative -mt-20 h-[calc(100vh-8rem)] w-full overflow-hidden">
-			<img
-				src="/images/hero/hero-bg.webp"
-				alt="Seaview Private Villas Hero"
-				loading="eager"
-				decoding="async"
+			<video
+				src="/videos/hero/hero-1.mp4"
+				autoPlay
+				muted
+				loop
+				playsInline
+				preload="auto"
+				aria-hidden="true"
 				className="absolute inset-0 size-full object-cover"
 			/>
 			<div className="absolute inset-0 bg-[linear-gradient(180.03deg,rgba(36,33,33,0.5)_0%,rgba(36,33,33,0.3)_99.986%)]" />
