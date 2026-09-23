@@ -29,22 +29,22 @@ export const ConceptTwoCaveSection = () => {
 				</motion.div>
 
 				<motion.div
+					className="w-full"
 					initial={{ opacity: 0 }}
 					whileInView={{ opacity: 1 }}
 					viewport={{ once: true, amount: 0.3 }}
 					transition={{ delay: 0.3, duration: 0.6 }}
 				>
-					<ScrollArea className="w-full whitespace-nowrap">
-						<div className="mx-auto flex w-max snap-x snap-mandatory gap-4">
+					<ScrollArea
+						className="w-full whitespace-nowrap"
+						viewportClassName="![overflow-y:hidden]"
+					>
+						<div className="mx-auto flex w-max snap-x snap-mandatory gap-4 md:w-full">
 							{CAVE_IMAGES.map((cave, index) => {
 								return (
 									<motion.div
 										key={`cave-${index + 1}`}
-										className="w-80 shrink-0 snap-center"
-										initial={{ opacity: 0, y: 30 }}
-										whileInView={{ opacity: 1, y: 0 }}
-										viewport={{ once: true, amount: 0.3 }}
-										transition={{ delay: 0.4 + index * 0.15, duration: 0.7 }}
+										className="w-80 shrink-0 snap-center md:w-auto md:flex-1"
 									>
 										<div className="h-50 w-full overflow-hidden rounded-[8px]">
 											<img
