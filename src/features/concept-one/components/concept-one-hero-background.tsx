@@ -9,6 +9,10 @@ import {
 
 import { cn } from "#/lib/utils";
 
+export type HeroMedia =
+	| { type: "image"; src: string }
+	| { type: "video"; src: string; poster: string };
+
 const THUMB_WIDTH = 110;
 const THUMB_GAP = 16;
 const THUMB_STEP = THUMB_WIDTH + THUMB_GAP;
@@ -61,12 +65,10 @@ function HeroTimer({
 }
 
 export function ConceptOneHeroBackground({
-	cover,
-	thumbs,
+	slides,
 	children,
 }: {
-	cover: string;
-	thumbs: string[];
+	slides: HeroMedia[];
 	children: ReactNode;
 }) {
 	const scrollerRef = useRef<HTMLDivElement>(null);
@@ -82,11 +84,11 @@ export function ConceptOneHeroBackground({
 	const isProgrammaticScrollRef = useRef(false);
 	const timerRef = useRef<number | null>(null);
 	const rafRef = useRef<number | null>(null);
+	const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
 	const [active, setActive] = useState(0);
 	const [isDragging, setIsDragging] = useState(false);
-
-	const heroSrc = active === 0 ? cover : thumbs[active];
+	const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
 	const updateActiveFromScroll = useCallback(() => {
 		if (isProgrammaticScrollRef.current) return;
@@ -95,16 +97,16 @@ export function ConceptOneHeroBackground({
 			const scroller = scrollerRef.current;
 			if (!scroller) return;
 			const index = Math.round(scroller.scrollLeft / THUMB_STEP);
-			const next = Math.max(0, Math.min(thumbs.length - 1, index));
+			const next = Math.max(0, Math.min(slides.length - 1, index));
 			setActive(next);
 		});
-	}, [thumbs.length]);
+	}, [slides.length]);
 
 	const selectSlide = useCallback(
 		(index: number) => {
 			const scroller = scrollerRef.current;
 			if (!scroller) return;
-			const next = Math.max(0, Math.min(thumbs.length - 1, index));
+			const next = Math.max(0, Math.min(slides.length - 1, index));
 			const targetScroll = next * THUMB_STEP;
 			setActive(next);
 			const isFarAway =
@@ -121,11 +123,11 @@ export function ConceptOneHeroBackground({
 				isFarAway ? 50 : 400,
 			);
 		},
-		[thumbs.length],
+		[slides.length],
 	);
 
 	useEffect(() => {
-		if (thumbs.length < 2) return;
+		if (slides.length < 2) return;
 		if (
 			typeof window !== "undefined" &&
 			window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -136,7 +138,7 @@ export function ConceptOneHeroBackground({
 			if (document.hidden || isDragging) return;
 			if (timerRef.current) window.clearTimeout(timerRef.current);
 			timerRef.current = window.setTimeout(() => {
-				const next = (active + 1) % thumbs.length;
+				const next = (active + 1) % slides.length;
 				selectSlide(next);
 			}, SLIDE_DURATION);
 		};
@@ -157,7 +159,28 @@ export function ConceptOneHeroBackground({
 			document.removeEventListener("visibilitychange", onVisChange);
 			if (rafRef.current) cancelAnimationFrame(rafRef.current);
 		};
-	}, [active, selectSlide, thumbs.length, isDragging]);
+	}, [active, selectSlide, slides.length, isDragging]);
+
+	useEffect(() => {
+		const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+		setPrefersReducedMotion(mq.matches);
+		const onChange = (event: MediaQueryListEvent) =>
+			setPrefersReducedMotion(event.matches);
+		mq.addEventListener("change", onChange);
+		return () => mq.removeEventListener("change", onChange);
+	}, []);
+
+	useEffect(() => {
+		if (prefersReducedMotion) return;
+		videoRefs.current.forEach((video, index) => {
+			if (!video) return;
+			if (index === active) {
+				video.play().catch(() => {});
+			} else {
+				video.pause();
+			}
+		});
+	}, [active, prefersReducedMotion]);
 
 	function handlePointerDown(event: PointerEvent<HTMLDivElement>) {
 		if (event.pointerType !== "mouse") return;
@@ -201,13 +224,43 @@ export function ConceptOneHeroBackground({
 
 	return (
 		<section className="relative -mt-20 h-[calc(100vh-8rem)] w-full overflow-hidden">
-			<img
-				src={heroSrc}
-				alt=""
-				loading="eager"
-				decoding="async"
-				className="absolute inset-0 size-full object-cover"
-			/>
+			{slides.map((slide, index) => {
+				const isActive = index === active;
+				return (
+					<div
+						key={`${slide.type}-${index}`}
+						aria-hidden={!isActive}
+						className={cn(
+							"absolute inset-0 transition-opacity duration-500",
+							isActive ? "opacity-100" : "pointer-events-none opacity-0",
+						)}
+					>
+						{slide.type === "image" ? (
+							<img
+								src={slide.src}
+								alt=""
+								loading={index === 0 ? "eager" : "lazy"}
+								decoding="async"
+								className="absolute inset-0 size-full object-cover"
+							/>
+						) : (
+							<video
+								ref={(node) => {
+									videoRefs.current[index] = node;
+								}}
+								src={slide.src}
+								poster={slide.poster}
+								autoPlay={!prefersReducedMotion}
+								muted
+								loop
+								playsInline
+								preload="auto"
+								className="absolute inset-0 size-full object-cover"
+							/>
+						)}
+					</div>
+				);
+			})}
 
 			<div className="absolute inset-0 bg-[linear-gradient(180.03deg,rgba(36,33,33,0.5)_0%,rgba(36,33,33,0.3)_99.986%)]" />
 
@@ -236,15 +289,15 @@ export function ConceptOneHeroBackground({
 								)}
 								role="tablist"
 							>
-								{thumbs.map((src, index) => {
+								{slides.map((slide, index) => {
 									const isSelected = index === active;
 									return (
 										<button
-											key={`${src}-${index}`}
+											key={`${slide.type}-${index}`}
 											type="button"
 											role="tab"
 											aria-selected={isSelected}
-											aria-label={`View photo ${index + 1} of ${thumbs.length}`}
+											aria-label={`View photo ${index + 1} of ${slides.length}`}
 											onClick={() => {
 												if (!skipClickRef.current) {
 													selectSlide(index);
@@ -259,7 +312,7 @@ export function ConceptOneHeroBackground({
 											)}
 										>
 											<img
-												src={src}
+												src={slide.type === "image" ? slide.src : slide.poster}
 												alt=""
 												draggable={false}
 												loading="lazy"
@@ -283,7 +336,7 @@ export function ConceptOneHeroBackground({
 									</p>
 								</div>
 								<HeroTimer
-									count={thumbs.length}
+									count={slides.length}
 									active={active}
 									duration={SLIDE_DURATION}
 								/>

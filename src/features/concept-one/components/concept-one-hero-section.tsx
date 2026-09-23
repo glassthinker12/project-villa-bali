@@ -1,12 +1,19 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { ConceptOneHeroBackground } from "./concept-one-hero-background";
+import {
+	ConceptOneHeroBackground,
+	type HeroMedia,
+} from "./concept-one-hero-background";
 
-const HERO_THUMBS = [
-	"/images/hero/hero-thumb-1.webp",
-	"/images/hero/hero-thumb-2.webp",
-	"/images/hero/hero-thumb-3.webp",
-	"/images/hero/hero-thumb-4.webp",
-	"/images/hero/hero-thumb-5.webp",
+const HERO_SLIDES: HeroMedia[] = [
+	{
+		type: "video",
+		src: "/videos/hero/hero-1.mp4",
+		poster: "/images/hero/hero-thumb-1.webp",
+	},
+	{ type: "image", src: "/images/hero/hero-thumb-2.webp" },
+	{ type: "image", src: "/images/hero/hero-thumb-3.webp" },
+	{ type: "image", src: "/images/hero/hero-thumb-4.webp" },
+	{ type: "image", src: "/images/hero/hero-thumb-5.webp" },
 ];
 
 export const ConceptOneHeroSection = () => {
@@ -15,10 +22,7 @@ export const ConceptOneHeroSection = () => {
 	const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
 	return (
-		<ConceptOneHeroBackground
-			cover="/images/hero/hero-bg.png"
-			thumbs={HERO_THUMBS}
-		>
+		<ConceptOneHeroBackground slides={HERO_SLIDES}>
 			<motion.div
 				style={{ y, opacity }}
 				className="flex flex-col gap-2 pt-8 text-white"
