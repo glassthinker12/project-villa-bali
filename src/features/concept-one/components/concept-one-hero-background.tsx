@@ -223,7 +223,7 @@ export function ConceptOneHeroBackground({
 	}
 
 	return (
-		<section className="relative -mt-20 h-[calc(100vh-8rem)] w-full overflow-hidden">
+		<section className="relative -mt-20 h-dvh w-full overflow-hidden">
 			{slides.map((slide, index) => {
 				const isActive = index === active;
 				return (

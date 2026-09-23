@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export const ConceptTwoHeroSection = () => {
 	return (
-		<section className="relative -mt-20 h-[calc(100vh-8rem)] w-full overflow-hidden">
+		<section className="relative -mt-20 h-dvh w-full overflow-hidden">
 			<video
 				src="/videos/hero/hero-1.mp4"
 				autoPlay
