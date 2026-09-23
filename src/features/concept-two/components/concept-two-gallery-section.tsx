@@ -1,13 +1,55 @@
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { Button } from "#/components/ui/button";
+import {
+	ConceptTwoGalleryFlip,
+	type GalleryFlipSlot,
+} from "./concept-two-gallery-flip";
 
 const GALLERY_IMAGES = [
-	"/images/gallery/gallery-two-1.jpg",
-	"/images/gallery/gallery-two-2.png",
-	"/images/gallery/gallery-two-3.jpg",
-	"/images/gallery/gallery-two-4.jpg",
+	{ src: "/images/gallery/gallery-two-1.jpg", alt: "gallery-1" },
+	{ src: "/images/gallery/gallery-two-2.png", alt: "gallery-2" },
+	{ src: "/images/gallery/gallery-two-3.jpg", alt: "gallery-3" },
+	{ src: "/images/gallery/gallery-two-4.jpg", alt: "gallery-4" },
 ];
+
+const GALLERY_SLOTS: GalleryFlipSlot[] = [
+	{ images: [GALLERY_IMAGES[0], GALLERY_IMAGES[2]] },
+	{ images: [GALLERY_IMAGES[1], GALLERY_IMAGES[3]] },
+	{ images: [GALLERY_IMAGES[2], GALLERY_IMAGES[0]] },
+	{ images: [GALLERY_IMAGES[3], GALLERY_IMAGES[1]] },
+];
+
+const GalleryColumn = () => {
+	const [active, setActive] = useState(false);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setActive((current) => !current);
+		}, 3000);
+
+		return () => clearInterval(interval);
+	}, []);
+
+	return (
+		<div className="relative grid h-110 w-full grid-cols-2 grid-rows-2 gap-y-4">
+			{GALLERY_SLOTS.map((slot, index) => (
+				<div
+					key={slot.images[0].src}
+					className={`flex min-h-0 min-w-0 items-center justify-center ${index === 1 ? "p-4 pr-0" : index === 2 ? "p-4 pl-0" : ""}`}
+				>
+					<ConceptTwoGalleryFlip
+						images={slot.images}
+						active={index === 0 || index === 3 ? active : !active}
+						tall={index === 1 || index === 2 ? 180 : 212}
+						short={140}
+					/>
+				</div>
+			))}
+		</div>
+	);
+};
 
 export const ConceptTwoGallerySection = () => {
 	return (
@@ -20,30 +62,7 @@ export const ConceptTwoGallerySection = () => {
 					viewport={{ once: true, amount: 0.2 }}
 					transition={{ duration: 0.7, ease: "easeOut" }}
 				>
-					<div className="relative grid h-110 w-full grid-cols-2 gap-y-4">
-						{GALLERY_IMAGES.map((gallery, index) => {
-							return (
-								<motion.div
-									key={`gallery-${index + 1}`}
-									className="min-h-0 min-w-0"
-									initial={{ opacity: 0, scale: 0.95 }}
-									whileInView={{ opacity: 1, scale: 1 }}
-									viewport={{ once: true, amount: 0.3 }}
-									transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
-								>
-									<div
-										className={`h-full w-full ${index === 1 ? "p-4 pr-0" : index === 2 ? "p-4 pl-0" : ""}`}
-									>
-										<img
-											src={gallery}
-											alt={`gallery-${index + 1}`}
-											className="h-full w-full overflow-hidden rounded-[8px] object-cover"
-										/>
-									</div>
-								</motion.div>
-							);
-						})}
-					</div>
+					<GalleryColumn />
 
 					<motion.div
 						className="relative flex h-110 w-full items-center justify-center overflow-hidden rounded-[8px]"
@@ -85,30 +104,7 @@ export const ConceptTwoGallerySection = () => {
 						</div>
 					</motion.div>
 
-					<div className="relative grid h-110 w-full grid-cols-2 gap-y-4">
-						{GALLERY_IMAGES.map((gallery, index) => {
-							return (
-								<motion.div
-									key={`gallery-${index + 1}`}
-									className="min-h-0 min-w-0"
-									initial={{ opacity: 0, scale: 0.95 }}
-									whileInView={{ opacity: 1, scale: 1 }}
-									viewport={{ once: true, amount: 0.3 }}
-									transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
-								>
-									<div
-										className={`h-full w-full ${index === 1 ? "p-4 pr-0" : index === 2 ? "p-4 pl-0" : ""}`}
-									>
-										<img
-											src={gallery}
-											alt={`gallery-${index + 1}`}
-											className="h-full w-full overflow-hidden rounded-[8px] object-cover"
-										/>
-									</div>
-								</motion.div>
-							);
-						})}
-					</div>
+					<GalleryColumn />
 				</motion.div>
 			</div>
 		</section>
