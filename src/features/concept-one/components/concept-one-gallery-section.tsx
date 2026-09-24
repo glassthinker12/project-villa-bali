@@ -3,15 +3,18 @@ import { ConceptOneMarqueeColumn } from "./concept-one-marquee-column";
 
 const GALLERY_LEFT = [
 	"/images/gallery/gallery-left-1.webp",
-	"/images/gallery/gallery-left-1.webp",
+	"/images/gallery/gallery-left-2.webp",
+	"/images/gallery/gallery-left-3.webp",
 ];
 const GALLERY_CENTER = [
 	"/images/gallery/gallery-center-1.webp",
-	"/images/gallery/gallery-center-1.webp",
+	"/images/gallery/gallery-center-2.webp",
+	"/images/gallery/gallery-center-3.webp",
 ];
 const GALLERY_RIGHT = [
 	"/images/gallery/gallery-right-1.webp",
-	"/images/gallery/gallery-right-1.webp",
+	"/images/gallery/gallery-right-2.webp",
+	"/images/gallery/gallery-right-3.webp",
 ];
 
 export const ConceptOneGallerySection = () => {
