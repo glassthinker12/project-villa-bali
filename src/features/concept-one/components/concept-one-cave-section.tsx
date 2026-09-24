@@ -59,7 +59,7 @@ export const ConceptOneCaveSection = () => {
 									transition={{ delay: 0.7, duration: 0.6 }}
 								>
 									<img
-										src="/images/cave/cave-1.webp"
+										src="/images/cave/cave-2.webp"
 										alt=""
 										className="h-full w-full object-cover"
 									/>

@@ -8,10 +8,10 @@ import {
 } from "./concept-two-gallery-flip";
 
 const GALLERY_IMAGES = [
-	{ src: "/images/gallery/gallery-two-1.jpg", alt: "gallery-1" },
+	{ src: "/images/gallery/gallery-two-1.webp", alt: "gallery-1" },
 	{ src: "/images/gallery/gallery-two-2.png", alt: "gallery-2" },
-	{ src: "/images/gallery/gallery-two-3.jpg", alt: "gallery-3" },
-	{ src: "/images/gallery/gallery-two-4.jpg", alt: "gallery-4" },
+	{ src: "/images/gallery/gallery-two-3.webp", alt: "gallery-3" },
+	{ src: "/images/gallery/gallery-two-4.webp", alt: "gallery-4" },
 ];
 
 const GALLERY_SLOTS: GalleryFlipSlot[] = [

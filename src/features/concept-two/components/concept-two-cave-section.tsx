@@ -3,7 +3,7 @@ import { ScrollArea } from "#/components/ui/scroll-area";
 
 const CAVE_IMAGES = [
 	"/images/cave/cave-1.webp",
-	"/images/cave/cave-1.webp",
+	"/images/cave/cave-2.webp",
 	"/images/cave/cave-3.webp",
 ];
 
