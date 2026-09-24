@@ -1,6 +1,6 @@
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "#/components/ui/button";
 import {
 	ConceptTwoGalleryFlip,
@@ -9,32 +9,61 @@ import {
 
 const GALLERY_IMAGES = [
 	{ src: "/images/gallery/gallery-two-1.webp", alt: "gallery-1" },
-	{ src: "/images/gallery/gallery-two-2.png", alt: "gallery-2" },
+	{ src: "/images/gallery/gallery-two-2.webp", alt: "gallery-2" },
 	{ src: "/images/gallery/gallery-two-3.webp", alt: "gallery-3" },
 	{ src: "/images/gallery/gallery-two-4.webp", alt: "gallery-4" },
+	{ src: "/images/gallery/gallery-two-5.webp", alt: "gallery-5" },
+	{ src: "/images/gallery/gallery-two-6.webp", alt: "gallery-6" },
+	{ src: "/images/gallery/gallery-two-7.webp", alt: "gallery-7" },
+	{ src: "/images/gallery/gallery-two-8.webp", alt: "gallery-8" },
+	{ src: "/images/gallery/gallery-two-9.webp", alt: "gallery-9" },
+	{ src: "/images/gallery/gallery-two-10.webp", alt: "gallery-10" },
+	{ src: "/images/gallery/gallery-two-11.webp", alt: "gallery-11" },
+	{ src: "/images/gallery/gallery-two-12.webp", alt: "gallery-12" },
+	{ src: "/images/gallery/gallery-two-13.webp", alt: "gallery-13" },
+	{ src: "/images/gallery/gallery-two-14.webp", alt: "gallery-14" },
+	{ src: "/images/gallery/gallery-two-15.webp", alt: "gallery-15" },
+	{ src: "/images/gallery/gallery-two-16.webp", alt: "gallery-16" },
 ];
 
-const GALLERY_SLOTS: GalleryFlipSlot[] = [
-	{ images: [GALLERY_IMAGES[0], GALLERY_IMAGES[2]] },
-	{ images: [GALLERY_IMAGES[1], GALLERY_IMAGES[3]] },
-	{ images: [GALLERY_IMAGES[2], GALLERY_IMAGES[0]] },
-	{ images: [GALLERY_IMAGES[3], GALLERY_IMAGES[1]] },
+const LEFT_SLOTS: GalleryFlipSlot[] = [
+	{ images: [GALLERY_IMAGES[0], GALLERY_IMAGES[1]] },
+	{ images: [GALLERY_IMAGES[2], GALLERY_IMAGES[3]] },
+	{ images: [GALLERY_IMAGES[4], GALLERY_IMAGES[5]] },
+	{ images: [GALLERY_IMAGES[6], GALLERY_IMAGES[7]] },
 ];
 
-const GalleryColumn = () => {
+const RIGHT_SLOTS: GalleryFlipSlot[] = [
+	{ images: [GALLERY_IMAGES[8], GALLERY_IMAGES[9]] },
+	{ images: [GALLERY_IMAGES[10], GALLERY_IMAGES[11]] },
+	{ images: [GALLERY_IMAGES[12], GALLERY_IMAGES[13]] },
+	{ images: [GALLERY_IMAGES[14], GALLERY_IMAGES[15]] },
+];
+
+const GalleryColumn = ({
+	slots,
+	staggerDelay = 0,
+}: { slots: GalleryFlipSlot[]; staggerDelay?: number }) => {
 	const [active, setActive] = useState(false);
+	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
 	useEffect(() => {
-		const interval = setInterval(() => {
-			setActive((current) => !current);
-		}, 3000);
+		const timeout = setTimeout(() => {
+			setActive(true);
+			intervalRef.current = setInterval(() => {
+				setActive((current) => !current);
+			}, 3000);
+		}, staggerDelay);
 
-		return () => clearInterval(interval);
-	}, []);
+		return () => {
+			clearTimeout(timeout);
+			if (intervalRef.current) clearInterval(intervalRef.current);
+		};
+	}, [staggerDelay]);
 
 	return (
 		<div className="relative grid h-110 w-full grid-cols-2 grid-rows-2 gap-y-4">
-			{GALLERY_SLOTS.map((slot, index) => (
+			{slots.map((slot, index) => (
 				<div
 					key={slot.images[0].src}
 					className={`flex min-h-0 min-w-0 items-center justify-center ${index === 1 ? "p-4 pr-0" : index === 2 ? "p-4 pl-0" : ""}`}
@@ -62,7 +91,7 @@ export const ConceptTwoGallerySection = () => {
 					viewport={{ once: true, amount: 0.2 }}
 					transition={{ duration: 0.7, ease: "easeOut" }}
 				>
-					<GalleryColumn />
+					<GalleryColumn slots={LEFT_SLOTS} />
 
 					<motion.div
 						className="relative flex h-110 w-full items-center justify-center overflow-hidden rounded-[8px]"
@@ -104,7 +133,7 @@ export const ConceptTwoGallerySection = () => {
 						</div>
 					</motion.div>
 
-					<GalleryColumn />
+					<GalleryColumn slots={RIGHT_SLOTS} staggerDelay={1500} />
 				</motion.div>
 			</div>
 		</section>
