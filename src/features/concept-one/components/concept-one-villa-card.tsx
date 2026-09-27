@@ -1,13 +1,7 @@
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "#/components/ui/button";
-
-export type ConceptOneVilla = {
-	name: string;
-	price: string;
-	image: string;
-	frameWidth: string;
-};
+import type { ConceptOneVilla } from "../data/concept-one-data";
 
 type ConceptOneVillaCardProps = {
 	villa: ConceptOneVilla;
@@ -57,7 +51,7 @@ export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 						className="size-6 shrink-0"
 					/>
 					<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
-						2 Guest
+						{villa.guests} {villa.guests === 1 ? "Guest" : "Guests"}
 					</p>
 				</div>
 				<img
@@ -74,7 +68,7 @@ export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 						className="size-6 shrink-0"
 					/>
 					<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
-						1 Bedroom
+						{villa.bedrooms} {villa.bedrooms === 1 ? "Bedroom" : "Bedrooms"}
 					</p>
 				</div>
 				<img
@@ -91,7 +85,7 @@ export const ConceptOneVillaCard = ({ villa }: ConceptOneVillaCardProps) => {
 						className="size-6 shrink-0"
 					/>
 					<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
-						1 Bathroom
+						{villa.bathrooms} {villa.bathrooms === 1 ? "Bathroom" : "Bathrooms"}
 					</p>
 				</div>
 			</div>

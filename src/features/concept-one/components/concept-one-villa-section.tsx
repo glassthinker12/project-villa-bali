@@ -17,12 +17,12 @@ export const ConceptOneVillaSection = () => {
 					className="w-full"
 				>
 					<div className="flex w-full items-start justify-between">
-						<div variants={staggerItem}>
+						<motion.div variants={staggerItem}>
 							<p className="font-subheading text-base text-brand leading-6.5">
 								VILLAS OVERVIEW
 							</p>
-						</div>
-						<div variants={staggerItem}>
+						</motion.div>
+						<motion.div variants={staggerItem}>
 							<Button
 								variant="link"
 								size="xs"
@@ -31,7 +31,7 @@ export const ConceptOneVillaSection = () => {
 								See All Villas
 								<ArrowRightIcon />
 							</Button>
-						</div>
+						</motion.div>
 					</div>
 
 					<motion.h2

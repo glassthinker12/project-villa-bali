@@ -16,12 +16,12 @@ export const ConceptTwoVillaSection = () => {
 					className="w-full"
 				>
 					<div className="flex w-full items-start justify-between">
-						<div variants={staggerItem}>
+						<motion.div variants={staggerItem}>
 							<p className="font-subheading text-base text-brand leading-6.5">
 								VILLAS OVERVIEW
 							</p>
-						</div>
-						<div variants={staggerItem}>
+						</motion.div>
+						<motion.div variants={staggerItem}>
 							<Button
 								variant="link"
 								size="xs"
@@ -30,7 +30,7 @@ export const ConceptTwoVillaSection = () => {
 								See All Villas
 								<ArrowRightIcon />
 							</Button>
-						</div>
+						</motion.div>
 					</div>
 
 					<motion.h2
@@ -76,7 +76,7 @@ export const ConceptTwoVillaSection = () => {
 												className="size-6 shrink-0"
 											/>
 											<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
-												2 Guest
+												{villa.guests} {villa.guests === 1 ? "Guest" : "Guests"}
 											</p>
 										</div>
 										<img
@@ -93,7 +93,7 @@ export const ConceptTwoVillaSection = () => {
 												className="size-6 shrink-0"
 											/>
 											<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
-												1 Bedroom
+												{villa.bedrooms} {villa.bedrooms === 1 ? "Bedroom" : "Bedrooms"}
 											</p>
 										</div>
 										<img
@@ -110,7 +110,7 @@ export const ConceptTwoVillaSection = () => {
 												className="size-6 shrink-0"
 											/>
 											<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
-												1 Bathroom
+												{villa.bathrooms} {villa.bathrooms === 1 ? "Bathroom" : "Bathrooms"}
 											</p>
 										</div>
 									</div>
@@ -122,7 +122,7 @@ export const ConceptTwoVillaSection = () => {
 												src="/icons/user.svg"
 												className="size-4 shrink-0"
 											/>
-											<p className="text-sm">2 Guest</p>
+											<p className="text-sm">{villa.guests} {villa.guests === 1 ? "Guest" : "Guests"}</p>
 										</div>
 										<div
 											className="size-2 shrink-0 rounded-full bg-brand"
@@ -135,7 +135,7 @@ export const ConceptTwoVillaSection = () => {
 												src="/icons/bed.svg"
 												className="size-4 shrink-0"
 											/>
-											<p className="text-sm">1 Bedroom</p>
+											<p className="text-sm">{villa.bedrooms} {villa.bedrooms === 1 ? "Bedroom" : "Bedrooms"}</p>
 										</div>
 										<div
 											className="size-2 shrink-0 rounded-full bg-brand"
@@ -148,7 +148,7 @@ export const ConceptTwoVillaSection = () => {
 												src="/icons/bathtub.svg"
 												className="size-4 shrink-0"
 											/>
-											<p className="text-sm">1 Bathroom</p>
+											<p className="text-sm">{villa.bathrooms} {villa.bathrooms === 1 ? "Bathroom" : "Bathrooms"}</p>
 										</div>
 									</div>
 								</div>
