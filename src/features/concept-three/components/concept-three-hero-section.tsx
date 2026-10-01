@@ -68,6 +68,23 @@ export const ConceptThreeHeroSection = () => {
 								from Google Reviews
 							</p>
 						</motion.div>
+
+						<motion.div
+							className="mt-8 flex flex-col items-center gap-2 text-white/80"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ delay: 0.8, duration: 0.6 }}
+						>
+							<span className="text-xs uppercase tracking-widest">Scroll Down to Explore</span>
+							<motion.div
+								animate={{ y: [0, 8, 0] }}
+								transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+							>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+									<path d="M12 5v14M19 12l-7 7-7-7" />
+								</svg>
+							</motion.div>
+						</motion.div>
 					</motion.div>
 				</div>
 			</div>
