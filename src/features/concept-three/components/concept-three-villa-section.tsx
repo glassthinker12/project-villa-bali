@@ -43,18 +43,19 @@ export const ConceptThreeVillaSection = () => {
 					transition={defaultTransition}
 					className="order-2 relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-[#f0e9e1] md:order-1 md:h-full md:flex-1 md:aspect-auto"
 				>
-					{/* Render all images, absolute positioned, conditionally fade the active one */}
-					{VILLA_IMAGES.map((img, index) => (
+					{/* Render only the active image (crossfade) to save mobile memory/CPU */}
+					<AnimatePresence>
 						<motion.img
-							key={img.src}
-							src={img.src}
-							alt={img.villa}
-							initial={false}
-							animate={{ opacity: index === currentIndex ? 1 : 0 }}
+							key={currentSlide.src}
+							src={currentSlide.src}
+							alt={currentSlide.villa}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
 							transition={{ duration: 0.8, ease: "easeInOut" }}
 							className="absolute inset-0 size-full object-cover"
 						/>
-					))}
+					</AnimatePresence>
 
 					{/* Gradient Overlay */}
 					<div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-[#242121]/50 to-transparent pointer-events-none z-10" />
