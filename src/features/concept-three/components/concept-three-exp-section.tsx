@@ -127,6 +127,8 @@ export const ConceptThreeExpSection = () => {
 										<img
 											src={exp.bgImage}
 											alt=""
+											loading="lazy"
+											decoding="async"
 											className="absolute inset-0 size-full object-cover"
 										/>
 										{/* Overlay Gradient */}
@@ -136,6 +138,8 @@ export const ConceptThreeExpSection = () => {
 											<img
 												src={exp.innerImage}
 												alt={exp.title}
+												loading="lazy"
+												decoding="async"
 												className="size-full object-cover"
 											/>
 										</div>

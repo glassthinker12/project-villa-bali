@@ -15,6 +15,8 @@ export const ConceptThreeAboutSection = () => {
 				<img
 					src="/images/about/about-bg.webp"
 					alt=""
+					loading="lazy"
+					decoding="async"
 					className="absolute inset-0 size-full object-cover opacity-30"
 				/>
 			</div>
@@ -57,6 +59,8 @@ export const ConceptThreeAboutSection = () => {
 					<img
 						src="/images/about/about-image-three-1.webp"
 						alt="Seaview Private Villas"
+						loading="lazy"
+						decoding="async"
 						className="absolute inset-0 size-full object-cover"
 					/>
 				</motion.div>
