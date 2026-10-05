@@ -23,7 +23,7 @@ export const ConceptThreeVillaSection = () => {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			setCurrentIndex((prev) => (prev + 1) % VILLA_IMAGES.length);
-		}, 3000);
+		}, 5000);
 		return () => clearInterval(timer);
 	}, []);
 
@@ -53,6 +53,9 @@ export const ConceptThreeVillaSection = () => {
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
 							transition={{ duration: 0.8, ease: "easeInOut" }}
+							loading={currentIndex === 0 ? "eager" : "lazy"}
+							decoding="async"
+							style={{ willChange: "opacity" }}
 							className="absolute inset-0 size-full object-cover"
 						/>
 					</AnimatePresence>

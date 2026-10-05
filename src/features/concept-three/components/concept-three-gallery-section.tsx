@@ -43,6 +43,8 @@ export const ConceptThreeGallerySection = () => {
 						<img
 							src="/images/gallery/gallery-three-image-1.webp"
 							alt="Gallery Image 1"
+							loading="lazy"
+							decoding="async"
 							className="size-full object-cover"
 						/>
 					</div>
@@ -52,6 +54,8 @@ export const ConceptThreeGallerySection = () => {
 						<img
 							src="/images/gallery/gallery-three-image-2.webp"
 							alt="Gallery Image 2"
+							loading="lazy"
+							decoding="async"
 							className="size-full object-cover"
 						/>
 					</div>
@@ -61,6 +65,8 @@ export const ConceptThreeGallerySection = () => {
 						<img
 							src="/images/gallery/gallery-three-image-3.webp"
 							alt="Gallery Image 3"
+							loading="lazy"
+							decoding="async"
 							className="size-full object-cover"
 						/>
 					</div>
@@ -70,6 +76,8 @@ export const ConceptThreeGallerySection = () => {
 						<img
 							src="/images/gallery/gallery-three-image-4.webp"
 							alt="Gallery Image 4"
+							loading="lazy"
+							decoding="async"
 							className="size-full object-cover"
 						/>
 					</div>
@@ -79,6 +87,8 @@ export const ConceptThreeGallerySection = () => {
 						<img
 							src="/images/gallery/gallery-three-image-5.webp"
 							alt="Gallery Image 5"
+							loading="lazy"
+							decoding="async"
 							className="size-full object-cover"
 						/>
 					</div>
