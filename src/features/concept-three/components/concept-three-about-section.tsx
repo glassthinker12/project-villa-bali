@@ -2,7 +2,11 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "#/components/ui/button";
 import { motion } from "motion/react";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
-import { fadeUp, staggerContainer, defaultTransition } from "../lib/animation-variants";
+import {
+	fadeUp,
+	staggerContainer,
+	defaultTransition,
+} from "../lib/animation-variants";
 
 export const ConceptThreeAboutSection = () => {
 	const { ref, isInView } = useScrollReveal();
@@ -22,14 +26,18 @@ export const ConceptThreeAboutSection = () => {
 			</div>
 
 			{/* Content */}
-			<motion.div 
+			<motion.div
 				variants={staggerContainer}
 				initial="hidden"
 				animate={isInView ? "visible" : "hidden"}
 				className="relative mx-auto flex max-w-7xl flex-col gap-8 px-4 py-16 pb-24 md:flex-row md:items-center md:px-16 md:pb-16"
 			>
 				{/* Left column — text + CTA */}
-				<motion.div variants={fadeUp} transition={defaultTransition} className="flex flex-1 flex-col items-center justify-center gap-8 text-center">
+				<motion.div
+					variants={fadeUp}
+					transition={defaultTransition}
+					className="flex flex-1 flex-col items-center justify-center gap-8 text-center"
+				>
 					<div className="flex w-full flex-col items-center gap-2">
 						<p className="font-subheading text-base leading-6.5 text-brand uppercase tracking-wider">
 							SEAVIEW PRIVATE VILLAS, NUSA LEMBONGAN
@@ -55,7 +63,11 @@ export const ConceptThreeAboutSection = () => {
 				</motion.div>
 
 				{/* Right column — villa image */}
-				<motion.div variants={fadeUp} transition={defaultTransition} className="relative aspect-[4/3] w-full flex-1 overflow-hidden rounded-lg md:h-[365px] md:aspect-auto">
+				<motion.div
+					variants={fadeUp}
+					transition={defaultTransition}
+					className="relative aspect-[4/3] w-full flex-1 overflow-hidden rounded-lg md:h-[365px] md:aspect-auto"
+				>
 					<img
 						src="/images/about/about-image-three-1.webp"
 						alt="Seaview Private Villas"

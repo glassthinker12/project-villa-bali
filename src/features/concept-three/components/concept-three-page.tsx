@@ -7,15 +7,15 @@ import { ConceptThreeGallerySection } from "./concept-three-gallery-section";
 import { ConceptThreeFooter } from "./concept-three-footer";
 
 export const ConceptThreePage = () => {
-    return (
-        <main id="top">
-            <ConceptThreeNavbar />
-            <ConceptThreeHeroSection />
-            <ConceptThreeAboutSection />
-            <ConceptThreeVillaSection />
-            <ConceptThreeExpSection />
-            <ConceptThreeGallerySection />
-            <ConceptThreeFooter />
-        </main>
-    );
+	return (
+		<main id="top">
+			<ConceptThreeNavbar />
+			<ConceptThreeHeroSection />
+			<ConceptThreeAboutSection />
+			<ConceptThreeVillaSection />
+			<ConceptThreeExpSection />
+			<ConceptThreeGallerySection />
+			<ConceptThreeFooter />
+		</main>
+	);
 };

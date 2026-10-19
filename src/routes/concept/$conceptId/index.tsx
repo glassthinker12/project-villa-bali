@@ -10,5 +10,11 @@ export const Route = createFileRoute("/concept/$conceptId/")({
 function RouteComponent() {
 	const { conceptId } = Route.useParams();
 
-	return conceptId === "2" ? <ConceptTwoPage /> : conceptId === "3" ? <ConceptThreePage /> : <ConceptOnePage />;
+	return conceptId === "2" ? (
+		<ConceptTwoPage />
+	) : conceptId === "3" ? (
+		<ConceptThreePage />
+	) : (
+		<ConceptOnePage />
+	);
 }

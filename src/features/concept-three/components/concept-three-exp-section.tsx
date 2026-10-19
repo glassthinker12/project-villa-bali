@@ -3,7 +3,11 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "#/components/ui/button";
 import { motion } from "motion/react";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
-import { fadeUp, staggerContainer, defaultTransition } from "../lib/animation-variants";
+import {
+	fadeUp,
+	staggerContainer,
+	defaultTransition,
+} from "../lib/animation-variants";
 
 const EXPERIENCES = [
 	{
@@ -61,7 +65,10 @@ export const ConceptThreeExpSection = () => {
 	};
 
 	return (
-		<section ref={ref} className="relative w-full overflow-hidden bg-cream py-16 md:py-24">
+		<section
+			ref={ref}
+			className="relative w-full overflow-hidden bg-cream py-16 md:py-24"
+		>
 			<motion.div
 				variants={staggerContainer}
 				initial="hidden"
@@ -106,7 +113,11 @@ export const ConceptThreeExpSection = () => {
 				</motion.div>
 
 				{/* Carousel Cards */}
-				<motion.div variants={fadeUp} transition={defaultTransition} className="w-full">
+				<motion.div
+					variants={fadeUp}
+					transition={defaultTransition}
+					className="w-full"
+				>
 					<div
 						ref={scrollRef}
 						onScroll={updateScrollState}

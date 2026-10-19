@@ -2,7 +2,11 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "#/components/ui/button";
 import { motion } from "motion/react";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
-import { fadeUp, staggerContainer, defaultTransition } from "../lib/animation-variants";
+import {
+	fadeUp,
+	staggerContainer,
+	defaultTransition,
+} from "../lib/animation-variants";
 
 export const ConceptThreeGallerySection = () => {
 	const { ref, isInView } = useScrollReveal();

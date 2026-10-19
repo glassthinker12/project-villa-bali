@@ -69,4 +69,3 @@ export const ConceptTwoGalleryFlip = ({
 		</motion.div>
 	);
 };
-

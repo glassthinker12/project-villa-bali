@@ -3,17 +3,53 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "#/components/ui/button";
 import { AnimatePresence, motion } from "motion/react";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
-import { fadeUp, staggerContainer, defaultTransition } from "../lib/animation-variants";
+import {
+	fadeUp,
+	staggerContainer,
+	defaultTransition,
+} from "../lib/animation-variants";
 
 const VILLA_IMAGES = [
-	{ src: "/images/villas/villa-three-sofia-1.webp", villa: "Villa Sofia", details: "6 Guests   3 Bedrooms   2 Bathrooms" },
-	{ src: "/images/villas/villa-three-cara-2.webp", villa: "Villa Cara", details: "2 Guests   1 Bedroom   1 Bathroom" },
-	{ src: "/images/villas/villa-three-chloe-3.webp", villa: "Villa Chloe", details: "4 Guests   2 Bedrooms   2 Bathrooms" },
-	{ src: "/images/villas/villa-three-chloe-4.webp", villa: "Villa Chloe", details: "4 Guests   2 Bedrooms   2 Bathrooms" },
-	{ src: "/images/villas/villa-three-sofia-5.webp", villa: "Villa Sofia", details: "6 Guests   3 Bedrooms   2 Bathrooms" },
-	{ src: "/images/villas/villa-three-sofia-6.webp", villa: "Villa Sofia", details: "6 Guests   3 Bedrooms   2 Bathrooms" },
-	{ src: "/images/villas/villa-three-sofia-7.webp", villa: "Villa Sofia", details: "6 Guests   3 Bedrooms   2 Bathrooms" },
-	{ src: "/images/villas/villa-three-cara-8.webp", villa: "Villa Cara", details: "2 Guests   1 Bedroom   1 Bathroom" },
+	{
+		src: "/images/villas/villa-three-sofia-1.webp",
+		villa: "Villa Sofia",
+		details: "6 Guests   3 Bedrooms   2 Bathrooms",
+	},
+	{
+		src: "/images/villas/villa-three-cara-2.webp",
+		villa: "Villa Cara",
+		details: "2 Guests   1 Bedroom   1 Bathroom",
+	},
+	{
+		src: "/images/villas/villa-three-chloe-3.webp",
+		villa: "Villa Chloe",
+		details: "4 Guests   2 Bedrooms   2 Bathrooms",
+	},
+	{
+		src: "/images/villas/villa-three-chloe-4.webp",
+		villa: "Villa Chloe",
+		details: "4 Guests   2 Bedrooms   2 Bathrooms",
+	},
+	{
+		src: "/images/villas/villa-three-sofia-5.webp",
+		villa: "Villa Sofia",
+		details: "6 Guests   3 Bedrooms   2 Bathrooms",
+	},
+	{
+		src: "/images/villas/villa-three-sofia-6.webp",
+		villa: "Villa Sofia",
+		details: "6 Guests   3 Bedrooms   2 Bathrooms",
+	},
+	{
+		src: "/images/villas/villa-three-sofia-7.webp",
+		villa: "Villa Sofia",
+		details: "6 Guests   3 Bedrooms   2 Bathrooms",
+	},
+	{
+		src: "/images/villas/villa-three-cara-8.webp",
+		villa: "Villa Cara",
+		details: "2 Guests   1 Bedroom   1 Bathroom",
+	},
 ];
 
 export const ConceptThreeVillaSection = () => {
@@ -30,7 +66,10 @@ export const ConceptThreeVillaSection = () => {
 	const currentSlide = VILLA_IMAGES[currentIndex];
 
 	return (
-		<section ref={ref} className="relative w-full bg-cream py-16 px-4 md:px-16 md:py-24">
+		<section
+			ref={ref}
+			className="relative w-full bg-cream py-16 px-4 md:px-16 md:py-24"
+		>
 			<motion.div
 				variants={staggerContainer}
 				initial="hidden"
@@ -78,7 +117,7 @@ export const ConceptThreeVillaSection = () => {
 									{currentSlide.villa}
 								</p>
 								<div className="flex gap-2 font-body text-base font-normal">
-									{currentSlide.details.split('   ').map((detail, i) => (
+									{currentSlide.details.split("   ").map((detail, i) => (
 										<p key={i}>{detail}</p>
 									))}
 								</div>
