@@ -1,11 +1,11 @@
 import { ArrowRight } from "lucide-react";
-import { Button } from "#/components/ui/button";
 import { motion } from "motion/react";
+import { Button } from "#/components/ui/button";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import {
+	defaultTransition,
 	fadeUp,
 	staggerContainer,
-	defaultTransition,
 } from "../lib/animation-variants";
 
 export const ConceptThreeGallerySection = () => {
@@ -28,10 +28,10 @@ export const ConceptThreeGallerySection = () => {
 					transition={defaultTransition}
 					className="flex flex-col items-center justify-center gap-2 text-center"
 				>
-					<p className="font-subheading text-base tracking-wider text-brand">
+					<p className="font-subheading text-base text-brand tracking-wider">
 						VILLAS Gallery
 					</p>
-					<h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">
+					<h2 className="font-bold font-heading text-3xl text-foreground md:text-4xl">
 						A Glimpse of SEAVIEW Private Villas
 					</h2>
 				</motion.div>
@@ -46,7 +46,7 @@ export const ConceptThreeGallerySection = () => {
 					<div className="col-span-2 h-[343px] overflow-hidden rounded-lg md:col-span-1 md:h-[312px]">
 						<img
 							src="/images/gallery/gallery-three-image-1.webp"
-							alt="Gallery Image 1"
+							alt="Seaview Private Villas gallery 1"
 							loading="lazy"
 							decoding="async"
 							className="size-full object-cover"
@@ -54,10 +54,10 @@ export const ConceptThreeGallerySection = () => {
 					</div>
 
 					{/* Image 2: Mobile Half Left, Desktop Large Center */}
-					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-2 md:h-[312px] md:aspect-auto">
+					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-2 md:aspect-auto md:h-[312px]">
 						<img
 							src="/images/gallery/gallery-three-image-2.webp"
-							alt="Gallery Image 2"
+							alt="Seaview Private Villas gallery 2"
 							loading="lazy"
 							decoding="async"
 							className="size-full object-cover"
@@ -65,10 +65,10 @@ export const ConceptThreeGallerySection = () => {
 					</div>
 
 					{/* Image 3: Mobile Half Right, Desktop Small Right */}
-					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-1 md:h-[312px] md:aspect-auto">
+					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-1 md:aspect-auto md:h-[312px]">
 						<img
 							src="/images/gallery/gallery-three-image-3.webp"
-							alt="Gallery Image 3"
+							alt="Seaview Private Villas gallery 3"
 							loading="lazy"
 							decoding="async"
 							className="size-full object-cover"
@@ -79,7 +79,7 @@ export const ConceptThreeGallerySection = () => {
 					<div className="col-span-2 h-[343px] overflow-hidden rounded-lg md:col-span-2 md:h-[312px]">
 						<img
 							src="/images/gallery/gallery-three-image-4.webp"
-							alt="Gallery Image 4"
+							alt="Seaview Private Villas gallery 4"
 							loading="lazy"
 							decoding="async"
 							className="size-full object-cover"
@@ -90,7 +90,7 @@ export const ConceptThreeGallerySection = () => {
 					<div className="col-span-2 h-[343px] overflow-hidden rounded-lg md:col-span-2 md:h-[312px]">
 						<img
 							src="/images/gallery/gallery-three-image-5.webp"
-							alt="Gallery Image 5"
+							alt="Seaview Private Villas gallery 5"
 							loading="lazy"
 							decoding="async"
 							className="size-full object-cover"
@@ -102,7 +102,7 @@ export const ConceptThreeGallerySection = () => {
 				<motion.div variants={fadeUp} transition={defaultTransition}>
 					<Button
 						variant="ghost"
-						className="gap-2 px-0 text-base font-medium normal-case tracking-normal text-brand hover:bg-transparent"
+						className="gap-2 px-0 font-medium text-base text-brand normal-case tracking-normal hover:bg-transparent"
 					>
 						View All
 						<ArrowRight className="size-6" />

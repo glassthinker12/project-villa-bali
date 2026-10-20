@@ -1,11 +1,11 @@
 import { ArrowRight } from "lucide-react";
-import { buttonVariants } from "#/components/ui/button";
 import { motion } from "motion/react";
+import { buttonVariants } from "#/components/ui/button";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import {
+	defaultTransition,
 	fadeUp,
 	staggerContainer,
-	defaultTransition,
 } from "../lib/animation-variants";
 import type { GalleryContent } from "../types";
 
@@ -36,10 +36,10 @@ export const HomepageGallerySection = ({
 					transition={defaultTransition}
 					className="flex flex-col items-center justify-center gap-2 text-center"
 				>
-					<p className="font-subheading text-base tracking-wider text-brand">
+					<p className="font-subheading text-base text-brand tracking-wider">
 						{eyebrow}
 					</p>
-					<h2 className="font-heading text-3xl font-bold text-foreground md:text-4xl">
+					<h2 className="font-bold font-heading text-3xl text-foreground md:text-4xl">
 						{heading}
 					</h2>
 				</motion.div>
@@ -62,7 +62,7 @@ export const HomepageGallerySection = ({
 					</div>
 
 					{/* Image 2: Mobile Half Left, Desktop Large Center */}
-					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-2 md:h-78 md:aspect-auto">
+					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-2 md:aspect-auto md:h-78">
 						<img
 							src={galleries[1].imageUrl}
 							alt={galleries[1].alt}
@@ -73,7 +73,7 @@ export const HomepageGallerySection = ({
 					</div>
 
 					{/* Image 3: Mobile Half Right, Desktop Small Right */}
-					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-1 md:h-78 md:aspect-auto">
+					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-1 md:aspect-auto md:h-78">
 						<img
 							src={galleries[2].imageUrl}
 							alt={galleries[2].alt}

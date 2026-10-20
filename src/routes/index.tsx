@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { HomepageHeroSection } from "#/features/homepage/components/homepage-hero-section";
-import { HomepageAboutSection } from "#/features/homepage/components/homepage-about-section";
 import { createServerFn } from "@tanstack/react-start";
-import type { HomepageContent } from "#/features/homepage/types";
-import { HomepageVillaSection } from "#/features/homepage/components/homepage-villa-section";
+import { Footer } from "#/components/footer";
+import { Navbar } from "#/components/navbar";
+import { HomepageAboutSection } from "#/features/homepage/components/homepage-about-section";
 import { HomepageExpSection } from "#/features/homepage/components/homepage-exp-section";
 import { HomepageGallerySection } from "#/features/homepage/components/homepage-gallery-section";
-import { Navbar } from "#/components/navbar";
-import { Footer } from "#/components/footer";
+import { HomepageHeroSection } from "#/features/homepage/components/homepage-hero-section";
+import { HomepageVillaSection } from "#/features/homepage/components/homepage-villa-section";
+import type { HomepageContent } from "#/features/homepage/types";
 
 const getHomepageContent = createServerFn().handler<Promise<HomepageContent>>(
 	async () => {

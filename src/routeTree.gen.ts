@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as ConceptConceptIdRouteRouteImport } from './routes/concept/$conceptId/route'
 import { Route as ConceptConceptIdIndexRouteImport } from './routes/concept/$conceptId/index'
 
@@ -19,10 +21,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRouteRoute = AuthRouteRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 const ConceptConceptIdRouteRoute = ConceptConceptIdRouteRouteImport.update({
   id: '/concept/$conceptId',
@@ -39,31 +50,43 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/concept/$conceptId': typeof ConceptConceptIdRouteRouteWithChildren
+  '/login': typeof AuthLoginRoute
   '/concept/$conceptId/': typeof ConceptConceptIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/login': typeof AuthLoginRoute
   '/concept/$conceptId': typeof ConceptConceptIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_auth': typeof AuthRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/concept/$conceptId': typeof ConceptConceptIdRouteRouteWithChildren
+  '/_auth/login': typeof AuthLoginRoute
   '/concept/$conceptId/': typeof ConceptConceptIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/concept/$conceptId' | '/concept/$conceptId/'
+  fullPaths:
+    '/' | '/about' | '/concept/$conceptId' | '/login' | '/concept/$conceptId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/concept/$conceptId'
+  to: '/' | '/about' | '/login' | '/concept/$conceptId'
   id:
-    '__root__' | '/' | '/about' | '/concept/$conceptId' | '/concept/$conceptId/'
+    | '__root__'
+    | '/'
+    | '/_auth'
+    | '/about'
+    | '/concept/$conceptId'
+    | '/_auth/login'
+    | '/concept/$conceptId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   ConceptConceptIdRouteRoute: typeof ConceptConceptIdRouteRouteWithChildren
 }
@@ -77,12 +100,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_auth/login': {
+      id: '/_auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRouteRoute
     }
     '/concept/$conceptId': {
       id: '/concept/$conceptId'
@@ -101,6 +138,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthRouteRouteChildren {
+  AuthLoginRoute: typeof AuthLoginRoute
+}
+
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthLoginRoute: AuthLoginRoute,
+}
+
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
+
 interface ConceptConceptIdRouteRouteChildren {
   ConceptConceptIdIndexRoute: typeof ConceptConceptIdIndexRoute
 }
@@ -116,6 +165,7 @@ const ConceptConceptIdRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRouteRoute: AuthRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   ConceptConceptIdRouteRoute: ConceptConceptIdRouteRouteWithChildren,
 }

@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Button } from "#/components/ui/button";
 import { motion } from "motion/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Button } from "#/components/ui/button";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import {
+	defaultTransition,
 	fadeUp,
 	staggerContainer,
-	defaultTransition,
 } from "../lib/animation-variants";
 
 const EXPERIENCES = [
@@ -81,10 +81,10 @@ export const ConceptThreeExpSection = () => {
 					transition={defaultTransition}
 					className="mx-auto hidden w-full max-w-7xl flex-col items-center justify-center gap-2 px-16 text-center md:flex md:items-start md:text-left"
 				>
-					<p className="font-subheading text-base tracking-wider text-brand">
+					<p className="font-subheading text-base text-brand tracking-wider">
 						Local Guide
 					</p>
-					<h2 className="font-heading text-4xl font-bold text-foreground">
+					<h2 className="font-bold font-heading text-4xl text-foreground">
 						Our Tourist Experiences
 					</h2>
 				</motion.div>
@@ -96,16 +96,16 @@ export const ConceptThreeExpSection = () => {
 					className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-6 px-4 text-center md:hidden"
 				>
 					<div className="flex flex-col gap-2">
-						<p className="font-subheading text-base tracking-wider text-brand">
+						<p className="font-subheading text-base text-brand tracking-wider">
 							Local Guide
 						</p>
-						<h2 className="font-heading text-3xl font-bold text-foreground">
+						<h2 className="font-bold font-heading text-3xl text-foreground">
 							Our Tourist Experiences
 						</h2>
 					</div>
 					<Button
 						variant="ghost"
-						className="gap-2 px-0 text-base font-medium normal-case tracking-normal text-brand hover:bg-transparent"
+						className="gap-2 px-0 font-medium text-base text-brand normal-case tracking-normal hover:bg-transparent"
 					>
 						View All
 						<ArrowRight className="size-6" />
@@ -121,7 +121,7 @@ export const ConceptThreeExpSection = () => {
 					<div
 						ref={scrollRef}
 						onScroll={updateScrollState}
-						className="hide-scrollbar w-full snap-x snap-mandatory overflow-x-auto pb-4 scroll-pl-4 md:scroll-pl-[max(4rem,calc((100%-80rem)/2+4rem))]"
+						className="hide-scrollbar w-full snap-x snap-mandatory scroll-pl-4 overflow-x-auto pb-4 md:scroll-pl-[max(4rem,calc((100%-80rem)/2+4rem))]"
 						style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 					>
 						{/* Padding lives here so it is part of the scrollable width on BOTH sides */}
@@ -156,7 +156,7 @@ export const ConceptThreeExpSection = () => {
 										</div>
 									</div>
 									{/* Card Title */}
-									<h3 className="font-heading text-2xl font-bold text-olive">
+									<h3 className="font-bold font-heading text-2xl text-olive">
 										{exp.title}
 									</h3>
 								</div>
@@ -193,7 +193,7 @@ export const ConceptThreeExpSection = () => {
 					</div>
 					<Button
 						variant="ghost"
-						className="gap-2 px-0 text-base font-medium normal-case tracking-normal text-brand hover:bg-transparent"
+						className="gap-2 px-0 font-medium text-base text-brand normal-case tracking-normal hover:bg-transparent"
 					>
 						View All
 						<ArrowRight className="size-6" />

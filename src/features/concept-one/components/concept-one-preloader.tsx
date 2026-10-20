@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 const heroSequence = [
 	"/images/hero/hero-thumb-1.webp",
@@ -70,7 +70,7 @@ export const ConceptOnePreloader = ({
 		>
 			<motion.div
 				aria-hidden
-				className="pointer-events-none absolute left-1/2 top-1/2 h-[92%] w-[93%] -translate-x-1/2 -translate-y-1/2 object-contain bg-[url('/images/about/about-bg.webp')] bg-center bg-cover before:absolute before:inset-0 before:bg-[#2365b0]/65"
+				className="pointer-events-none absolute top-1/2 left-1/2 h-[92%] w-[93%] -translate-x-1/2 -translate-y-1/2 bg-[url('/images/about/about-bg.webp')] bg-center bg-cover object-contain before:absolute before:inset-0 before:bg-[#2365b0]/65"
 				animate={{ opacity: expanded ? 0 : 0.6 }}
 				transition={{ duration: 0.8, ease: "easeInOut" }}
 			/>
@@ -79,13 +79,13 @@ export const ConceptOnePreloader = ({
 				aria-hidden
 				src="/icons/logo-small.png"
 				alt=""
-				className="pointer-events-none absolute left-1/2 top-[19%] w-[19%] max-w-55 min-w-37.5 -translate-x-1/2 -translate-y-4 object-contain z-20"
+				className="pointer-events-none absolute top-[19%] left-1/2 z-20 w-[19%] min-w-37.5 max-w-55 -translate-x-1/2 -translate-y-4 object-contain"
 				animate={{ opacity: expanded ? 0 : 1 }}
 				transition={{ duration: 0.5, ease: "easeInOut" }}
 			/>
 
 			<motion.div
-				className="absolute overflow-hidden z-10"
+				className="absolute z-10 overflow-hidden"
 				initial={false}
 				animate={{
 					top: "50%",

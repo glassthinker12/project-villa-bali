@@ -1,11 +1,11 @@
 import { ArrowRight } from "lucide-react";
-import { Button } from "#/components/ui/button";
 import { motion } from "motion/react";
+import { Button } from "#/components/ui/button";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import {
+	defaultTransition,
 	fadeUp,
 	staggerContainer,
-	defaultTransition,
 } from "../lib/animation-variants";
 
 export const ConceptThreeAboutSection = () => {
@@ -39,13 +39,13 @@ export const ConceptThreeAboutSection = () => {
 					className="flex flex-1 flex-col items-center justify-center gap-8 text-center"
 				>
 					<div className="flex w-full flex-col items-center gap-2">
-						<p className="font-subheading text-base leading-6.5 text-brand uppercase tracking-wider">
+						<p className="font-subheading text-base text-brand uppercase leading-6.5 tracking-wider">
 							SEAVIEW PRIVATE VILLAS, NUSA LEMBONGAN
 						</p>
-						<h2 className="font-heading text-3xl font-bold leading-[40px] text-foreground md:text-4xl md:leading-[44px]">
+						<h2 className="font-bold font-heading text-3xl text-foreground leading-[40px] md:text-4xl md:leading-[44px]">
 							More than just a villa for vacation
 						</h2>
-						<p className="text-sm leading-[22px] text-foreground md:text-mist">
+						<p className="text-foreground text-sm leading-[22px] md:text-mist">
 							As the only villa with access to a private beach cave on the
 							island, Seaview Private Villas offers a unique experience for
 							families, couples or groups, seeking a memorable and affordable
@@ -55,7 +55,7 @@ export const ConceptThreeAboutSection = () => {
 
 					<Button
 						variant="ghost"
-						className="px-0 gap-2 text-base font-medium normal-case tracking-normal text-brand"
+						className="gap-2 px-0 font-medium text-base text-brand normal-case tracking-normal"
 					>
 						Read Our Story
 						<ArrowRight className="size-6" />
@@ -66,7 +66,7 @@ export const ConceptThreeAboutSection = () => {
 				<motion.div
 					variants={fadeUp}
 					transition={defaultTransition}
-					className="relative aspect-[4/3] w-full flex-1 overflow-hidden rounded-lg md:h-[365px] md:aspect-auto"
+					className="relative aspect-[4/3] w-full flex-1 overflow-hidden rounded-lg md:aspect-auto md:h-[365px]"
 				>
 					<img
 						src="/images/about/about-image-three-1.webp"

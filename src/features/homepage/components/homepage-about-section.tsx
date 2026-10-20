@@ -1,11 +1,11 @@
 import { ArrowRight } from "lucide-react";
-import { buttonVariants } from "#/components/ui/button";
 import { motion } from "motion/react";
+import { buttonVariants } from "#/components/ui/button";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import {
+	defaultTransition,
 	fadeUp,
 	staggerContainer,
-	defaultTransition,
 } from "../lib/animation-variants";
 import type { AboutContent } from "../types";
 
@@ -48,13 +48,13 @@ export const HomepageAboutSection = ({
 					className="flex flex-1 flex-col items-center justify-center gap-8 text-center"
 				>
 					<div className="flex w-full flex-col items-center gap-2">
-						<p className="font-subheading text-base leading-6.5 text-brand uppercase tracking-wider">
+						<p className="font-subheading text-base text-brand uppercase leading-6.5 tracking-wider">
 							{eyebrow}
 						</p>
-						<h2 className="font-heading text-3xl font-bold leading-10 text-foreground md:text-4xl md:leading-11">
+						<h2 className="font-bold font-heading text-3xl text-foreground leading-10 md:text-4xl md:leading-11">
 							{heading}
 						</h2>
-						<p className="text-sm leading-5.5 text-foreground md:text-mist">
+						<p className="text-foreground text-sm leading-5.5 md:text-mist">
 							{body}
 						</p>
 					</div>
@@ -69,7 +69,7 @@ export const HomepageAboutSection = ({
 				<motion.div
 					variants={fadeUp}
 					transition={defaultTransition}
-					className="relative aspect-4/3 w-full flex-1 overflow-hidden rounded-lg md:h-91.25 md:aspect-auto"
+					className="relative aspect-4/3 w-full flex-1 overflow-hidden rounded-lg md:aspect-auto md:h-91.25"
 				>
 					<img
 						src={image.url}
