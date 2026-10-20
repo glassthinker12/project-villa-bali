@@ -130,7 +130,7 @@ export const ConceptThreeExpSection = () => {
 								<div
 									key={exp.title}
 									data-card
-									className="flex w-[328px] shrink-0 snap-start snap-always flex-col gap-4 md:w-[465px]"
+									className="flex w-82 shrink-0 snap-start snap-always flex-col gap-4 md:w-116.25"
 								>
 									{/* Card Image Wrapper */}
 									<div className="relative aspect-square w-full overflow-hidden rounded-lg">
@@ -143,7 +143,7 @@ export const ConceptThreeExpSection = () => {
 											className="absolute inset-0 size-full object-cover"
 										/>
 										{/* Overlay Gradient */}
-										<div className="absolute inset-0 bg-gradient-to-b from-foreground/50 to-foreground/30" />
+										<div className="absolute inset-0 bg-linear-to-b from-foreground/50 to-foreground/30" />
 										{/* Inner Image */}
 										<div className="absolute inset-[13.5%] overflow-hidden rounded-lg bg-sky">
 											<img

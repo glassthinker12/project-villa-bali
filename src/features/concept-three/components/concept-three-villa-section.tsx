@@ -74,13 +74,13 @@ export const ConceptThreeVillaSection = () => {
 				variants={staggerContainer}
 				initial="hidden"
 				animate={isInView ? "visible" : "hidden"}
-				className="mx-auto flex max-w-6xl flex-col gap-8 md:h-[365px] md:flex-row"
+				className="mx-auto flex max-w-6xl flex-col gap-8 md:h-91.25 md:flex-row"
 			>
 				{/* Image Column */}
 				<motion.div
 					variants={fadeUp}
 					transition={defaultTransition}
-					className="relative order-2 aspect-[4/3] w-full overflow-hidden rounded-lg bg-[#f0e9e1] md:order-1 md:aspect-auto md:h-full md:flex-1"
+					className="relative order-2 aspect-4/3 w-full overflow-hidden rounded-lg bg-[#f0e9e1] md:order-1 md:aspect-auto md:h-full md:flex-1"
 				>
 					{/* Render only the active image (crossfade) to save mobile memory/CPU */}
 					<AnimatePresence>
@@ -100,7 +100,7 @@ export const ConceptThreeVillaSection = () => {
 					</AnimatePresence>
 
 					{/* Gradient Overlay */}
-					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-3/5 bg-gradient-to-t from-[#242121]/50 to-transparent" />
+					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-3/5 bg-linear-to-t from-[#242121]/50 to-transparent" />
 
 					{/* Text Overlay */}
 					<div className="absolute bottom-4 left-4 z-20">

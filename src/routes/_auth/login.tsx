@@ -15,7 +15,7 @@ function LoginPage() {
 	const hydrated = useHydrated();
 
 	if (!hydrated) {
-		return <div>Loading...</div>;
+		return <div />;
 	}
 
 	return <LoginForm />;

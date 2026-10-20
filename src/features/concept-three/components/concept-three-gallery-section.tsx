@@ -14,7 +14,7 @@ export const ConceptThreeGallerySection = () => {
 	return (
 		<section
 			ref={ref}
-			className="relative flex w-full flex-col items-center bg-gradient-to-b from-cream via-[#fafafa] to-[#f9f3ec] px-4 py-16 md:px-16 md:py-24"
+			className="relative flex w-full flex-col items-center bg-linear-to-b from-cream via-[#fafafa] to-[#f9f3ec] px-4 py-16 md:px-16 md:py-24"
 		>
 			<motion.div
 				variants={staggerContainer}
@@ -43,7 +43,7 @@ export const ConceptThreeGallerySection = () => {
 					className="grid w-full grid-cols-2 gap-2 md:grid-cols-4 md:gap-4"
 				>
 					{/* Image 1: Mobile Full, Desktop Small Left */}
-					<div className="col-span-2 h-[343px] overflow-hidden rounded-lg md:col-span-1 md:h-[312px]">
+					<div className="col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-1 md:h-78">
 						<img
 							src="/images/gallery/gallery-three-image-1.webp"
 							alt="Seaview Private Villas gallery 1"
@@ -54,7 +54,7 @@ export const ConceptThreeGallerySection = () => {
 					</div>
 
 					{/* Image 2: Mobile Half Left, Desktop Large Center */}
-					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-2 md:aspect-auto md:h-[312px]">
+					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-2 md:aspect-auto md:h-78">
 						<img
 							src="/images/gallery/gallery-three-image-2.webp"
 							alt="Seaview Private Villas gallery 2"
@@ -65,7 +65,7 @@ export const ConceptThreeGallerySection = () => {
 					</div>
 
 					{/* Image 3: Mobile Half Right, Desktop Small Right */}
-					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-1 md:aspect-auto md:h-[312px]">
+					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-1 md:aspect-auto md:h-78">
 						<img
 							src="/images/gallery/gallery-three-image-3.webp"
 							alt="Seaview Private Villas gallery 3"
@@ -76,7 +76,7 @@ export const ConceptThreeGallerySection = () => {
 					</div>
 
 					{/* Image 4: Mobile Full, Desktop Large Bottom Left */}
-					<div className="col-span-2 h-[343px] overflow-hidden rounded-lg md:col-span-2 md:h-[312px]">
+					<div className="col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-2 md:h-78">
 						<img
 							src="/images/gallery/gallery-three-image-4.webp"
 							alt="Seaview Private Villas gallery 4"
@@ -87,7 +87,7 @@ export const ConceptThreeGallerySection = () => {
 					</div>
 
 					{/* Image 5: Mobile Full, Desktop Large Bottom Right */}
-					<div className="col-span-2 h-[343px] overflow-hidden rounded-lg md:col-span-2 md:h-[312px]">
+					<div className="col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-2 md:h-78">
 						<img
 							src="/images/gallery/gallery-three-image-5.webp"
 							alt="Seaview Private Villas gallery 5"

@@ -15,7 +15,7 @@ export const ConceptThreeAboutSection = () => {
 		<section ref={ref} className="relative overflow-hidden md:overflow-visible">
 			{/* Background — gradient + decorative image */}
 			<div aria-hidden className="pointer-events-none absolute inset-0">
-				<div className="absolute inset-0 bg-gradient-to-t from-cream to-sky" />
+				<div className="absolute inset-0 bg-linear-to-t from-cream to-sky" />
 				<img
 					src="/images/about/about-bg.webp"
 					alt=""
@@ -42,10 +42,10 @@ export const ConceptThreeAboutSection = () => {
 						<p className="font-subheading text-base text-brand uppercase leading-6.5 tracking-wider">
 							SEAVIEW PRIVATE VILLAS, NUSA LEMBONGAN
 						</p>
-						<h2 className="font-bold font-heading text-3xl text-foreground leading-[40px] md:text-4xl md:leading-[44px]">
+						<h2 className="font-bold font-heading text-3xl text-foreground leading-10 md:text-4xl md:leading-11">
 							More than just a villa for vacation
 						</h2>
-						<p className="text-foreground text-sm leading-[22px] md:text-mist">
+						<p className="text-foreground text-sm leading-5.5 md:text-mist">
 							As the only villa with access to a private beach cave on the
 							island, Seaview Private Villas offers a unique experience for
 							families, couples or groups, seeking a memorable and affordable
@@ -66,7 +66,7 @@ export const ConceptThreeAboutSection = () => {
 				<motion.div
 					variants={fadeUp}
 					transition={defaultTransition}
-					className="relative aspect-[4/3] w-full flex-1 overflow-hidden rounded-lg md:aspect-auto md:h-[365px]"
+					className="relative aspect-4/3 w-full flex-1 overflow-hidden rounded-lg md:aspect-auto md:h-91.25"
 				>
 					<img
 						src="/images/about/about-image-three-1.webp"
