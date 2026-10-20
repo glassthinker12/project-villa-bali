@@ -3,7 +3,12 @@ import type { HeroContent } from "../types";
 
 type HomepageHeroSectionProps = HeroContent;
 
-export const HomepageHeroSection = ({ videoUrl }: HomepageHeroSectionProps) => {
+export const HomepageHeroSection = ({
+	eyebrow,
+	title,
+	subtitle,
+	videoUrl,
+}: HomepageHeroSectionProps) => {
 	return (
 		<section className="relative -mt-20 h-dvh w-full overflow-hidden">
 			<video
@@ -31,7 +36,7 @@ export const HomepageHeroSection = ({ videoUrl }: HomepageHeroSectionProps) => {
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.2, duration: 0.6 }}
 						>
-							Welcome to
+							{eyebrow}
 						</motion.p>
 
 						<motion.h1
@@ -40,9 +45,9 @@ export const HomepageHeroSection = ({ videoUrl }: HomepageHeroSectionProps) => {
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.4, duration: 0.6 }}
 						>
-							<span>SEAVIEW</span>
+							<span>{title}</span>
 							<br />
-							<span className="text-5xl md:text-6xl">Private Villas</span>
+							<span className="text-5xl md:text-6xl">{subtitle}</span>
 						</motion.h1>
 
 						<motion.div

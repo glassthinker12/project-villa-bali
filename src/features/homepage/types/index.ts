@@ -1,4 +1,7 @@
 export type HeroContent = {
+	eyebrow: string;
+	title: string;
+	subtitle: string;
 	videoUrl: string;
 };
 

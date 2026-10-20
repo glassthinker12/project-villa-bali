@@ -15,6 +15,9 @@ const getHomepageContent = createServerFn().handler<Promise<HomepageContent>>(
 
 		return {
 			hero: {
+				eyebrow: "Welcome to",
+				title: "SEAVIEW",
+				subtitle: "Private Villas",
 				videoUrl: "/videos/hero/hero-1.mp4",
 			},
 			about: {
