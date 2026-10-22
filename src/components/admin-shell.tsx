@@ -10,7 +10,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 				<AdminSidebar />
 				<SidebarInset className="min-h-svh bg-muted/30">
 					<AdminHeader />
-					<div className="flex flex-1 flex-col gap-6 p-6">{children}</div>
+					<div className="flex flex-1 flex-col">{children}</div>
 				</SidebarInset>
 			</SidebarProvider>
 		</TooltipProvider>

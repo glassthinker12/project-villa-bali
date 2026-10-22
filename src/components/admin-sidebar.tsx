@@ -76,7 +76,7 @@ export function AdminSidebar() {
 			</SidebarHeader>
 
 			<SidebarContent>
-				<SidebarGroup>
+				<SidebarGroup className="relative z-10">
 					<SidebarGroupLabel>Master Data</SidebarGroupLabel>
 					<SidebarGroupContent>
 						<SidebarMenu>
@@ -96,6 +96,7 @@ export function AdminSidebar() {
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
+
 				<SidebarGroup>
 					<SidebarGroupLabel>PAGE SETTINGS</SidebarGroupLabel>
 					<SidebarGroupContent>
