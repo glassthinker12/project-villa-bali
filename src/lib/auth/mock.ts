@@ -20,6 +20,8 @@ export const loginFn = createServerFn({ method: "POST" })
 	.handler(async ({ data }) => {
 		await delay(800);
 
+		console.log("a", { data });
+
 		if (
 			data.email === ADMIN_CREDENTIALS.email &&
 			data.password === ADMIN_CREDENTIALS.password

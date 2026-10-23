@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouteContext, useRouterState } from "@tanstack/react-router";
 import type { LucideIcon } from "lucide-react";
 import {
 	Building2Icon,
@@ -53,6 +53,7 @@ export function AdminSidebar() {
 	const pathname = useRouterState({
 		select: (state) => state.location.pathname,
 	});
+	const { user } = useRouteContext({ from: "/admin" });
 
 	return (
 		<Sidebar collapsible="icon" className="bg-sidebar">
@@ -67,9 +68,14 @@ export function AdminSidebar() {
 							<div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
 								<HouseIcon className="size-4" />
 							</div>
-							<span className="font-heading font-medium text-base normal-case tracking-normal">
-								Seaview Admin
-							</span>
+							<div className="flex flex-col">
+								<span className="font-heading font-medium text-base normal-case tracking-normal">
+									SEAVIEW
+								</span>
+								<span className="-mt-1 text-muted-foreground text-xs">
+									{user?.email ?? ""}
+								</span>
+							</div>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>

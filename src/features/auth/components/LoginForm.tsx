@@ -1,6 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate, useRouter } from "@tanstack/react-router";
+import { TriangleAlertIcon } from "lucide-react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
+import { Alert, AlertTitle } from "#/components/ui/alert";
 import { Button } from "#/components/ui/button";
 import {
 	Card,
@@ -17,6 +21,7 @@ import {
 	FieldLabel,
 } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
+import { loginFn } from "../servers";
 
 export const loginSchema = z.object({
 	email: z.string().email("Invalid email address"),
@@ -27,13 +32,29 @@ export const LoginForm = () => {
 	const form = useForm<z.infer<typeof loginSchema>>({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
-			email: "",
-			password: "",
+			email: "admin@example.com",
+			password: "admin123",
 		},
 	});
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState<string | null>(null);
+	const navigate = useNavigate();
+	const router = useRouter();
 
-	function onSubmit(data: z.infer<typeof loginSchema>) {
-		console.log({ data });
+	async function onSubmit(data: z.infer<typeof loginSchema>) {
+		setIsLoading(true);
+
+		try {
+			await loginFn({
+				data: { email: data.email, password: data.password },
+			});
+			await router.invalidate();
+			navigate({ to: "/admin" });
+		} catch (err) {
+			if (err instanceof Error) setError(err.message);
+		} finally {
+			setIsLoading(false);
+		}
 	}
 
 	return (
@@ -91,11 +112,25 @@ export const LoginForm = () => {
 							/>
 						</FieldGroup>
 					</form>
+
+					{error && (
+						<div className="mt-6">
+							<Alert variant="destructive">
+								<TriangleAlertIcon />
+								<AlertTitle>{error}</AlertTitle>
+							</Alert>
+						</div>
+					)}
 				</CardContent>
 				<CardFooter>
 					<Field orientation="horizontal">
-						<Button type="submit" form="form-login" className="w-full">
-							Login
+						<Button
+							type="submit"
+							form="form-login"
+							disabled={isLoading}
+							className="w-full"
+						>
+							{!isLoading ? "Login" : "Loading..."}
 						</Button>
 					</Field>
 				</CardFooter>
