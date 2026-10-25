@@ -17,12 +17,14 @@ import type { Villa } from "../types";
 interface AdminVillasTableProps {
 	villas: Villa[];
 	onDelete: (id: string) => void;
+	onEdit: (villa: Villa) => void;
 	deletingId: string | null;
 }
 
 export const AdminVillasTable = ({
 	villas,
 	onDelete,
+	onEdit,
 	deletingId,
 }: AdminVillasTableProps) => {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -106,7 +108,11 @@ export const AdminVillasTable = ({
 											</TableCell>
 											<TableCell className="text-right">
 												<div className="flex items-center justify-end">
-													<Button variant="ghost" size="icon">
+													<Button
+														variant="ghost"
+														size="icon"
+														onClick={() => onEdit(villa)}
+													>
 														<Edit2 className="h-4 w-4" />
 													</Button>
 													<Button

@@ -6,9 +6,11 @@ import { Button } from "#/components/ui/button";
 import { toast } from "#/components/ui/toast";
 import { getVillasFn } from "../servers";
 import { deleteVillaFn } from "../servers/villas";
+import type { Villa } from "../types";
 import { AddVillaFormModal } from "./add-villa-form-modal";
 import { AdminVillaDeleteDialog } from "./admin-villa-delete-dialog";
 import { AdminVillasTable } from "./admin-villas-table";
+import { EditVillaFormSheet } from "./edit-villa-form-sheet";
 
 export const AdminVillasPage = () => {
 	const queryClient = useQueryClient();
@@ -27,6 +29,7 @@ export const AdminVillasPage = () => {
 	});
 
 	const [deletingId, setDeletingId] = useState<string | null>(null);
+	const [editingVillaId, setEditingVillaId] = useState<string | null>(null);
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
@@ -67,6 +70,13 @@ export const AdminVillasPage = () => {
 		} finally {
 			setDeletingId(null);
 		}
+	};
+
+	const editingVilla =
+		villas.find((villa) => villa.id === editingVillaId) ?? null;
+
+	const handleEditRequest = (villa: Villa) => {
+		setEditingVillaId(villa.id);
 	};
 
 	if (isPending) {
@@ -116,12 +126,19 @@ export const AdminVillasPage = () => {
 			<AdminVillasTable
 				villas={villas}
 				onDelete={handleDeleteRequest}
+				onEdit={handleEditRequest}
 				deletingId={deletingId}
 			/>
 
 			<AddVillaFormModal
 				isOpen={isAddModalOpen}
 				onClose={() => setIsAddModalOpen(false)}
+			/>
+
+			<EditVillaFormSheet
+				isOpen={editingVillaId !== null}
+				villa={editingVilla}
+				onClose={() => setEditingVillaId(null)}
 			/>
 
 			<AdminVillaDeleteDialog
