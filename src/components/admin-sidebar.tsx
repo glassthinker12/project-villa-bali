@@ -35,7 +35,7 @@ export const ADMIN_MASTER_DATA_ITEMS: AdminNavItem[] = [
 		icon: Building2Icon,
 	},
 	{
-		title: "Gallery & Media",
+		title: "Gallery",
 		to: "/admin/gallery",
 		icon: ImagesIcon,
 	},

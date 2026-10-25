@@ -25,8 +25,7 @@ import {
 } from "#/components/ui/sheet";
 import { Textarea } from "#/components/ui/textarea";
 import { toast } from "#/components/ui/toast";
-import { uploadVillaImageFn } from "../servers/upload-image";
-import { updateVillaFn } from "../servers/villas";
+import { updateVillaFn, uploadVillaImageFn } from "../servers";
 import type { Villa } from "../types";
 
 const editVillaSchema = z.object({

@@ -25,8 +25,8 @@ import {
 import { Input } from "#/components/ui/input";
 import { Textarea } from "#/components/ui/textarea";
 import { toast } from "#/components/ui/toast";
+import { createVillaFn } from "../servers";
 import { uploadVillaImageFn } from "../servers/upload-image";
-import { createVillaFn } from "../servers/villas";
 
 export const createVillaSchema = z.object({
 	name: z.string().min(1, "Name is required"),
