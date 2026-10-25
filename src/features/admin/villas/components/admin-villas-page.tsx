@@ -3,9 +3,11 @@ import { useServerFn } from "@tanstack/react-start";
 import { Loader2, Plus } from "lucide-react";
 import { useState } from "react";
 import { Button } from "#/components/ui/button";
+import { toast } from "#/components/ui/toast";
 import { getVillasFn } from "../servers";
 import { deleteVillaFn } from "../servers/villas";
 import { AddVillaFormModal } from "./add-villa-form-modal";
+import { AdminVillaDeleteDialog } from "./admin-villa-delete-dialog";
 import { AdminVillasTable } from "./admin-villas-table";
 
 export const AdminVillasPage = () => {
@@ -26,19 +28,44 @@ export const AdminVillasPage = () => {
 
 	const [deletingId, setDeletingId] = useState<string | null>(null);
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+	const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
+	const [deleteError, setDeleteError] = useState<string | null>(null);
 
-	const handleDelete = async (id: string) => {
-		if (confirm("Are you sure you want to delete this villa?")) {
-			try {
-				setDeletingId(id);
-				await deleteVilla({ data: id });
-				queryClient.invalidateQueries({ queryKey: ["villas"] });
-			} catch (err) {
-				console.error("Failed to delete villa:", err);
-				alert("Failed to delete villa");
-			} finally {
-				setDeletingId(null);
-			}
+	const handleDeleteRequest = (id: string) => {
+		setPendingDeleteId(id);
+		setDeleteError(null);
+		setIsDeleteDialogOpen(true);
+	};
+
+	const handleDeleteDialogOpenChange = (open: boolean) => {
+		setIsDeleteDialogOpen(open);
+		if (!open) {
+			setPendingDeleteId(null);
+			setDeleteError(null);
+		}
+	};
+
+	const handleDeleteConfirm = async () => {
+		if (!pendingDeleteId) return;
+
+		setDeletingId(pendingDeleteId);
+
+		try {
+			await deleteVilla({ data: pendingDeleteId });
+			queryClient.invalidateQueries({ queryKey: ["villas"] });
+			toast.add({
+				type: "success",
+				title: "Villa Deleted",
+				description: "The villa has been deleted successfully.",
+				timeout: 3000,
+			});
+			setIsDeleteDialogOpen(false);
+			setPendingDeleteId(null);
+		} catch {
+			setDeleteError("Failed to delete villa. Please try again.");
+		} finally {
+			setDeletingId(null);
 		}
 	};
 
@@ -88,13 +115,23 @@ export const AdminVillasPage = () => {
 
 			<AdminVillasTable
 				villas={villas}
-				onDelete={handleDelete}
+				onDelete={handleDeleteRequest}
 				deletingId={deletingId}
 			/>
 
 			<AddVillaFormModal
 				isOpen={isAddModalOpen}
 				onClose={() => setIsAddModalOpen(false)}
+			/>
+
+			<AdminVillaDeleteDialog
+				open={isDeleteDialogOpen}
+				villaName={
+					villas.find((villa) => villa.id === pendingDeleteId)?.name ?? null
+				}
+				error={deleteError}
+				onOpenChange={handleDeleteDialogOpenChange}
+				onConfirm={handleDeleteConfirm}
 			/>
 		</div>
 	);
