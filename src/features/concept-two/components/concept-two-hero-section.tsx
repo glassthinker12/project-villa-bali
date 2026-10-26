@@ -10,7 +10,6 @@ export const ConceptTwoHeroSection = () => {
 				loop
 				playsInline
 				preload="auto"
-				aria-hidden="true"
 				className="absolute inset-0 size-full object-cover"
 			/>
 			<div className="absolute inset-0 bg-[linear-gradient(180.03deg,rgba(36,33,33,0.5)_0%,rgba(36,33,33,0.3)_99.986%)]" />

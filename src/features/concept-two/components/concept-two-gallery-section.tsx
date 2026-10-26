@@ -43,7 +43,10 @@ const RIGHT_SLOTS: GalleryFlipSlot[] = [
 const GalleryColumn = ({
 	slots,
 	staggerDelay = 0,
-}: { slots: GalleryFlipSlot[]; staggerDelay?: number }) => {
+}: {
+	slots: GalleryFlipSlot[];
+	staggerDelay?: number;
+}) => {
 	const [active, setActive] = useState(false);
 	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 

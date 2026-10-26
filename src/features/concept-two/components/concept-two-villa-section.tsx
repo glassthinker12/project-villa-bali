@@ -93,7 +93,8 @@ export const ConceptTwoVillaSection = () => {
 												className="size-6 shrink-0"
 											/>
 											<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
-												{villa.bedrooms} {villa.bedrooms === 1 ? "Bedroom" : "Bedrooms"}
+												{villa.bedrooms}{" "}
+												{villa.bedrooms === 1 ? "Bedroom" : "Bedrooms"}
 											</p>
 										</div>
 										<img
@@ -110,7 +111,8 @@ export const ConceptTwoVillaSection = () => {
 												className="size-6 shrink-0"
 											/>
 											<p className="truncate text-center text-xs leading-5.5 sm:text-sm">
-												{villa.bathrooms} {villa.bathrooms === 1 ? "Bathroom" : "Bathrooms"}
+												{villa.bathrooms}{" "}
+												{villa.bathrooms === 1 ? "Bathroom" : "Bathrooms"}
 											</p>
 										</div>
 									</div>
@@ -122,7 +124,9 @@ export const ConceptTwoVillaSection = () => {
 												src="/icons/user.svg"
 												className="size-4 shrink-0"
 											/>
-											<p className="text-sm">{villa.guests} {villa.guests === 1 ? "Guest" : "Guests"}</p>
+											<p className="text-sm">
+												{villa.guests} {villa.guests === 1 ? "Guest" : "Guests"}
+											</p>
 										</div>
 										<div
 											className="size-2 shrink-0 rounded-full bg-brand"
@@ -135,7 +139,10 @@ export const ConceptTwoVillaSection = () => {
 												src="/icons/bed.svg"
 												className="size-4 shrink-0"
 											/>
-											<p className="text-sm">{villa.bedrooms} {villa.bedrooms === 1 ? "Bedroom" : "Bedrooms"}</p>
+											<p className="text-sm">
+												{villa.bedrooms}{" "}
+												{villa.bedrooms === 1 ? "Bedroom" : "Bedrooms"}
+											</p>
 										</div>
 										<div
 											className="size-2 shrink-0 rounded-full bg-brand"
@@ -148,7 +155,10 @@ export const ConceptTwoVillaSection = () => {
 												src="/icons/bathtub.svg"
 												className="size-4 shrink-0"
 											/>
-											<p className="text-sm">{villa.bathrooms} {villa.bathrooms === 1 ? "Bathroom" : "Bathrooms"}</p>
+											<p className="text-sm">
+												{villa.bathrooms}{" "}
+												{villa.bathrooms === 1 ? "Bathroom" : "Bathrooms"}
+											</p>
 										</div>
 									</div>
 								</div>

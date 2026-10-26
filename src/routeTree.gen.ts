@@ -10,7 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteRouteImport } from './routes/admin/route'
+import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminExperienceRouteImport } from './routes/admin/experience'
+import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
+import { Route as AdminHomepageContentRouteImport } from './routes/admin/homepage-content'
+import { Route as AdminVillasRouteImport } from './routes/admin/villas'
 import { Route as ConceptConceptIdRouteRouteImport } from './routes/concept/$conceptId/route'
 import { Route as ConceptConceptIdIndexRouteImport } from './routes/concept/$conceptId/index'
 
@@ -19,10 +27,49 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRouteRoute = AuthRouteRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRouteRoute = AdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminExperienceRoute = AdminExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminGalleryRoute = AdminGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminHomepageContentRoute = AdminHomepageContentRouteImport.update({
+  id: '/homepage-content',
+  path: '/homepage-content',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminVillasRoute = AdminVillasRouteImport.update({
+  id: '/villas',
+  path: '/villas',
+  getParentRoute: () => AdminRouteRoute,
 } as any)
 const ConceptConceptIdRouteRoute = ConceptConceptIdRouteRouteImport.update({
   id: '/concept/$conceptId',
@@ -37,33 +84,88 @@ const ConceptConceptIdIndexRoute = ConceptConceptIdIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/concept/$conceptId': typeof ConceptConceptIdRouteRouteWithChildren
+  '/login': typeof AuthLoginRoute
+  '/admin/experience': typeof AdminExperienceRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/homepage-content': typeof AdminHomepageContentRoute
+  '/admin/villas': typeof AdminVillasRoute
+  '/admin/': typeof AdminIndexRoute
   '/concept/$conceptId/': typeof ConceptConceptIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/login': typeof AuthLoginRoute
+  '/admin/experience': typeof AdminExperienceRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/homepage-content': typeof AdminHomepageContentRoute
+  '/admin/villas': typeof AdminVillasRoute
+  '/admin': typeof AdminIndexRoute
   '/concept/$conceptId': typeof ConceptConceptIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_auth': typeof AuthRouteRouteWithChildren
+  '/admin': typeof AdminRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/concept/$conceptId': typeof ConceptConceptIdRouteRouteWithChildren
+  '/_auth/login': typeof AuthLoginRoute
+  '/admin/experience': typeof AdminExperienceRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/homepage-content': typeof AdminHomepageContentRoute
+  '/admin/villas': typeof AdminVillasRoute
+  '/admin/': typeof AdminIndexRoute
   '/concept/$conceptId/': typeof ConceptConceptIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/concept/$conceptId' | '/concept/$conceptId/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/about'
+    | '/concept/$conceptId'
+    | '/login'
+    | '/admin/experience'
+    | '/admin/gallery'
+    | '/admin/homepage-content'
+    | '/admin/villas'
+    | '/admin/'
+    | '/concept/$conceptId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/concept/$conceptId'
+  to:
+    | '/'
+    | '/about'
+    | '/login'
+    | '/admin/experience'
+    | '/admin/gallery'
+    | '/admin/homepage-content'
+    | '/admin/villas'
+    | '/admin'
+    | '/concept/$conceptId'
   id:
-    '__root__' | '/' | '/about' | '/concept/$conceptId' | '/concept/$conceptId/'
+    | '__root__'
+    | '/'
+    | '/_auth'
+    | '/admin'
+    | '/about'
+    | '/concept/$conceptId'
+    | '/_auth/login'
+    | '/admin/experience'
+    | '/admin/gallery'
+    | '/admin/homepage-content'
+    | '/admin/villas'
+    | '/admin/'
+    | '/concept/$conceptId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   ConceptConceptIdRouteRoute: typeof ConceptConceptIdRouteRouteWithChildren
 }
@@ -77,12 +179,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth/login': {
+      id: '/_auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/experience': {
+      id: '/admin/experience'
+      path: '/experience'
+      fullPath: '/admin/experience'
+      preLoaderRoute: typeof AdminExperienceRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/gallery': {
+      id: '/admin/gallery'
+      path: '/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AdminGalleryRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/homepage-content': {
+      id: '/admin/homepage-content'
+      path: '/homepage-content'
+      fullPath: '/admin/homepage-content'
+      preLoaderRoute: typeof AdminHomepageContentRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/villas': {
+      id: '/admin/villas'
+      path: '/villas'
+      fullPath: '/admin/villas'
+      preLoaderRoute: typeof AdminVillasRouteImport
+      parentRoute: typeof AdminRouteRoute
     }
     '/concept/$conceptId': {
       id: '/concept/$conceptId'
@@ -101,6 +259,38 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthRouteRouteChildren {
+  AuthLoginRoute: typeof AuthLoginRoute
+}
+
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthLoginRoute: AuthLoginRoute,
+}
+
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
+
+interface AdminRouteRouteChildren {
+  AdminExperienceRoute: typeof AdminExperienceRoute
+  AdminGalleryRoute: typeof AdminGalleryRoute
+  AdminHomepageContentRoute: typeof AdminHomepageContentRoute
+  AdminVillasRoute: typeof AdminVillasRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminExperienceRoute: AdminExperienceRoute,
+  AdminGalleryRoute: AdminGalleryRoute,
+  AdminHomepageContentRoute: AdminHomepageContentRoute,
+  AdminVillasRoute: AdminVillasRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
+
 interface ConceptConceptIdRouteRouteChildren {
   ConceptConceptIdIndexRoute: typeof ConceptConceptIdIndexRoute
 }
@@ -116,6 +306,8 @@ const ConceptConceptIdRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRouteRoute: AuthRouteRouteWithChildren,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   ConceptConceptIdRouteRoute: ConceptConceptIdRouteRouteWithChildren,
 }

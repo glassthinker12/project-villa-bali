@@ -10,7 +10,6 @@ export const ConceptThreeHeroSection = () => {
 				loop
 				playsInline
 				preload="auto"
-				aria-hidden="true"
 				className="absolute inset-0 size-full object-cover"
 			/>
 			<div className="absolute inset-0 bg-[linear-gradient(180.03deg,rgba(36,33,33,0.5)_0%,rgba(36,33,33,0.3)_99.986%)]" />
@@ -75,12 +74,28 @@ export const ConceptThreeHeroSection = () => {
 							animate={{ opacity: 1 }}
 							transition={{ delay: 0.8, duration: 0.6 }}
 						>
-							<span className="text-xs uppercase tracking-widest">Scroll Down to Explore</span>
+							<span className="text-xs uppercase tracking-widest">
+								Scroll Down to Explore
+							</span>
 							<motion.div
 								animate={{ y: [0, 8, 0] }}
-								transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+								transition={{
+									repeat: Infinity,
+									duration: 2,
+									ease: "easeInOut",
+								}}
 							>
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+								<svg
+									aria-hidden="true"
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								>
 									<path d="M12 5v14M19 12l-7 7-7-7" />
 								</svg>
 							</motion.div>
