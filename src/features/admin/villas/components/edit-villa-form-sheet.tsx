@@ -401,7 +401,7 @@ export const EditVillaFormSheet = ({
 						Cancel
 					</Button>
 					<Button type="submit" form="form-edit-villa" disabled={isLoading}>
-						{isLoading ? "Updating..." : "Update Villa"}
+						{isLoading ? "Saving..." : "Save Changes"}
 					</Button>
 				</SheetFooter>
 			</SheetContent>

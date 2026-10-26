@@ -39,6 +39,11 @@ export const ADMIN_MASTER_DATA_ITEMS: AdminNavItem[] = [
 		to: "/admin/gallery",
 		icon: ImagesIcon,
 	},
+	{
+		title: "Experiences",
+		to: "/admin/experience",
+		icon: LayoutTemplateIcon,
+	},
 ];
 
 export const ADMIN_PAGE_SETTING_ITEMS: AdminNavItem[] = [
