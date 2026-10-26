@@ -62,7 +62,7 @@ export const getHomepageContentFn = createServerFn().handler(async () => {
 		experience: {
 			eyebrow: experience?.content?.eyebrow ?? "-",
 			heading: experience?.content?.heading ?? "-",
-			experiences: [],
+			experiences: experience?.content?.experiences ?? [],
 			cta: {
 				label: experience?.content?.cta?.label ?? "-",
 				url: experience?.content?.cta?.url ?? "-",
