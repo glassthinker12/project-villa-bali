@@ -236,9 +236,9 @@ export const AdminHomepageContentPage = () => {
 	}
 
 	return (
-		<div className="flex h-full items-start">
+		<div className="flex h-[calc(100svh-3.5rem)] overflow-hidden">
 			{/* Left: section list */}
-			<div className="flex min-w-0 flex-1 flex-col gap-6 p-6">
+			<div className="flex min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
 				<div className="flex flex-col gap-1">
 					<h1 className="font-heading font-semibold text-2xl uppercase tracking-wider">
 						Homepage Content
@@ -275,30 +275,32 @@ export const AdminHomepageContentPage = () => {
 			</div>
 
 			{/* Right: section editor */}
-			<aside className="sticky top-0 hidden min-h-dvh w-100 shrink-0 self-start overflow-y-auto border-l bg-sidebar p-6 md:block">
-				{activeSection ? (
-					<AdminHomepageContentSectionForm
-						key={`${activeSection}-${formResetKey}`}
-						section={activeSection}
-						content={homepageContent}
-						isDirty={dirtySections.includes(activeSection)}
-						hasUnsavedChanges={hasUnsavedChanges}
-						isSaving={isSaving}
-						onChange={handleLiveChange}
-						onSubmit={handleSubmit}
-						onCancel={handleCancel}
-					/>
-				) : (
-					<div className="flex min-h-[50vh] items-center justify-center">
-						<div className="text-center">
-							<p className="font-medium">No section selected</p>
-							<p className="text-muted-foreground text-sm">
-								Select a section from the list on the left and click Edit to
-								change its content.
-							</p>
+			<aside className="hidden w-100 shrink-0 border-l bg-sidebar md:block">
+				<div className="sticky top-0 h-full overflow-y-auto p-6">
+					{activeSection ? (
+						<AdminHomepageContentSectionForm
+							key={`${activeSection}-${formResetKey}`}
+							section={activeSection}
+							content={homepageContent}
+							isDirty={dirtySections.includes(activeSection)}
+							hasUnsavedChanges={hasUnsavedChanges}
+							isSaving={isSaving}
+							onChange={handleLiveChange}
+							onSubmit={handleSubmit}
+							onCancel={handleCancel}
+						/>
+					) : (
+						<div className="flex min-h-[50vh] items-center justify-center">
+							<div className="text-center">
+								<p className="font-medium">No section selected</p>
+								<p className="text-muted-foreground text-sm">
+									Select a section from the list on the left and click Edit to
+									change its content.
+								</p>
+							</div>
 						</div>
-					</div>
-				)}
+					)}
+				</div>
 			</aside>
 
 			<AdminHomepageContentDiscardChangesDialog

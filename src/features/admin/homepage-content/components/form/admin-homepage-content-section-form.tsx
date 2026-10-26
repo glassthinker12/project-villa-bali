@@ -46,6 +46,7 @@ const AdminHomepageContentSectionFormDetail = (
 						heading: props.content.about.heading,
 						body: props.content.about.body,
 						cta: props.content.about.cta,
+						image: props.content.about.image,
 					}}
 					isDirty={props.isDirty}
 					hasUnsavedChanges={props.hasUnsavedChanges}
