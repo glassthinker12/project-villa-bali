@@ -53,7 +53,7 @@ export const getHomepageContentFn = createServerFn().handler(async () => {
 		villa: {
 			eyebrow: villa?.content?.eyebrow ?? "-",
 			heading: villa?.content?.heading ?? "-",
-			villas: [],
+			villas: villa?.content?.villas ?? [],
 			cta: {
 				label: villa?.content?.cta?.label ?? "-",
 				url: villa?.content?.cta?.url ?? "-",
