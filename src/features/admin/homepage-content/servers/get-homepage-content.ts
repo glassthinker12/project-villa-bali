@@ -71,7 +71,7 @@ export const getHomepageContentFn = createServerFn().handler(async () => {
 		gallery: {
 			eyebrow: gallery?.content?.eyebrow ?? "-",
 			heading: gallery?.content?.heading ?? "-",
-			galleries: [],
+			galleries: gallery?.content?.galleries ?? [],
 			cta: {
 				label: gallery?.content?.cta?.label ?? "-",
 				url: gallery?.content?.cta?.url ?? "-",

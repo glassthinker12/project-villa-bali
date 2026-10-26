@@ -96,6 +96,7 @@ const AdminHomepageContentSectionFormDetail = (
 					initialValues={{
 						eyebrow: props.content.gallery.eyebrow,
 						heading: props.content.gallery.heading,
+						galleries: props.content.gallery.galleries ?? [],
 						cta: props.content.gallery.cta,
 					}}
 					isDirty={props.isDirty}

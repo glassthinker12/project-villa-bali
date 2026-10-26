@@ -11,6 +11,14 @@ import type { GalleryContent } from "../types";
 
 type HomepageGallerySectionProps = GalleryContent;
 
+const GALLERY_ITEM_CLASSES = [
+	"col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-1 md:h-78",
+	"col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-2 md:aspect-auto md:h-78",
+	"col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-1 md:aspect-auto md:h-78",
+	"col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-2 md:h-78",
+	"col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-2 md:h-78",
+];
+
 export const HomepageGallerySection = ({
 	eyebrow,
 	heading,
@@ -50,60 +58,22 @@ export const HomepageGallerySection = ({
 					transition={defaultTransition}
 					className="grid w-full grid-cols-2 gap-2 md:grid-cols-4 md:gap-4"
 				>
-					{/* Image 1: Mobile Full, Desktop Small Left */}
-					<div className="col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-1 md:h-78">
-						<img
-							src={galleries[0].imageUrl}
-							alt={galleries[0].alt}
-							loading="lazy"
-							decoding="async"
-							className="size-full object-cover"
-						/>
-					</div>
-
-					{/* Image 2: Mobile Half Left, Desktop Large Center */}
-					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-2 md:aspect-auto md:h-78">
-						<img
-							src={galleries[1].imageUrl}
-							alt={galleries[1].alt}
-							loading="lazy"
-							decoding="async"
-							className="size-full object-cover"
-						/>
-					</div>
-
-					{/* Image 3: Mobile Half Right, Desktop Small Right */}
-					<div className="col-span-1 aspect-square overflow-hidden rounded-lg md:col-span-1 md:aspect-auto md:h-78">
-						<img
-							src={galleries[2].imageUrl}
-							alt={galleries[2].alt}
-							loading="lazy"
-							decoding="async"
-							className="size-full object-cover"
-						/>
-					</div>
-
-					{/* Image 4: Mobile Full, Desktop Large Bottom Left */}
-					<div className="col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-2 md:h-78">
-						<img
-							src={galleries[3].imageUrl}
-							alt={galleries[3].alt}
-							loading="lazy"
-							decoding="async"
-							className="size-full object-cover"
-						/>
-					</div>
-
-					{/* Image 5: Mobile Full, Desktop Large Bottom Right */}
-					<div className="col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-2 md:h-78">
-						<img
-							src={galleries[4].imageUrl}
-							alt={galleries[4].alt}
-							loading="lazy"
-							decoding="async"
-							className="size-full object-cover"
-						/>
-					</div>
+					{galleries
+						.slice(0, GALLERY_ITEM_CLASSES.length)
+						.map((gallery, index) => (
+							<div
+								key={`${gallery.imageUrl}-${index}`}
+								className={GALLERY_ITEM_CLASSES[index]}
+							>
+								<img
+									src={gallery.imageUrl}
+									alt={gallery.alt}
+									loading="lazy"
+									decoding="async"
+									className="size-full object-cover"
+								/>
+							</div>
+						))}
 				</motion.div>
 
 				{/* CTA */}
