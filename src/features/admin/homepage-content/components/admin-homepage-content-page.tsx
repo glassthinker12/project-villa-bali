@@ -236,9 +236,9 @@ export const AdminHomepageContentPage = () => {
 	}
 
 	return (
-		<div className="flex h-[calc(100svh-3.5rem)] overflow-hidden">
+		<div className="flex h-[calc(100svh-3.5rem)] overflow-x-hidden overflow-y-hidden">
 			{/* Left: section list */}
-			<div className="flex min-w-0 flex-1 flex-col gap-6 overflow-y-auto p-6">
+			<div className="flex w-full min-w-0 flex-1 flex-col gap-6 overflow-y-auto overflow-x-hidden p-6">
 				<div className="flex flex-col gap-1">
 					<h1 className="font-heading font-semibold text-2xl uppercase tracking-wider">
 						Homepage Content
