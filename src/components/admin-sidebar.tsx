@@ -52,6 +52,11 @@ export const ADMIN_PAGE_SETTING_ITEMS: AdminNavItem[] = [
 		to: "/admin/homepage-content",
 		icon: LayoutTemplateIcon,
 	},
+	{
+		title: "Villas Page Content",
+		to: "/admin/villas-content",
+		icon: Building2Icon,
+	},
 ];
 
 export function AdminSidebar() {

@@ -11,7 +11,7 @@ const MENUS = [
 	},
 	{
 		title: "All Villas",
-		url: "/",
+		url: "/villas",
 	},
 	{
 		title: "The Cave",
@@ -61,7 +61,7 @@ export const Navbar = () => {
 			transition={{ duration: 0.6, ease: "easeOut" }}
 		>
 			<div className="mx-auto flex max-w-7xl justify-between p-4">
-				<Link to="/concept/$conceptId" params={{ conceptId: "1" }}>
+				<Link to="/">
 					<img
 						alt="Seaview Private Villas"
 						src="/images/logo.png"
@@ -74,8 +74,7 @@ export const Navbar = () => {
 					{MENUS.map((menu) => (
 						<Link
 							key={menu.title}
-							to="/concept/$conceptId"
-							params={{ conceptId: "1" }}
+							to={menu.url}
 							className="font-bold font-heading text-lg text-white underline-offset-2 hover:underline"
 						>
 							{menu.title}

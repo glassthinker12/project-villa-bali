@@ -20,6 +20,7 @@ import { Route as AdminExperienceRouteImport } from './routes/admin/experience'
 import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
 import { Route as AdminHomepageContentRouteImport } from './routes/admin/homepage-content'
 import { Route as AdminVillasRouteImport } from './routes/admin/villas'
+import { Route as AdminVillasContentRouteImport } from './routes/admin/villas-content'
 import { Route as ConceptConceptIdRouteRouteImport } from './routes/concept/$conceptId/route'
 import { Route as ConceptConceptIdIndexRouteImport } from './routes/concept/$conceptId/index'
 
@@ -77,6 +78,11 @@ const AdminVillasRoute = AdminVillasRouteImport.update({
   path: '/villas',
   getParentRoute: () => AdminRouteRoute,
 } as any)
+const AdminVillasContentRoute = AdminVillasContentRouteImport.update({
+  id: '/villas-content',
+  path: '/villas-content',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 const ConceptConceptIdRouteRoute = ConceptConceptIdRouteRouteImport.update({
   id: '/concept/$conceptId',
   path: '/concept/$conceptId',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/homepage-content': typeof AdminHomepageContentRoute
   '/admin/villas': typeof AdminVillasRoute
+  '/admin/villas-content': typeof AdminVillasContentRoute
   '/admin/': typeof AdminIndexRoute
   '/concept/$conceptId/': typeof ConceptConceptIdIndexRoute
 }
@@ -111,6 +118,7 @@ export interface FileRoutesByTo {
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/homepage-content': typeof AdminHomepageContentRoute
   '/admin/villas': typeof AdminVillasRoute
+  '/admin/villas-content': typeof AdminVillasContentRoute
   '/admin': typeof AdminIndexRoute
   '/concept/$conceptId': typeof ConceptConceptIdIndexRoute
 }
@@ -127,6 +135,7 @@ export interface FileRoutesById {
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/homepage-content': typeof AdminHomepageContentRoute
   '/admin/villas': typeof AdminVillasRoute
+  '/admin/villas-content': typeof AdminVillasContentRoute
   '/admin/': typeof AdminIndexRoute
   '/concept/$conceptId/': typeof ConceptConceptIdIndexRoute
 }
@@ -143,6 +152,7 @@ export interface FileRouteTypes {
     | '/admin/gallery'
     | '/admin/homepage-content'
     | '/admin/villas'
+    | '/admin/villas-content'
     | '/admin/'
     | '/concept/$conceptId/'
   fileRoutesByTo: FileRoutesByTo
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/admin/gallery'
     | '/admin/homepage-content'
     | '/admin/villas'
+    | '/admin/villas-content'
     | '/admin'
     | '/concept/$conceptId'
   id:
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '/admin/gallery'
     | '/admin/homepage-content'
     | '/admin/villas'
+    | '/admin/villas-content'
     | '/admin/'
     | '/concept/$conceptId/'
   fileRoutesById: FileRoutesById
@@ -262,6 +274,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminVillasRouteImport
       parentRoute: typeof AdminRouteRoute
     }
+    '/admin/villas-content': {
+      id: '/admin/villas-content'
+      path: '/villas-content'
+      fullPath: '/admin/villas-content'
+      preLoaderRoute: typeof AdminVillasContentRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/concept/$conceptId': {
       id: '/concept/$conceptId'
       path: '/concept/$conceptId'
@@ -296,6 +315,7 @@ interface AdminRouteRouteChildren {
   AdminGalleryRoute: typeof AdminGalleryRoute
   AdminHomepageContentRoute: typeof AdminHomepageContentRoute
   AdminVillasRoute: typeof AdminVillasRoute
+  AdminVillasContentRoute: typeof AdminVillasContentRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -304,6 +324,7 @@ const AdminRouteRouteChildren: AdminRouteRouteChildren = {
   AdminGalleryRoute: AdminGalleryRoute,
   AdminHomepageContentRoute: AdminHomepageContentRoute,
   AdminVillasRoute: AdminVillasRoute,
+  AdminVillasContentRoute: AdminVillasContentRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
