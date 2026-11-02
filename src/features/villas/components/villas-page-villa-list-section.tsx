@@ -42,7 +42,8 @@ export const VillasPageVillaListSection = ({
 							transition={{ duration: 0.6, delay: index * 0.15 }}
 						>
 							<Link
-								to="/villas"
+								to="/villas/$slug"
+								params={{ slug: villa.slug }}
 								className="flex h-full flex-col gap-4 transition-transform hover:scale-[1.02]"
 							>
 								<div className="h-86 overflow-hidden rounded-md">

@@ -7,6 +7,7 @@ export type HeroContent = {
 export type Villa = {
 	id: string;
 	name: string;
+	slug: string;
 	guest: number;
 	bedroom: number;
 	bathroom: number;
