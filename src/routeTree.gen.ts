@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteRouteImport } from './routes/admin/route'
+import { Route as VillasRouteImport } from './routes/villas'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminExperienceRouteImport } from './routes/admin/experience'
@@ -39,6 +40,11 @@ const AboutRoute = AboutRouteImport.update({
 const AdminRouteRoute = AdminRouteRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VillasRoute = VillasRouteImport.update({
+  id: '/villas',
+  path: '/villas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/villas': typeof VillasRoute
   '/concept/$conceptId': typeof ConceptConceptIdRouteRouteWithChildren
   '/login': typeof AuthLoginRoute
   '/admin/experience': typeof AdminExperienceRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/villas': typeof VillasRoute
   '/login': typeof AuthLoginRoute
   '/admin/experience': typeof AdminExperienceRoute
   '/admin/gallery': typeof AdminGalleryRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/_auth': typeof AuthRouteRouteWithChildren
   '/admin': typeof AdminRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/villas': typeof VillasRoute
   '/concept/$conceptId': typeof ConceptConceptIdRouteRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/admin/experience': typeof AdminExperienceRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/about'
+    | '/villas'
     | '/concept/$conceptId'
     | '/login'
     | '/admin/experience'
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/villas'
     | '/login'
     | '/admin/experience'
     | '/admin/gallery'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/_auth'
     | '/admin'
     | '/about'
+    | '/villas'
     | '/concept/$conceptId'
     | '/_auth/login'
     | '/admin/experience'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   AuthRouteRoute: typeof AuthRouteRouteWithChildren
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
+  VillasRoute: typeof VillasRoute
   ConceptConceptIdRouteRoute: typeof ConceptConceptIdRouteRouteWithChildren
 }
 
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/villas': {
+      id: '/villas'
+      path: '/villas'
+      fullPath: '/villas'
+      preLoaderRoute: typeof VillasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_auth/login': {
@@ -309,6 +329,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRouteRoute: AuthRouteRouteWithChildren,
   AdminRouteRoute: AdminRouteRouteWithChildren,
   AboutRoute: AboutRoute,
+  VillasRoute: VillasRoute,
   ConceptConceptIdRouteRoute: ConceptConceptIdRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
