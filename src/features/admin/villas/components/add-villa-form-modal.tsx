@@ -18,6 +18,7 @@ import {
 } from "#/components/ui/dialog";
 import {
 	Field,
+	FieldDescription,
 	FieldError,
 	FieldGroup,
 	FieldLabel,
@@ -27,10 +28,13 @@ import { Textarea } from "#/components/ui/textarea";
 import { toast } from "#/components/ui/toast";
 import { createVillaFn } from "../servers";
 import { uploadVillaImageFn } from "../servers/upload-image";
+import { StringListInput } from "./string-list-input";
 
 export const createVillaSchema = z.object({
 	name: z.string().min(1, "Name is required"),
 	description: z.string().optional(),
+	facilities: z.array(z.string()),
+	rules: z.array(z.string()),
 	pricePerNight: z.number().min(0, "Price must be at least 0"),
 	guests: z.number().min(1, "Must allow at least 1 guest"),
 	bedrooms: z.number().min(1, "Must have at least 1 bedroom"),
@@ -62,6 +66,8 @@ export const AddVillaFormModal = ({
 		defaultValues: {
 			name: "",
 			description: "",
+			facilities: [],
+			rules: [],
 			pricePerNight: 0,
 			guests: 1,
 			bedrooms: 1,
@@ -99,6 +105,8 @@ export const AddVillaFormModal = ({
 					name: data.name,
 					slug,
 					description: data.description || "",
+					facilities: data.facilities,
+					rules: data.rules,
 					pricePerNight: data.pricePerNight,
 					guests: data.guests,
 					bedrooms: data.bedrooms,
@@ -195,6 +203,54 @@ export const AddVillaFormModal = ({
 										aria-invalid={fieldState.invalid}
 										placeholder="Beautiful luxury villa..."
 									/>
+									{fieldState.invalid && fieldState.error && (
+										<FieldError errors={[fieldState.error]} />
+									)}
+								</Field>
+							)}
+						/>
+
+						<Controller
+							name="facilities"
+							control={form.control}
+							render={({ field, fieldState }) => (
+								<Field data-invalid={fieldState.invalid}>
+									<FieldLabel htmlFor="form-villa-facilities">
+										Facilities
+									</FieldLabel>
+									<StringListInput
+										id="form-villa-facilities"
+										value={field.value}
+										onChange={field.onChange}
+										placeholder="Add facility..."
+										ariaInvalid={fieldState.invalid}
+									/>
+									<FieldDescription>
+										Press Enter or click Add to add a facility.
+									</FieldDescription>
+									{fieldState.invalid && fieldState.error && (
+										<FieldError errors={[fieldState.error]} />
+									)}
+								</Field>
+							)}
+						/>
+
+						<Controller
+							name="rules"
+							control={form.control}
+							render={({ field, fieldState }) => (
+								<Field data-invalid={fieldState.invalid}>
+									<FieldLabel htmlFor="form-villa-rules">Rules</FieldLabel>
+									<StringListInput
+										id="form-villa-rules"
+										value={field.value}
+										onChange={field.onChange}
+										placeholder="Add rule..."
+										ariaInvalid={fieldState.invalid}
+									/>
+									<FieldDescription>
+										Press Enter or click Add to add a rule.
+									</FieldDescription>
 									{fieldState.invalid && fieldState.error && (
 										<FieldError errors={[fieldState.error]} />
 									)}

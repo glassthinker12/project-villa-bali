@@ -10,6 +10,7 @@ import { Alert, AlertTitle } from "#/components/ui/alert";
 import { Button } from "#/components/ui/button";
 import {
 	Field,
+	FieldDescription,
 	FieldError,
 	FieldGroup,
 	FieldLabel,
@@ -27,10 +28,13 @@ import { Textarea } from "#/components/ui/textarea";
 import { toast } from "#/components/ui/toast";
 import { updateVillaFn, uploadVillaImageFn } from "../servers";
 import type { Villa } from "../types";
+import { StringListInput } from "./string-list-input";
 
 const editVillaSchema = z.object({
 	name: z.string().min(1, "Name is required"),
 	description: z.string().optional(),
+	facilities: z.array(z.string()),
+	rules: z.array(z.string()),
 	pricePerNight: z.number().min(0, "Price must be at least 0"),
 	guests: z.number().min(1, "Must allow at least 1 guest"),
 	bedrooms: z.number().min(1, "Must have at least 1 bedroom"),
@@ -64,6 +68,8 @@ export const EditVillaFormSheet = ({
 		defaultValues: {
 			name: "",
 			description: "",
+			facilities: [],
+			rules: [],
 			pricePerNight: 0,
 			guests: 1,
 			bedrooms: 1,
@@ -83,6 +89,8 @@ export const EditVillaFormSheet = ({
 		form.reset({
 			name: villa.name,
 			description: villa.description ?? "",
+			facilities: villa.facilities ?? [],
+			rules: villa.rules ?? [],
 			pricePerNight: villa.pricePerNight,
 			guests: villa.guests,
 			bedrooms: villa.bedrooms,
@@ -130,6 +138,8 @@ export const EditVillaFormSheet = ({
 					name: data.name,
 					slug,
 					description: data.description || "",
+					facilities: data.facilities,
+					rules: data.rules,
 					pricePerNight: data.pricePerNight,
 					guests: data.guests,
 					bedrooms: data.bedrooms,
@@ -229,6 +239,54 @@ export const EditVillaFormSheet = ({
 										aria-invalid={fieldState.invalid}
 										placeholder="Beautiful luxury villa..."
 									/>
+									{fieldState.invalid && fieldState.error && (
+										<FieldError errors={[fieldState.error]} />
+									)}
+								</Field>
+							)}
+						/>
+
+						<Controller
+							name="facilities"
+							control={form.control}
+							render={({ field, fieldState }) => (
+								<Field data-invalid={fieldState.invalid}>
+									<FieldLabel htmlFor="form-villa-edit-facilities">
+										Facilities
+									</FieldLabel>
+									<StringListInput
+										id="form-villa-edit-facilities"
+										value={field.value}
+										onChange={field.onChange}
+										placeholder="Add facility..."
+										ariaInvalid={fieldState.invalid}
+									/>
+									<FieldDescription>
+										Press Enter or click Add to add a facility.
+									</FieldDescription>
+									{fieldState.invalid && fieldState.error && (
+										<FieldError errors={[fieldState.error]} />
+									)}
+								</Field>
+							)}
+						/>
+
+						<Controller
+							name="rules"
+							control={form.control}
+							render={({ field, fieldState }) => (
+								<Field data-invalid={fieldState.invalid}>
+									<FieldLabel htmlFor="form-villa-edit-rules">Rules</FieldLabel>
+									<StringListInput
+										id="form-villa-edit-rules"
+										value={field.value}
+										onChange={field.onChange}
+										placeholder="Add rule..."
+										ariaInvalid={fieldState.invalid}
+									/>
+									<FieldDescription>
+										Press Enter or click Add to add a rule.
+									</FieldDescription>
 									{fieldState.invalid && fieldState.error && (
 										<FieldError errors={[fieldState.error]} />
 									)}

@@ -3,6 +3,8 @@ export type Villa = {
 	name: string;
 	slug: string;
 	description?: string;
+	facilities: string[];
+	rules: string[];
 	pricePerNight: number;
 	guests: number;
 	bedrooms: number;

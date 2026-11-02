@@ -13,6 +13,8 @@ export const updateVillaFn = createServerFn()
 				name: data.name,
 				slug: data.slug,
 				description: data.description,
+				facilities: data.facilities,
+				rules: data.rules,
 				price_per_night: data.pricePerNight,
 				guests: data.guests,
 				bedrooms: data.bedrooms,
