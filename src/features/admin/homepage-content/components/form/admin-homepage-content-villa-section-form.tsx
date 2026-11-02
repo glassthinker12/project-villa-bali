@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ChevronDown, ChevronUp, ImageIcon } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "#/components/ui/button";
@@ -108,11 +108,12 @@ export const AdminHomepageContentVillaSectionForm = ({
 	useLiveChange(form, onChange);
 
 	const selectedVillas = form.watch("villas");
-	const [selectedVillaKeys, setSelectedVillaKeys] = useState<string[]>(() => {
-		return (initialValues.villas ?? []).map(
-			(villa) => `${villa.name}|${villa.imageUrl}`,
-		);
-	});
+	// Derive the checkbox state from the form so it always mirrors the current
+	// content, including after villas are emptied and selected again.
+	const selectedVillaKeys = useMemo(
+		() => selectedVillas.map((villa) => `${villa.name}|${villa.imageUrl}`),
+		[selectedVillas],
+	);
 
 	const availableVillas = useMemo(() => {
 		return villas.filter((villa) => villa.isActive !== false);
@@ -123,8 +124,6 @@ export const AdminHomepageContentVillaSectionForm = ({
 		const isSelected = selectedVillaKeys.includes(key);
 
 		if (isSelected) {
-			const nextKeys = selectedVillaKeys.filter((k) => k !== key);
-			setSelectedVillaKeys(nextKeys);
 			const nextVillas = selectedVillas.filter(
 				(v) => `${v.name}|${v.imageUrl}` !== key,
 			);
@@ -135,8 +134,6 @@ export const AdminHomepageContentVillaSectionForm = ({
 			return;
 		}
 
-		const nextKeys = [...selectedVillaKeys, key];
-		setSelectedVillaKeys(nextKeys);
 		const nextVillas = [...selectedVillas, mapVillaToFormItem(villa)];
 		form.setValue("villas", nextVillas as VillaFormValues["villas"], {
 			shouldDirty: true,

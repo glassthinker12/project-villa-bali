@@ -155,16 +155,6 @@ export const AdminHomepageContentPage = () => {
 			setSaveError(null);
 
 			try {
-				/*
-				 * IMPORTANT:
-				 * This component only has getHomepageContentFn available in the
-				 * supplied source. Replace this local-save step with your actual
-				 * update server function before relying on database persistence.
-				 *
-				 * No server update function is called here, so this currently saves
-				 * the draft only in client state.
-				 */
-				console.log({ values });
 				await updateHomepageContentFn({
 					data: { type: activeSection, content: values },
 				});
