@@ -65,7 +65,7 @@ export const HomepageAboutSection = ({
 						href={cta.href}
 						className={cn(
 							buttonVariants({ variant: "ghost" }),
-							"h-auto gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
+							"h-auto cursor-pointer gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
 						)}
 					>
 						{toTitleCase(cta.label)}

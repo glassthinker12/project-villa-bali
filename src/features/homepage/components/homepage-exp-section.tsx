@@ -94,7 +94,7 @@ export const HomepageExpSection = ({
 						href={cta.href}
 						className={cn(
 							buttonVariants({ variant: "ghost" }),
-							"h-auto gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
+							"h-auto cursor-pointer gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
 						)}
 					>
 						{toTitleCase(cta.label)}
@@ -167,7 +167,7 @@ export const HomepageExpSection = ({
 							size="icon"
 							onClick={() => scroll("left")}
 							disabled={!canScrollLeft}
-							className="size-12 rounded-lg border-[1.5px] border-brand text-brand hover:bg-brand/10 hover:text-brand disabled:border-brand-light disabled:text-brand-light disabled:opacity-50"
+							className="size-12 cursor-pointer rounded-lg border-[1.5px] border-brand text-brand hover:bg-brand/10 hover:text-brand disabled:cursor-not-allowed disabled:border-brand-light disabled:text-brand-light disabled:opacity-50"
 						>
 							<ArrowLeft className="size-6" />
 						</Button>
@@ -176,7 +176,7 @@ export const HomepageExpSection = ({
 							size="icon"
 							onClick={() => scroll("right")}
 							disabled={!canScrollRight}
-							className="size-12 rounded-lg border-[1.5px] border-brand text-brand hover:bg-brand/10 hover:text-brand disabled:border-brand-light disabled:text-brand-light disabled:opacity-50"
+							className="size-12 cursor-pointer rounded-lg border-[1.5px] border-brand text-brand hover:bg-brand/10 hover:text-brand disabled:cursor-not-allowed disabled:border-brand-light disabled:text-brand-light disabled:opacity-50"
 						>
 							<ArrowRight className="size-6" />
 						</Button>
@@ -185,7 +185,7 @@ export const HomepageExpSection = ({
 						href={cta.href}
 						className={cn(
 							buttonVariants({ variant: "ghost" }),
-							"h-auto gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
+							"h-auto cursor-pointer gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
 						)}
 					>
 						{toTitleCase(cta.label)}

@@ -32,9 +32,12 @@ export const VillaDetailPageContentSection = (
 						</div>
 					</div>
 					<div>
-						<Button variant="brand">
+						<Button
+							variant="brand"
+							className="h-[50px] cursor-pointer rounded-lg gap-2 px-6 py-3 font-medium text-base leading-[26px] normal-case tracking-normal hover:bg-brand/90"
+						>
 							Check Availability
-							<ArrowRightIcon />
+							<ArrowRightIcon className="size-6" />
 						</Button>
 					</div>
 				</div>
