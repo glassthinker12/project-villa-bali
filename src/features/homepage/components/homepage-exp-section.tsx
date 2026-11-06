@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "cn";
 import { Button, buttonVariants } from "#/components/ui/button";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import {
@@ -8,6 +9,7 @@ import {
 	fadeUp,
 	staggerContainer,
 } from "../lib/animation-variants";
+import { toTitleCase } from "../lib/format";
 import type { ExperienceContent } from "../types";
 
 type HomepageExpSectionProps = ExperienceContent;
@@ -88,13 +90,16 @@ export const HomepageExpSection = ({
 							Our Tourist Experiences
 						</h2>
 					</div>
-					<Button
-						variant="ghost"
-						className="gap-2 px-0 font-medium text-base text-brand normal-case tracking-normal hover:bg-transparent"
+					<a
+						href={cta.href}
+						className={cn(
+							buttonVariants({ variant: "ghost" }),
+							"h-auto gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
+						)}
 					>
-						View All
-						<ArrowRight className="size-6" />
-					</Button>
+						{toTitleCase(cta.label)}
+						<ArrowRight className="size-6 text-brand" />
+					</a>
 				</motion.div>
 
 				{/* Carousel Cards */}
@@ -162,6 +167,7 @@ export const HomepageExpSection = ({
 							size="icon"
 							onClick={() => scroll("left")}
 							disabled={!canScrollLeft}
+							className="size-12 rounded-lg border-[1.5px] border-brand text-brand hover:bg-brand/10 hover:text-brand disabled:border-brand-light disabled:text-brand-light disabled:opacity-50"
 						>
 							<ArrowLeft className="size-6" />
 						</Button>
@@ -170,13 +176,20 @@ export const HomepageExpSection = ({
 							size="icon"
 							onClick={() => scroll("right")}
 							disabled={!canScrollRight}
+							className="size-12 rounded-lg border-[1.5px] border-brand text-brand hover:bg-brand/10 hover:text-brand disabled:border-brand-light disabled:text-brand-light disabled:opacity-50"
 						>
 							<ArrowRight className="size-6" />
 						</Button>
 					</div>
-					<a href={cta.href} className={buttonVariants({ variant: "ghost" })}>
-						{cta.label}
-						<ArrowRight className="size-6" />
+					<a
+						href={cta.href}
+						className={cn(
+							buttonVariants({ variant: "ghost" }),
+							"h-auto gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
+						)}
+					>
+						{toTitleCase(cta.label)}
+						<ArrowRight className="size-6 text-brand" />
 					</a>
 				</motion.div>
 			</motion.div>

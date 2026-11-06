@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { cn } from "cn";
 import { buttonVariants } from "#/components/ui/button";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import {
@@ -8,6 +9,7 @@ import {
 	fadeUp,
 	staggerContainer,
 } from "../lib/animation-variants";
+import { toTitleCase } from "../lib/format";
 import type { VillaContent } from "../types";
 
 type HomepageVillaSectionProps = VillaContent;
@@ -119,9 +121,15 @@ export const HomepageVillaSection = ({
 							{heading}
 						</h2>
 					</div>
-					<a href={cta.href} className={buttonVariants({ variant: "ghost" })}>
-						{cta.label}
-						<ArrowRight className="size-6" />
+					<a
+						href={cta.href}
+						className={cn(
+							buttonVariants({ variant: "ghost" }),
+							"h-auto gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
+						)}
+					>
+						{toTitleCase(cta.label)}
+						<ArrowRight className="size-6 text-brand" />
 					</a>
 				</motion.div>
 			</motion.div>
