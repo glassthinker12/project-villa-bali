@@ -1,13 +1,13 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { Toaster } from "#/components/ui/toast";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+
+import { Toaster } from "@/components/ui/toast";
+
 import appCss from "../styles.css?url";
 
-const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');var mode=(stored==='light'||stored==='dark'||stored==='auto')?stored:'light';var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var resolved=mode==='auto'?(prefersDark?'dark':'light'):mode;var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(resolved);if(mode==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',mode)}root.style.colorScheme=resolved;}catch(e){}})();`;
-
 export const Route = createRootRoute({
-	beforeLoad: async () => {},
 	head: () => ({
 		meta: [
 			{
@@ -47,20 +47,24 @@ export const Route = createRootRoute({
 			{ rel: "icon", href: "/favicon.ico" },
 		],
 	}),
+	notFoundComponent: () => (
+		<main className="container mx-auto p-4 pt-16">
+			<h1>404</h1>
+			<p>The requested page could not be found.</p>
+		</main>
+	),
 	shellComponent: RootDocument,
-	notFoundComponent: NotFoundComponent,
 });
 
 const queryClient = new QueryClient();
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="en">
 			<head>
-				<script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
 				<HeadContent />
 			</head>
-			<body className="wrap-anywhere font-sans antialiased">
+			<body>
 				<QueryClientProvider client={queryClient}>
 					{children}
 					<Toaster />
@@ -68,19 +72,16 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 						config={{
 							position: "bottom-right",
 						}}
+						plugins={[
+							{
+								name: "Tanstack Router",
+								render: <TanStackRouterDevtoolsPanel />,
+							},
+						]}
 					/>
 				</QueryClientProvider>
 				<Scripts />
 			</body>
 		</html>
-	);
-}
-
-function NotFoundComponent() {
-	return (
-		<div>
-			<h1>404</h1>
-			<p>Page not found.</p>
-		</div>
 	);
 }

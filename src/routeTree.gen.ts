@@ -9,34 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as PublicAboutUsRouteImport } from './routes/_public/about-us'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
-import { Route as AdminExperienceRouteImport } from './routes/admin/experience'
-import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
-import { Route as AdminHomepageContentRouteImport } from './routes/admin/homepage-content'
-import { Route as AdminVillasRouteImport } from './routes/admin/villas'
-import { Route as AdminVillasContentRouteImport } from './routes/admin/villas-content'
-import { Route as ConceptConceptIdRouteRouteImport } from './routes/concept/$conceptId/route'
-import { Route as VillasIndexRouteImport } from './routes/villas/index'
-import { Route as VillasSlugRouteImport } from './routes/villas/$slug'
-import { Route as ConceptConceptIdIndexRouteImport } from './routes/concept/$conceptId/index'
+import { Route as AdminGalleriesRouteImport } from './routes/admin/galleries'
+import { Route as AdminHomepageSettingsRouteImport } from './routes/admin/homepage-settings'
+import { Route as AdminVillaManagementRouteImport } from './routes/admin/villa-management'
+import { Route as AdminVillasPageSettingsRouteImport } from './routes/admin/villas-page-settings'
+import { Route as PublicVillasIndexRouteImport } from './routes/_public/villas/index'
+import { Route as PublicVillasVillaSlugRouteImport } from './routes/_public/villas/$villaSlug'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthRouteRoute = AuthRouteRouteImport.update({
   id: '/_auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRouteRoute = AdminRouteRouteImport.update({
@@ -49,186 +36,150 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AuthRouteRoute,
 } as any)
+const PublicIndexRoute = PublicIndexRouteImport.update({
+  id: '/_public/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicAboutUsRoute = PublicAboutUsRouteImport.update({
+  id: '/_public/about-us',
+  path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRouteRoute,
 } as any)
-const AdminExperienceRoute = AdminExperienceRouteImport.update({
-  id: '/experience',
-  path: '/experience',
+const AdminGalleriesRoute = AdminGalleriesRouteImport.update({
+  id: '/galleries',
+  path: '/galleries',
   getParentRoute: () => AdminRouteRoute,
 } as any)
-const AdminGalleryRoute = AdminGalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
+const AdminHomepageSettingsRoute = AdminHomepageSettingsRouteImport.update({
+  id: '/homepage-settings',
+  path: '/homepage-settings',
   getParentRoute: () => AdminRouteRoute,
 } as any)
-const AdminHomepageContentRoute = AdminHomepageContentRouteImport.update({
-  id: '/homepage-content',
-  path: '/homepage-content',
+const AdminVillaManagementRoute = AdminVillaManagementRouteImport.update({
+  id: '/villa-management',
+  path: '/villa-management',
   getParentRoute: () => AdminRouteRoute,
 } as any)
-const AdminVillasRoute = AdminVillasRouteImport.update({
-  id: '/villas',
-  path: '/villas',
+const AdminVillasPageSettingsRoute = AdminVillasPageSettingsRouteImport.update({
+  id: '/villas-page-settings',
+  path: '/villas-page-settings',
   getParentRoute: () => AdminRouteRoute,
 } as any)
-const AdminVillasContentRoute = AdminVillasContentRouteImport.update({
-  id: '/villas-content',
-  path: '/villas-content',
-  getParentRoute: () => AdminRouteRoute,
-} as any)
-const ConceptConceptIdRouteRoute = ConceptConceptIdRouteRouteImport.update({
-  id: '/concept/$conceptId',
-  path: '/concept/$conceptId',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const VillasIndexRoute = VillasIndexRouteImport.update({
-  id: '/villas/',
+const PublicVillasIndexRoute = PublicVillasIndexRouteImport.update({
+  id: '/_public/villas/',
   path: '/villas/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VillasSlugRoute = VillasSlugRouteImport.update({
-  id: '/villas/$slug',
-  path: '/villas/$slug',
+const PublicVillasVillaSlugRoute = PublicVillasVillaSlugRouteImport.update({
+  id: '/_public/villas/$villaSlug',
+  path: '/villas/$villaSlug',
   getParentRoute: () => rootRouteImport,
-} as any)
-const ConceptConceptIdIndexRoute = ConceptConceptIdIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ConceptConceptIdRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof PublicIndexRoute
   '/admin': typeof AdminRouteRouteWithChildren
-  '/about': typeof AboutRoute
-  '/concept/$conceptId': typeof ConceptConceptIdRouteRouteWithChildren
   '/login': typeof AuthLoginRoute
-  '/admin/experience': typeof AdminExperienceRoute
-  '/admin/gallery': typeof AdminGalleryRoute
-  '/admin/homepage-content': typeof AdminHomepageContentRoute
-  '/admin/villas': typeof AdminVillasRoute
-  '/admin/villas-content': typeof AdminVillasContentRoute
-  '/villas/$slug': typeof VillasSlugRoute
+  '/about-us': typeof PublicAboutUsRoute
+  '/admin/galleries': typeof AdminGalleriesRoute
+  '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
+  '/admin/villa-management': typeof AdminVillaManagementRoute
+  '/admin/villas-page-settings': typeof AdminVillasPageSettingsRoute
   '/admin/': typeof AdminIndexRoute
-  '/villas/': typeof VillasIndexRoute
-  '/concept/$conceptId/': typeof ConceptConceptIdIndexRoute
+  '/villas/$villaSlug': typeof PublicVillasVillaSlugRoute
+  '/villas/': typeof PublicVillasIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/': typeof PublicIndexRoute
   '/login': typeof AuthLoginRoute
-  '/admin/experience': typeof AdminExperienceRoute
-  '/admin/gallery': typeof AdminGalleryRoute
-  '/admin/homepage-content': typeof AdminHomepageContentRoute
-  '/admin/villas': typeof AdminVillasRoute
-  '/admin/villas-content': typeof AdminVillasContentRoute
-  '/villas/$slug': typeof VillasSlugRoute
+  '/about-us': typeof PublicAboutUsRoute
+  '/admin/galleries': typeof AdminGalleriesRoute
+  '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
+  '/admin/villa-management': typeof AdminVillaManagementRoute
+  '/admin/villas-page-settings': typeof AdminVillasPageSettingsRoute
   '/admin': typeof AdminIndexRoute
-  '/villas': typeof VillasIndexRoute
-  '/concept/$conceptId': typeof ConceptConceptIdIndexRoute
+  '/villas/$villaSlug': typeof PublicVillasVillaSlugRoute
+  '/villas': typeof PublicVillasIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/_auth': typeof AuthRouteRouteWithChildren
   '/admin': typeof AdminRouteRouteWithChildren
-  '/about': typeof AboutRoute
-  '/concept/$conceptId': typeof ConceptConceptIdRouteRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
-  '/admin/experience': typeof AdminExperienceRoute
-  '/admin/gallery': typeof AdminGalleryRoute
-  '/admin/homepage-content': typeof AdminHomepageContentRoute
-  '/admin/villas': typeof AdminVillasRoute
-  '/admin/villas-content': typeof AdminVillasContentRoute
-  '/villas/$slug': typeof VillasSlugRoute
+  '/_public/about-us': typeof PublicAboutUsRoute
+  '/admin/galleries': typeof AdminGalleriesRoute
+  '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
+  '/admin/villa-management': typeof AdminVillaManagementRoute
+  '/admin/villas-page-settings': typeof AdminVillasPageSettingsRoute
+  '/_public/': typeof PublicIndexRoute
   '/admin/': typeof AdminIndexRoute
-  '/villas/': typeof VillasIndexRoute
-  '/concept/$conceptId/': typeof ConceptConceptIdIndexRoute
+  '/_public/villas/$villaSlug': typeof PublicVillasVillaSlugRoute
+  '/_public/villas/': typeof PublicVillasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/admin'
-    | '/about'
-    | '/concept/$conceptId'
     | '/login'
-    | '/admin/experience'
-    | '/admin/gallery'
-    | '/admin/homepage-content'
-    | '/admin/villas'
-    | '/admin/villas-content'
-    | '/villas/$slug'
+    | '/about-us'
+    | '/admin/galleries'
+    | '/admin/homepage-settings'
+    | '/admin/villa-management'
+    | '/admin/villas-page-settings'
     | '/admin/'
+    | '/villas/$villaSlug'
     | '/villas/'
-    | '/concept/$conceptId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
     | '/login'
-    | '/admin/experience'
-    | '/admin/gallery'
-    | '/admin/homepage-content'
-    | '/admin/villas'
-    | '/admin/villas-content'
-    | '/villas/$slug'
+    | '/about-us'
+    | '/admin/galleries'
+    | '/admin/homepage-settings'
+    | '/admin/villa-management'
+    | '/admin/villas-page-settings'
     | '/admin'
+    | '/villas/$villaSlug'
     | '/villas'
-    | '/concept/$conceptId'
   id:
     | '__root__'
-    | '/'
     | '/_auth'
     | '/admin'
-    | '/about'
-    | '/concept/$conceptId'
     | '/_auth/login'
-    | '/admin/experience'
-    | '/admin/gallery'
-    | '/admin/homepage-content'
-    | '/admin/villas'
-    | '/admin/villas-content'
-    | '/villas/$slug'
+    | '/_public/about-us'
+    | '/admin/galleries'
+    | '/admin/homepage-settings'
+    | '/admin/villa-management'
+    | '/admin/villas-page-settings'
+    | '/_public/'
     | '/admin/'
-    | '/villas/'
-    | '/concept/$conceptId/'
+    | '/_public/villas/$villaSlug'
+    | '/_public/villas/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AuthRouteRoute: typeof AuthRouteRouteWithChildren
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
-  AboutRoute: typeof AboutRoute
-  ConceptConceptIdRouteRoute: typeof ConceptConceptIdRouteRouteWithChildren
-  VillasSlugRoute: typeof VillasSlugRoute
-  VillasIndexRoute: typeof VillasIndexRoute
+  PublicAboutUsRoute: typeof PublicAboutUsRoute
+  PublicIndexRoute: typeof PublicIndexRoute
+  PublicVillasVillaSlugRoute: typeof PublicVillasVillaSlugRoute
+  PublicVillasIndexRoute: typeof PublicVillasIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_auth': {
       id: '/_auth'
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -245,6 +196,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof AuthRouteRoute
     }
+    '/_public/': {
+      id: '/_public/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/about-us': {
+      id: '/_public/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof PublicAboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -252,68 +217,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
-    '/admin/experience': {
-      id: '/admin/experience'
-      path: '/experience'
-      fullPath: '/admin/experience'
-      preLoaderRoute: typeof AdminExperienceRouteImport
+    '/admin/galleries': {
+      id: '/admin/galleries'
+      path: '/galleries'
+      fullPath: '/admin/galleries'
+      preLoaderRoute: typeof AdminGalleriesRouteImport
       parentRoute: typeof AdminRouteRoute
     }
-    '/admin/gallery': {
-      id: '/admin/gallery'
-      path: '/gallery'
-      fullPath: '/admin/gallery'
-      preLoaderRoute: typeof AdminGalleryRouteImport
+    '/admin/homepage-settings': {
+      id: '/admin/homepage-settings'
+      path: '/homepage-settings'
+      fullPath: '/admin/homepage-settings'
+      preLoaderRoute: typeof AdminHomepageSettingsRouteImport
       parentRoute: typeof AdminRouteRoute
     }
-    '/admin/homepage-content': {
-      id: '/admin/homepage-content'
-      path: '/homepage-content'
-      fullPath: '/admin/homepage-content'
-      preLoaderRoute: typeof AdminHomepageContentRouteImport
+    '/admin/villa-management': {
+      id: '/admin/villa-management'
+      path: '/villa-management'
+      fullPath: '/admin/villa-management'
+      preLoaderRoute: typeof AdminVillaManagementRouteImport
       parentRoute: typeof AdminRouteRoute
     }
-    '/admin/villas': {
-      id: '/admin/villas'
-      path: '/villas'
-      fullPath: '/admin/villas'
-      preLoaderRoute: typeof AdminVillasRouteImport
+    '/admin/villas-page-settings': {
+      id: '/admin/villas-page-settings'
+      path: '/villas-page-settings'
+      fullPath: '/admin/villas-page-settings'
+      preLoaderRoute: typeof AdminVillasPageSettingsRouteImport
       parentRoute: typeof AdminRouteRoute
     }
-    '/admin/villas-content': {
-      id: '/admin/villas-content'
-      path: '/villas-content'
-      fullPath: '/admin/villas-content'
-      preLoaderRoute: typeof AdminVillasContentRouteImport
-      parentRoute: typeof AdminRouteRoute
-    }
-    '/concept/$conceptId': {
-      id: '/concept/$conceptId'
-      path: '/concept/$conceptId'
-      fullPath: '/concept/$conceptId'
-      preLoaderRoute: typeof ConceptConceptIdRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/villas/': {
-      id: '/villas/'
+    '/_public/villas/': {
+      id: '/_public/villas/'
       path: '/villas'
       fullPath: '/villas/'
-      preLoaderRoute: typeof VillasIndexRouteImport
+      preLoaderRoute: typeof PublicVillasIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/villas/$slug': {
-      id: '/villas/$slug'
-      path: '/villas/$slug'
-      fullPath: '/villas/$slug'
-      preLoaderRoute: typeof VillasSlugRouteImport
+    '/_public/villas/$villaSlug': {
+      id: '/_public/villas/$villaSlug'
+      path: '/villas/$villaSlug'
+      fullPath: '/villas/$villaSlug'
+      preLoaderRoute: typeof PublicVillasVillaSlugRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/concept/$conceptId/': {
-      id: '/concept/$conceptId/'
-      path: '/'
-      fullPath: '/concept/$conceptId/'
-      preLoaderRoute: typeof ConceptConceptIdIndexRouteImport
-      parentRoute: typeof ConceptConceptIdRouteRoute
     }
   }
 }
@@ -331,20 +275,18 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 )
 
 interface AdminRouteRouteChildren {
-  AdminExperienceRoute: typeof AdminExperienceRoute
-  AdminGalleryRoute: typeof AdminGalleryRoute
-  AdminHomepageContentRoute: typeof AdminHomepageContentRoute
-  AdminVillasRoute: typeof AdminVillasRoute
-  AdminVillasContentRoute: typeof AdminVillasContentRoute
+  AdminGalleriesRoute: typeof AdminGalleriesRoute
+  AdminHomepageSettingsRoute: typeof AdminHomepageSettingsRoute
+  AdminVillaManagementRoute: typeof AdminVillaManagementRoute
+  AdminVillasPageSettingsRoute: typeof AdminVillasPageSettingsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
-  AdminExperienceRoute: AdminExperienceRoute,
-  AdminGalleryRoute: AdminGalleryRoute,
-  AdminHomepageContentRoute: AdminHomepageContentRoute,
-  AdminVillasRoute: AdminVillasRoute,
-  AdminVillasContentRoute: AdminVillasContentRoute,
+  AdminGalleriesRoute: AdminGalleriesRoute,
+  AdminHomepageSettingsRoute: AdminHomepageSettingsRoute,
+  AdminVillaManagementRoute: AdminVillaManagementRoute,
+  AdminVillasPageSettingsRoute: AdminVillasPageSettingsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
@@ -352,27 +294,13 @@ const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
   AdminRouteRouteChildren,
 )
 
-interface ConceptConceptIdRouteRouteChildren {
-  ConceptConceptIdIndexRoute: typeof ConceptConceptIdIndexRoute
-}
-
-const ConceptConceptIdRouteRouteChildren: ConceptConceptIdRouteRouteChildren = {
-  ConceptConceptIdIndexRoute: ConceptConceptIdIndexRoute,
-}
-
-const ConceptConceptIdRouteRouteWithChildren =
-  ConceptConceptIdRouteRoute._addFileChildren(
-    ConceptConceptIdRouteRouteChildren,
-  )
-
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AuthRouteRoute: AuthRouteRouteWithChildren,
   AdminRouteRoute: AdminRouteRouteWithChildren,
-  AboutRoute: AboutRoute,
-  ConceptConceptIdRouteRoute: ConceptConceptIdRouteRouteWithChildren,
-  VillasSlugRoute: VillasSlugRoute,
-  VillasIndexRoute: VillasIndexRoute,
+  PublicAboutUsRoute: PublicAboutUsRoute,
+  PublicIndexRoute: PublicIndexRoute,
+  PublicVillasVillaSlugRoute: PublicVillasVillaSlugRoute,
+  PublicVillasIndexRoute: PublicVillasIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

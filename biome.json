@@ -32,7 +32,15 @@
 				"useSortedClasses": "error"
 			},
 			"suspicious": {
-				"noArrayIndexKey": "off"
+				"noArrayIndexKey": "off",
+				"noDocumentCookie": "off"
+			},
+			"correctness": {
+				"useHookAtTopLevel": "off"
+			},
+			"a11y": {
+				"useKeyWithClickEvents": "off",
+				"useSemanticElements": "off"
 			}
 		}
 	},

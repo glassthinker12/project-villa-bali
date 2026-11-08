@@ -3,7 +3,7 @@ import type * as React from "react";
 
 function Label({ className, ...props }: React.ComponentProps<"label">) {
 	return (
-		// biome-ignore lint/a11y/noLabelWithoutControl: association is provided by the consumer through htmlFor
+		// biome-ignore lint/a11y/noLabelWithoutControl: this is reusable component
 		<label
 			data-slot="label"
 			className={cn(

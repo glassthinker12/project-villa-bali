@@ -1,18 +1,17 @@
+import { StarIcon } from "lucide-react";
 import { motion } from "motion/react";
-import type { HeroContent } from "../types";
 
-type HomepageHeroSectionProps = HeroContent;
+import type { HomepageHeroSection as HomepageHeroSectionType } from "../types";
 
-export const HomepageHeroSection = ({
-	eyebrow,
-	title,
-	subtitle,
-	videoUrl,
-}: HomepageHeroSectionProps) => {
+type HomepageHeroSectionProps = {
+	data: HomepageHeroSectionType;
+};
+
+export function HomepageHeroSection({ data }: HomepageHeroSectionProps) {
 	return (
 		<section className="relative -mt-20 h-dvh w-full overflow-hidden">
 			<video
-				src={videoUrl}
+				src={data.videoUrl}
 				autoPlay
 				muted
 				loop
@@ -30,26 +29,29 @@ export const HomepageHeroSection = ({
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
 					>
+						{/* Eyebrow */}
 						<motion.p
-							className="text-center text-base uppercase leading-6.5"
+							className="mb-4 text-center text-base uppercase"
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.2, duration: 0.6 }}
 						>
-							{eyebrow}
+							{data.eyebrow}
 						</motion.p>
 
+						{/* Title */}
 						<motion.h1
-							className="text-center font-bold font-heading text-6xl leading-14 md:text-8xl md:leading-16"
+							className="text-center font-bold font-heading text-6xl leading-12 md:text-8xl md:leading-16"
 							initial={{ opacity: 0, y: 30 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.4, duration: 0.6 }}
 						>
-							<span>{title}</span>
+							<span className="leading-16">{data.title}</span>
 							<br />
-							<span className="text-5xl md:text-6xl">{subtitle}</span>
+							<span className="text-5xl md:text-6xl">{data.subtitle}</span>
 						</motion.h1>
 
+						{/* Google review */}
 						<motion.div
 							role="img"
 							aria-label="5.0 out of 5 stars from Google Reviews"
@@ -58,24 +60,25 @@ export const HomepageHeroSection = ({
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.6, duration: 0.6 }}
 						>
-							<p className="font-bold font-subheading text-base text-white leading-6.5">
+							<p className="font-bold font-subheading text-base text-white">
 								5.0
 							</p>
 							<div className="flex items-center gap-1">
 								{Array.from({ length: 5 }).map((_, i) => (
-									<img
-										key={`star-${i}`}
-										alt=""
-										src="/icons/star.svg"
+									<StarIcon
+										key={`review-star-${i}`}
+										fill="#EECF1E"
+										strokeWidth={0}
 										className="size-4"
 									/>
 								))}
 							</div>
-							<p className="text-white text-xs leading-5 underline">
+							<p className="text-white text-xs underline">
 								from Google Reviews
 							</p>
 						</motion.div>
 
+						{/* Scroll to explore */}
 						<motion.div
 							className="mt-8 flex flex-col items-center gap-2 text-white/80"
 							initial={{ opacity: 0 }}
@@ -113,4 +116,4 @@ export const HomepageHeroSection = ({
 			</div>
 		</section>
 	);
-};
+}

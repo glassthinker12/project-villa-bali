@@ -1,17 +1,20 @@
-import { ArrowRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
-import { cn } from "cn";
-import { buttonVariants } from "#/components/ui/button";
-import { useScrollReveal } from "../hooks/use-scroll-reveal";
+
+import { buttonVariants } from "@/components/ui/button";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import {
 	defaultTransition,
 	fadeUp,
 	staggerContainer,
-} from "../lib/animation-variants";
-import { toTitleCase } from "../lib/format";
-import type { GalleryContent } from "../types";
+} from "@/lib/animation-variants";
 
-type HomepageGallerySectionProps = GalleryContent;
+import type { HomepageGallerySection as HomepageGallerySectionType } from "../types";
+
+type HomepageGallerySectionProps = {
+	data: HomepageGallerySectionType;
+};
 
 const GALLERY_ITEM_CLASSES = [
 	"col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-1 md:h-78",
@@ -21,12 +24,7 @@ const GALLERY_ITEM_CLASSES = [
 	"col-span-2 h-85.75 overflow-hidden rounded-lg md:col-span-2 md:h-78",
 ];
 
-export const HomepageGallerySection = ({
-	eyebrow,
-	heading,
-	galleries,
-	cta,
-}: HomepageGallerySectionProps) => {
+export function HomepageGallerySection({ data }: HomepageGallerySectionProps) {
 	const { ref, isInView } = useScrollReveal();
 
 	return (
@@ -47,10 +45,10 @@ export const HomepageGallerySection = ({
 					className="flex flex-col items-center justify-center gap-2 text-center"
 				>
 					<p className="font-subheading text-base text-brand tracking-wider">
-						{eyebrow}
+						{data.eyebrow}
 					</p>
 					<h2 className="font-bold font-heading text-3xl text-foreground md:text-4xl">
-						{heading}
+						{data.heading}
 					</h2>
 				</motion.div>
 
@@ -60,7 +58,7 @@ export const HomepageGallerySection = ({
 					transition={defaultTransition}
 					className="grid w-full grid-cols-2 gap-2 md:grid-cols-4 md:gap-4"
 				>
-					{galleries
+					{data.galleries
 						.slice(0, GALLERY_ITEM_CLASSES.length)
 						.map((gallery, index) => (
 							<div
@@ -69,7 +67,7 @@ export const HomepageGallerySection = ({
 							>
 								<img
 									src={gallery.imageUrl}
-									alt={gallery.alt}
+									alt={gallery.title}
 									loading="lazy"
 									decoding="async"
 									className="size-full object-cover"
@@ -80,18 +78,12 @@ export const HomepageGallerySection = ({
 
 				{/* CTA */}
 				<motion.div variants={fadeUp} transition={defaultTransition}>
-					<a
-						href={cta.href}
-						className={cn(
-							buttonVariants({ variant: "ghost" }),
-							"h-auto cursor-pointer gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
-						)}
-					>
-						{toTitleCase(cta.label)}
-						<ArrowRight className="size-6 text-brand" />
-					</a>
+					<Link to="/" className={buttonVariants({ variant: "ghost-brand" })}>
+						{data.cta.label}
+						<ArrowRightIcon className="size-6" />
+					</Link>
 				</motion.div>
 			</motion.div>
 		</section>
 	);
-};
+}

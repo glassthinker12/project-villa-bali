@@ -1,29 +1,27 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { cn } from "cn";
-import { buttonVariants } from "#/components/ui/button";
-import { useScrollReveal } from "../hooks/use-scroll-reveal";
+
+import { buttonVariants } from "@/components/ui/button";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import {
 	defaultTransition,
 	fadeUp,
 	staggerContainer,
-} from "../lib/animation-variants";
-import { toTitleCase } from "../lib/format";
-import type { VillaContent } from "../types";
+} from "@/lib/animation-variants";
 
-type HomepageVillaSectionProps = VillaContent;
+import type { HomepageVillaSection as HomepageVillaSectionType } from "../types";
 
-export const HomepageVillaSection = ({
-	eyebrow,
-	heading,
-	villas,
-	cta,
-}: HomepageVillaSectionProps) => {
+type HomepageVillaSectionProps = {
+	data: HomepageVillaSectionType;
+};
+
+export function HomepageVillaSection({ data }: HomepageVillaSectionProps) {
 	const { ref, isInView } = useScrollReveal();
 	const [currentIndex, setCurrentIndex] = useState(0);
 
-	const slides = Array.isArray(villas) ? villas : [];
+	const slides = Array.isArray(data.villas) ? data.villas : [];
 
 	// Keep the active slide valid when villas are cleared, removed, or re-added.
 	useEffect(() => {
@@ -38,7 +36,7 @@ export const HomepageVillaSection = ({
 
 		const timer = setInterval(() => {
 			setCurrentIndex((prev) => (prev + 1) % slides.length);
-		}, 5000);
+		}, 3000);
 		return () => clearInterval(timer);
 	}, [slides.length]);
 
@@ -55,18 +53,17 @@ export const HomepageVillaSection = ({
 				animate={isInView ? "visible" : "hidden"}
 				className="mx-auto flex max-w-6xl flex-col gap-8 md:h-91.25 md:flex-row"
 			>
-				{/* Image Column */}
+				{/* Image column */}
 				{currentSlide && (
 					<motion.div
 						variants={fadeUp}
 						transition={defaultTransition}
 						className="relative order-2 aspect-4/3 w-full overflow-hidden rounded-lg bg-[#f0e9e1] md:order-1 md:aspect-auto md:h-full md:flex-1"
 					>
-						{/* Render only the active image (crossfade) to save mobile memory/CPU */}
 						<AnimatePresence>
 							<motion.img
-								key={currentSlide.imageUrl}
-								src={currentSlide.imageUrl}
+								key={currentSlide.id}
+								src={currentSlide.thumbnailUrl}
 								alt={currentSlide.name}
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
@@ -79,10 +76,10 @@ export const HomepageVillaSection = ({
 							/>
 						</AnimatePresence>
 
-						{/* Gradient Overlay */}
+						{/* Gradient overlay */}
 						<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-3/5 bg-linear-to-t from-[#242121]/50 to-transparent" />
 
-						{/* Text Overlay */}
+						{/* Text overlay */}
 						<div className="absolute bottom-4 left-4 z-20">
 							<AnimatePresence mode="popLayout">
 								<motion.div
@@ -93,13 +90,11 @@ export const HomepageVillaSection = ({
 									transition={{ duration: 0.5, ease: "easeInOut" }}
 									className="flex flex-wrap items-center gap-2 text-white"
 								>
-									<p className="font-body font-bold text-base">
-										{currentSlide.name}
-									</p>
-									<div className="flex gap-2 font-body font-normal text-base">
-										<p>{currentSlide.guest} Guests</p>
-										<p>{currentSlide.bedroom} Bedroom</p>
-										<p>{currentSlide.bathroom} Bathroom</p>
+									<p className="font-bold text-base">{currentSlide.name}</p>
+									<div className="flex gap-2 text-base text-white/80">
+										<p>{currentSlide.guests} Guests</p>
+										<p>{currentSlide.bedrooms} Bedroom</p>
+										<p>{currentSlide.bathrooms} Bathroom</p>
 									</div>
 								</motion.div>
 							</AnimatePresence>
@@ -107,7 +102,7 @@ export const HomepageVillaSection = ({
 					</motion.div>
 				)}
 
-				{/* Text Column */}
+				{/* Text column */}
 				<motion.div
 					variants={fadeUp}
 					transition={defaultTransition}
@@ -115,24 +110,21 @@ export const HomepageVillaSection = ({
 				>
 					<div className="flex flex-col items-center gap-2">
 						<p className="font-subheading text-base text-brand uppercase tracking-wider">
-							{eyebrow}
+							{data.eyebrow}
 						</p>
 						<h2 className="font-bold font-heading text-3xl text-foreground md:text-4xl">
-							{heading}
+							{data.heading}
 						</h2>
 					</div>
-					<a
-						href={cta.href}
-						className={cn(
-							buttonVariants({ variant: "ghost" }),
-							"h-auto cursor-pointer gap-2 px-0 font-medium text-base text-brand leading-[26px] normal-case tracking-normal hover:bg-transparent hover:text-brand/80",
-						)}
+					<Link
+						to={data.cta.url}
+						className={buttonVariants({ variant: "ghost-brand" })}
 					>
-						{toTitleCase(cta.label)}
-						<ArrowRight className="size-6 text-brand" />
-					</a>
+						{data.cta.label}
+						<ArrowRight className="size-6" />
+					</Link>
 				</motion.div>
 			</motion.div>
 		</section>
 	);
-};
+}

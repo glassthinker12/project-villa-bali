@@ -73,7 +73,6 @@ function Field({
 	...props
 }: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
 	return (
-		// biome-ignore lint/a11y/useSemanticElements: group role is required to expose the field grouping semantics
 		<div
 			role="group"
 			data-slot="field"
@@ -225,13 +224,13 @@ function FieldError({
 
 export {
 	Field,
-	FieldLabel,
+	FieldContent,
 	FieldDescription,
 	FieldError,
 	FieldGroup,
+	FieldLabel,
 	FieldLegend,
 	FieldSeparator,
 	FieldSet,
-	FieldContent,
 	FieldTitle,
 };

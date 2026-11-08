@@ -14,8 +14,13 @@
     "lint": "biome lint",
     "lint:fix": "biome check --write --unsafe",
     "check": "biome check",
+    "typecheck": "tsc --noEmit",
     "deploy": "npm run build && wrangler deploy",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "supabase:pull": "supabase db pull --remote",
+    "supabase:push:dry": "supabase db push --dry-run --remote",
+    "supabase:push": "supabase db push --remote",
+    "supabase:types": "supabase gen types typescript --remote --schema public > src/lib/supabase/database.types.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -33,7 +38,7 @@
     "@tanstack/react-start": "1.168.50",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.2.6",
-    "lucide-react": "^1.41.0",
+    "lucide-react": "^1.66.0",
     "motion": "^13.4.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
@@ -53,7 +58,7 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "shadcn": "^4.22.1",
-    "supabase": "^2.121.0",
+    "supabase": "^3.0.0",
     "typescript": "^6.0.3",
     "vite": "^8.2.2",
     "wrangler": "^4.129.0"

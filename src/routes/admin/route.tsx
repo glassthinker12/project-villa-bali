@@ -1,25 +1,34 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { AdminShell } from "#/components/admin-shell";
-import { getCurrentUserFn } from "#/features/auth/servers";
+
+import { AdminLayout } from "@/components/layouts/admin-layout";
+import { getUserFn } from "@/features/auth/utils/auth.functions";
 
 export const Route = createFileRoute("/admin")({
-	component: AdminLayout,
+	component: RouteComponent,
 	beforeLoad: async () => {
-		const session = await getCurrentUserFn();
-		if (!session) {
+		try {
+			const user = await getUserFn();
+
+			if (!user) {
+				throw new Error("UNAUTHORIZED");
+			}
+
+			return { user };
+		} catch (_err) {
 			throw redirect({
 				to: "/login",
-				search: { redirect: "/admin/homepage-content" },
+				search: { redirect: "/admin" },
 			});
 		}
-		return { user: session };
 	},
 });
 
-function AdminLayout() {
+function RouteComponent() {
+	const { user } = Route.useRouteContext();
+
 	return (
-		<AdminShell>
+		<AdminLayout user={user}>
 			<Outlet />
-		</AdminShell>
+		</AdminLayout>
 	);
 }
