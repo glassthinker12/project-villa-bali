@@ -20,7 +20,7 @@ const MENUS = [
 	},
 	{
 		title: "Gallery",
-		url: "/",
+		url: "/gallery",
 	},
 	{
 		title: "About Us",

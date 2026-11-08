@@ -14,6 +14,7 @@ import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
 import { Route as PublicAboutUsRouteImport } from './routes/_public/about-us'
+import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminGalleriesRouteImport } from './routes/admin/galleries'
 import { Route as AdminHomepageSettingsRouteImport } from './routes/admin/homepage-settings'
@@ -44,6 +45,11 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
 const PublicAboutUsRoute = PublicAboutUsRouteImport.update({
   id: '/_public/about-us',
   path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicGalleryRoute = PublicGalleryRouteImport.update({
+  id: '/_public/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteRouteWithChildren
   '/login': typeof AuthLoginRoute
   '/about-us': typeof PublicAboutUsRoute
+  '/gallery': typeof PublicGalleryRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
   '/admin/villa-management': typeof AdminVillaManagementRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/': typeof PublicIndexRoute
   '/login': typeof AuthLoginRoute
   '/about-us': typeof PublicAboutUsRoute
+  '/gallery': typeof PublicGalleryRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
   '/admin/villa-management': typeof AdminVillaManagementRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/_public/about-us': typeof PublicAboutUsRoute
+  '/_public/gallery': typeof PublicGalleryRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
   '/admin/villa-management': typeof AdminVillaManagementRoute
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/login'
     | '/about-us'
+    | '/gallery'
     | '/admin/galleries'
     | '/admin/homepage-settings'
     | '/admin/villa-management'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/about-us'
+    | '/gallery'
     | '/admin/galleries'
     | '/admin/homepage-settings'
     | '/admin/villa-management'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/_auth/login'
     | '/_public/about-us'
+    | '/_public/gallery'
     | '/admin/galleries'
     | '/admin/homepage-settings'
     | '/admin/villa-management'
@@ -168,6 +180,7 @@ export interface RootRouteChildren {
   AuthRouteRoute: typeof AuthRouteRouteWithChildren
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
   PublicAboutUsRoute: typeof PublicAboutUsRoute
+  PublicGalleryRoute: typeof PublicGalleryRoute
   PublicIndexRoute: typeof PublicIndexRoute
   PublicVillasVillaSlugRoute: typeof PublicVillasVillaSlugRoute
   PublicVillasIndexRoute: typeof PublicVillasIndexRoute
@@ -208,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/about-us'
       fullPath: '/about-us'
       preLoaderRoute: typeof PublicAboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/gallery': {
+      id: '/_public/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof PublicGalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -298,6 +318,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRouteRoute: AuthRouteRouteWithChildren,
   AdminRouteRoute: AdminRouteRouteWithChildren,
   PublicAboutUsRoute: PublicAboutUsRoute,
+  PublicGalleryRoute: PublicGalleryRoute,
   PublicIndexRoute: PublicIndexRoute,
   PublicVillasVillaSlugRoute: PublicVillasVillaSlugRoute,
   PublicVillasIndexRoute: PublicVillasIndexRoute,
