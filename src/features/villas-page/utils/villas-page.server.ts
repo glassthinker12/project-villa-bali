@@ -1,3 +1,4 @@
+import "@tanstack/react-start/server-only";
 import type { DB } from "@/lib/supabase/db";
 
 import type {

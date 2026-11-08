@@ -1,3 +1,5 @@
+import "@tanstack/react-start/server-only";
+
 import type { DB } from "@/lib/supabase/db";
 import type { GalleryPageSettingsContent } from "../types";
 import { getGalleryPageDataFallback } from "./gallery-page-fallback";

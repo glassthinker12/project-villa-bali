@@ -16,7 +16,7 @@ const MENUS = [
 	},
 	{
 		title: "The Cave",
-		url: "/",
+		url: "/cave",
 	},
 	{
 		title: "Gallery",
@@ -137,8 +137,7 @@ export function PublicNavbar() {
 										{MENUS.map((menu) => (
 											<Link
 												key={menu.title}
-												to="/"
-												params={{ conceptId: "1" }}
+												to={menu.url}
 												onClick={() => setIsOpen(false)}
 												className="font-bold font-heading text-3xl text-white underline-offset-2 hover:underline"
 											>

@@ -1,3 +1,5 @@
+import "@tanstack/react-start/server-only";
+
 import { redirect } from "@tanstack/react-router";
 
 import type { DB } from "@/lib/supabase/db";
