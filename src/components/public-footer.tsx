@@ -162,7 +162,7 @@ export function PublicFooter() {
 									<ul className="flex flex-col items-center gap-4 md:items-start">
 										<li className="flex items-center gap-2 text-xs">
 											<img
-												alt="facebook"
+												alt="envelope"
 												src="/svg/envelope.svg"
 												className="size-4 shrink-0"
 											/>
@@ -170,7 +170,7 @@ export function PublicFooter() {
 										</li>
 										<li className="flex items-center gap-2 text-xs">
 											<img
-												alt="facebook"
+												alt="instagram"
 												src="/svg/instagram.svg"
 												className="size-4 shrink-0"
 											/>

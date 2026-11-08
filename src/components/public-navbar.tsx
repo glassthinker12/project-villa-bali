@@ -28,7 +28,7 @@ const MENUS = [
 	},
 	{
 		title: "Contact Us",
-		url: "/",
+		url: "/contact",
 	},
 ];
 

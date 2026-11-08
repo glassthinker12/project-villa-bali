@@ -15,6 +15,7 @@ import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
 import { Route as PublicAboutUsRouteImport } from './routes/_public/about-us'
 import { Route as PublicCaveRouteImport } from './routes/_public/cave'
+import { Route as PublicContactRouteImport } from './routes/_public/contact'
 import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminGalleriesRouteImport } from './routes/admin/galleries'
@@ -51,6 +52,11 @@ const PublicAboutUsRoute = PublicAboutUsRouteImport.update({
 const PublicCaveRoute = PublicCaveRouteImport.update({
   id: '/_public/cave',
   path: '/cave',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicContactRoute = PublicContactRouteImport.update({
+  id: '/_public/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PublicGalleryRoute = PublicGalleryRouteImport.update({
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/about-us': typeof PublicAboutUsRoute
   '/cave': typeof PublicCaveRoute
+  '/contact': typeof PublicContactRoute
   '/gallery': typeof PublicGalleryRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/about-us': typeof PublicAboutUsRoute
   '/cave': typeof PublicCaveRoute
+  '/contact': typeof PublicContactRoute
   '/gallery': typeof PublicGalleryRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_public/about-us': typeof PublicAboutUsRoute
   '/_public/cave': typeof PublicCaveRoute
+  '/_public/contact': typeof PublicContactRoute
   '/_public/gallery': typeof PublicGalleryRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/about-us'
     | '/cave'
+    | '/contact'
     | '/gallery'
     | '/admin/galleries'
     | '/admin/homepage-settings'
@@ -162,6 +172,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/about-us'
     | '/cave'
+    | '/contact'
     | '/gallery'
     | '/admin/galleries'
     | '/admin/homepage-settings'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/_auth/login'
     | '/_public/about-us'
     | '/_public/cave'
+    | '/_public/contact'
     | '/_public/gallery'
     | '/admin/galleries'
     | '/admin/homepage-settings'
@@ -193,6 +205,7 @@ export interface RootRouteChildren {
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
   PublicAboutUsRoute: typeof PublicAboutUsRoute
   PublicCaveRoute: typeof PublicCaveRoute
+  PublicContactRoute: typeof PublicContactRoute
   PublicGalleryRoute: typeof PublicGalleryRoute
   PublicIndexRoute: typeof PublicIndexRoute
   PublicVillasVillaSlugRoute: typeof PublicVillasVillaSlugRoute
@@ -241,6 +254,13 @@ declare module '@tanstack/react-router' {
       path: '/cave'
       fullPath: '/cave'
       preLoaderRoute: typeof PublicCaveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/contact': {
+      id: '/_public/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof PublicContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_public/gallery': {
@@ -339,6 +359,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRouteRoute: AdminRouteRouteWithChildren,
   PublicAboutUsRoute: PublicAboutUsRoute,
   PublicCaveRoute: PublicCaveRoute,
+  PublicContactRoute: PublicContactRoute,
   PublicGalleryRoute: PublicGalleryRoute,
   PublicIndexRoute: PublicIndexRoute,
   PublicVillasVillaSlugRoute: PublicVillasVillaSlugRoute,
