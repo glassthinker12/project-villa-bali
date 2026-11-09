@@ -18,6 +18,7 @@ import { Route as PublicCaveRouteImport } from './routes/_public/cave'
 import { Route as PublicContactRouteImport } from './routes/_public/contact'
 import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminCavePageSettingsRouteImport } from './routes/admin/cave-page-settings'
 import { Route as AdminGalleriesRouteImport } from './routes/admin/galleries'
 import { Route as AdminHomepageSettingsRouteImport } from './routes/admin/homepage-settings'
 import { Route as AdminVillaDetailPageSettingsRouteImport } from './routes/admin/villa-detail-page-settings'
@@ -70,6 +71,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRouteRoute,
 } as any)
+const AdminCavePageSettingsRoute = AdminCavePageSettingsRouteImport.update({
+  id: '/cave-page-settings',
+  path: '/cave-page-settings',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 const AdminGalleriesRoute = AdminGalleriesRouteImport.update({
   id: '/galleries',
   path: '/galleries',
@@ -115,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/cave': typeof PublicCaveRoute
   '/contact': typeof PublicContactRoute
   '/gallery': typeof PublicGalleryRoute
+  '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
   '/admin/villa-detail-page-settings': typeof AdminVillaDetailPageSettingsRoute
@@ -131,6 +138,7 @@ export interface FileRoutesByTo {
   '/cave': typeof PublicCaveRoute
   '/contact': typeof PublicContactRoute
   '/gallery': typeof PublicGalleryRoute
+  '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
   '/admin/villa-detail-page-settings': typeof AdminVillaDetailPageSettingsRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/_public/cave': typeof PublicCaveRoute
   '/_public/contact': typeof PublicContactRoute
   '/_public/gallery': typeof PublicGalleryRoute
+  '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
   '/admin/villa-detail-page-settings': typeof AdminVillaDetailPageSettingsRoute
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
     | '/cave'
     | '/contact'
     | '/gallery'
+    | '/admin/cave-page-settings'
     | '/admin/galleries'
     | '/admin/homepage-settings'
     | '/admin/villa-detail-page-settings'
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/cave'
     | '/contact'
     | '/gallery'
+    | '/admin/cave-page-settings'
     | '/admin/galleries'
     | '/admin/homepage-settings'
     | '/admin/villa-detail-page-settings'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/_public/cave'
     | '/_public/contact'
     | '/_public/gallery'
+    | '/admin/cave-page-settings'
     | '/admin/galleries'
     | '/admin/homepage-settings'
     | '/admin/villa-detail-page-settings'
@@ -290,6 +302,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
+    '/admin/cave-page-settings': {
+      id: '/admin/cave-page-settings'
+      path: '/cave-page-settings'
+      fullPath: '/admin/cave-page-settings'
+      preLoaderRoute: typeof AdminCavePageSettingsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/admin/galleries': {
       id: '/admin/galleries'
       path: '/galleries'
@@ -355,6 +374,7 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 )
 
 interface AdminRouteRouteChildren {
+  AdminCavePageSettingsRoute: typeof AdminCavePageSettingsRoute
   AdminGalleriesRoute: typeof AdminGalleriesRoute
   AdminHomepageSettingsRoute: typeof AdminHomepageSettingsRoute
   AdminVillaDetailPageSettingsRoute: typeof AdminVillaDetailPageSettingsRoute
@@ -364,6 +384,7 @@ interface AdminRouteRouteChildren {
 }
 
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminCavePageSettingsRoute: AdminCavePageSettingsRoute,
   AdminGalleriesRoute: AdminGalleriesRoute,
   AdminHomepageSettingsRoute: AdminHomepageSettingsRoute,
   AdminVillaDetailPageSettingsRoute: AdminVillaDetailPageSettingsRoute,

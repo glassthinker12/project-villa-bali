@@ -30,7 +30,7 @@ export async function getVillaDetailPageContent(
 	}
 
 	if (!pageSettings) {
-		console.log("Villa detail page settings not found.");
+		console.error("Villa detail page settings not found.");
 		return VILLA_DETAIL_PAGE_DATA_FALLBACK;
 	}
 

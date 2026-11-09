@@ -8,6 +8,7 @@ export const MEDIA_BUCKETS = [
 	"experiences",
 	"homepage",
 	"villas_page",
+	"cave_page",
 ] as const;
 
 export type MediaBucket = (typeof MEDIA_BUCKETS)[number];

@@ -154,10 +154,10 @@ export function AdminVillaDetailPageSettingsPage() {
 			<div className="flex min-w-0 flex-1 flex-col space-y-6">
 				<div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 					<div>
-						<h1 className="font-bold text-2xl">Villas Page Settings</h1>
+						<h1 className="font-bold text-2xl">Villa Detail Page Settings</h1>
 						<p className="text-muted-foreground text-sm">
 							Manage the text and image shown in each section of the public
-							villas page.
+							villa detail page.
 						</p>
 					</div>
 				</div>

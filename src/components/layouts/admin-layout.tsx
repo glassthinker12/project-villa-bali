@@ -65,6 +65,11 @@ export const AdminLayout = ({ user, children }: AdminLayoutProps) => {
 				url: "/admin/villa-detail-page-settings",
 				icon: LayoutTemplateIcon,
 			},
+			{
+				title: "Cave Page",
+				url: "/admin/cave-page-settings",
+				icon: LayoutTemplateIcon,
+			},
 		],
 	};
 

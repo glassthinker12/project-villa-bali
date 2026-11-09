@@ -31,7 +31,7 @@ export const isSameSectionContent = (left: unknown, right: unknown): boolean =>
 	stableStringify(left) === stableStringify(right);
 
 export const formatAdminSectionTitle = (text: string): string => {
-	return text.replaceAll(/-/g, " ");
+	return text.replace(/([a-z])([A-Z])/g, "$1 $2").replaceAll(/-/g, " ");
 };
 
 export const formatToIDR = (amount: number): string => {

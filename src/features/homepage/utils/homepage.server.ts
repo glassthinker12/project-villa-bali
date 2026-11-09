@@ -29,7 +29,7 @@ export async function getHomepageContent(
 	}
 
 	if (!pageSettings) {
-		console.log("Homepage settings not found.");
+		console.error("Homepage settings not found.");
 		return HOMEPAGE_DATA_FALLBACK;
 	}
 

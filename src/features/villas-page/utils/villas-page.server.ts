@@ -25,7 +25,7 @@ export async function getVillasPageContent(
 	}
 
 	if (!pageSettings) {
-		console.log("Villas page settings not found.");
+		console.error("Villas page settings not found.");
 		return VILLAS_PAGE_DATA_FALLBACK;
 	}
 
