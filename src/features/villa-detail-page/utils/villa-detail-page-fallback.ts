@@ -3,6 +3,7 @@ import type {
 	VillaDetailPageGallerySection,
 	VillaDetailPageHeroSection,
 	VillaDetailPageLocationSection,
+	VillaDetailPageSettingsContent,
 } from "../types";
 
 export const VILLA_DETAIL_PAGE_HERO_SECTION_FALLBACK: VillaDetailPageHeroSection =
@@ -122,3 +123,12 @@ export const VILLA_DETAIL_PAGE_LOCATION_SECTION_FALLBACK: VillaDetailPageLocatio
 		locationUrl:
 			"https://www.google.com/maps/@-8.681481,115.446332,15z?hl=en&entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D",
 	};
+
+export function getVillaDetailPageDataFallback(): VillaDetailPageSettingsContent {
+	return {
+		hero: VILLA_DETAIL_PAGE_HERO_SECTION_FALLBACK,
+		about: VILLA_DETAIL_PAGE_ABOUT_SECTION_FALLBACK,
+		gallery: VILLA_DETAIL_PAGE_GALLERY_SECTION_FALLBACK,
+		location: VILLA_DETAIL_PAGE_LOCATION_SECTION_FALLBACK,
+	};
+}

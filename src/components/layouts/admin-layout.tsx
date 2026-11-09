@@ -60,6 +60,11 @@ export const AdminLayout = ({ user, children }: AdminLayoutProps) => {
 				url: "/admin/villas-page-settings",
 				icon: LayoutTemplateIcon,
 			},
+			{
+				title: "Villa Detail Page",
+				url: "/admin/villa-detail-page-settings",
+				icon: LayoutTemplateIcon,
+			},
 		],
 	};
 

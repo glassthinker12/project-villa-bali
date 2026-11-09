@@ -17,11 +17,13 @@ export function AdminVillasPageSettingsVillaListSectionPreview({
 				villas: [
 					{
 						id: "example-villa-1",
-						name: "Example Villa",
+						name: "Example Villa 1",
 						slug: "example-villa-1",
-						guests: 2,
-						bedrooms: 1,
-						bathrooms: 1,
+						guests: VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].guests,
+						bedrooms:
+							VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].bedrooms,
+						bathrooms:
+							VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].bathrooms,
 						thumbnailUrl:
 							VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].thumbnailUrl,
 						description:
@@ -29,11 +31,13 @@ export function AdminVillasPageSettingsVillaListSectionPreview({
 					},
 					{
 						id: "example-villa-2",
-						name: "Example Villa",
+						name: "Example Villa 2",
 						slug: "example-villa-2",
-						guests: 2,
-						bedrooms: 1,
-						bathrooms: 1,
+						guests: VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].guests,
+						bedrooms:
+							VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].bedrooms,
+						bathrooms:
+							VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].bathrooms,
 						thumbnailUrl:
 							VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].thumbnailUrl,
 						description:
@@ -41,11 +45,13 @@ export function AdminVillasPageSettingsVillaListSectionPreview({
 					},
 					{
 						id: "example-villa-3",
-						name: "Example Villa",
+						name: "Example Villa 3",
 						slug: "example-villa-3",
-						guests: 2,
-						bedrooms: 1,
-						bathrooms: 1,
+						guests: VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].guests,
+						bedrooms:
+							VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].bedrooms,
+						bathrooms:
+							VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].bathrooms,
 						thumbnailUrl:
 							VILLAS_PAGE_VILLA_LIST_SECTION_FALLBACK.villas[0].thumbnailUrl,
 						description:

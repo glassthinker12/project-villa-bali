@@ -20,6 +20,7 @@ import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminGalleriesRouteImport } from './routes/admin/galleries'
 import { Route as AdminHomepageSettingsRouteImport } from './routes/admin/homepage-settings'
+import { Route as AdminVillaDetailPageSettingsRouteImport } from './routes/admin/villa-detail-page-settings'
 import { Route as AdminVillaManagementRouteImport } from './routes/admin/villa-management'
 import { Route as AdminVillasPageSettingsRouteImport } from './routes/admin/villas-page-settings'
 import { Route as PublicVillasIndexRouteImport } from './routes/_public/villas/index'
@@ -79,6 +80,12 @@ const AdminHomepageSettingsRoute = AdminHomepageSettingsRouteImport.update({
   path: '/homepage-settings',
   getParentRoute: () => AdminRouteRoute,
 } as any)
+const AdminVillaDetailPageSettingsRoute =
+  AdminVillaDetailPageSettingsRouteImport.update({
+    id: '/villa-detail-page-settings',
+    path: '/villa-detail-page-settings',
+    getParentRoute: () => AdminRouteRoute,
+  } as any)
 const AdminVillaManagementRoute = AdminVillaManagementRouteImport.update({
   id: '/villa-management',
   path: '/villa-management',
@@ -110,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof PublicGalleryRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
+  '/admin/villa-detail-page-settings': typeof AdminVillaDetailPageSettingsRoute
   '/admin/villa-management': typeof AdminVillaManagementRoute
   '/admin/villas-page-settings': typeof AdminVillasPageSettingsRoute
   '/admin/': typeof AdminIndexRoute
@@ -125,6 +133,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof PublicGalleryRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
+  '/admin/villa-detail-page-settings': typeof AdminVillaDetailPageSettingsRoute
   '/admin/villa-management': typeof AdminVillaManagementRoute
   '/admin/villas-page-settings': typeof AdminVillasPageSettingsRoute
   '/admin': typeof AdminIndexRoute
@@ -142,6 +151,7 @@ export interface FileRoutesById {
   '/_public/gallery': typeof PublicGalleryRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
+  '/admin/villa-detail-page-settings': typeof AdminVillaDetailPageSettingsRoute
   '/admin/villa-management': typeof AdminVillaManagementRoute
   '/admin/villas-page-settings': typeof AdminVillasPageSettingsRoute
   '/_public/': typeof PublicIndexRoute
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/admin/galleries'
     | '/admin/homepage-settings'
+    | '/admin/villa-detail-page-settings'
     | '/admin/villa-management'
     | '/admin/villas-page-settings'
     | '/admin/'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/admin/galleries'
     | '/admin/homepage-settings'
+    | '/admin/villa-detail-page-settings'
     | '/admin/villa-management'
     | '/admin/villas-page-settings'
     | '/admin'
@@ -192,6 +204,7 @@ export interface FileRouteTypes {
     | '/_public/gallery'
     | '/admin/galleries'
     | '/admin/homepage-settings'
+    | '/admin/villa-detail-page-settings'
     | '/admin/villa-management'
     | '/admin/villas-page-settings'
     | '/_public/'
@@ -291,6 +304,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminHomepageSettingsRouteImport
       parentRoute: typeof AdminRouteRoute
     }
+    '/admin/villa-detail-page-settings': {
+      id: '/admin/villa-detail-page-settings'
+      path: '/villa-detail-page-settings'
+      fullPath: '/admin/villa-detail-page-settings'
+      preLoaderRoute: typeof AdminVillaDetailPageSettingsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/admin/villa-management': {
       id: '/admin/villa-management'
       path: '/villa-management'
@@ -337,6 +357,7 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 interface AdminRouteRouteChildren {
   AdminGalleriesRoute: typeof AdminGalleriesRoute
   AdminHomepageSettingsRoute: typeof AdminHomepageSettingsRoute
+  AdminVillaDetailPageSettingsRoute: typeof AdminVillaDetailPageSettingsRoute
   AdminVillaManagementRoute: typeof AdminVillaManagementRoute
   AdminVillasPageSettingsRoute: typeof AdminVillasPageSettingsRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -345,6 +366,7 @@ interface AdminRouteRouteChildren {
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
   AdminGalleriesRoute: AdminGalleriesRoute,
   AdminHomepageSettingsRoute: AdminHomepageSettingsRoute,
+  AdminVillaDetailPageSettingsRoute: AdminVillaDetailPageSettingsRoute,
   AdminVillaManagementRoute: AdminVillaManagementRoute,
   AdminVillasPageSettingsRoute: AdminVillasPageSettingsRoute,
   AdminIndexRoute: AdminIndexRoute,

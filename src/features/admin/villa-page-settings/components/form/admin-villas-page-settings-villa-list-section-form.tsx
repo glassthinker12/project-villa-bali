@@ -44,12 +44,12 @@ export function AdminVillasPageSettingsVillaListSectionForm({
 					control={form.control}
 					render={({ field, fieldState }) => (
 						<Field data-invalid={fieldState.invalid}>
-							<FieldLabel htmlFor="form-villas-page-villa-page-section-eyebrow">
+							<FieldLabel htmlFor="form-villas-page-villa-page-section-body">
 								Body
 							</FieldLabel>
 							<Textarea
 								{...field}
-								id="form-villas-page-villa-page-section-eyebrow"
+								id="form-villas-page-villa-page-section-body"
 								aria-invalid={fieldState.invalid}
 								autoComplete="off"
 							/>

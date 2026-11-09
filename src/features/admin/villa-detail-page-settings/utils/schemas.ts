@@ -1,0 +1,10 @@
+import { z } from "zod";
+
+export const adminVillaDetailPageLocationSchema = z.object({
+	title: z.string().min(1, "Title is required"),
+	body: z.string().min(1, "Body is required"),
+});
+
+export type AdminVillaDetailPageLocationInput = z.infer<
+	typeof adminVillaDetailPageLocationSchema
+>;

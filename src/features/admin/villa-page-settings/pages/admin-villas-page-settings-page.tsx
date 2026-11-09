@@ -143,7 +143,7 @@ export function AdminVillasPageSettingsPage() {
 			setSaveError(
 				err instanceof Error
 					? err.message
-					: "Failed to update homepage settings",
+					: "Failed to update villa page settings",
 			);
 		} finally {
 			setIsSaving(false);

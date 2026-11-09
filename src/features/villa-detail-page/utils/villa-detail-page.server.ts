@@ -4,8 +4,11 @@ import { redirect } from "@tanstack/react-router";
 
 import type { DB } from "@/lib/supabase/db";
 
-import type { VillaDetailPageSettingsContent } from "../types";
-import { VILLA_DETAIL_PAGE_LOCATION_SECTION_FALLBACK } from "./villa-detail-page-fallback";
+import type {
+	VillaDetailPageLocationSection,
+	VillaDetailPageSettingsContent,
+} from "../types";
+import { getVillaDetailPageDataFallback } from "./villa-detail-page-fallback";
 
 export async function getVillaDetailPageContent(
 	supabase: DB,
@@ -13,6 +16,45 @@ export async function getVillaDetailPageContent(
 		slug: string;
 	},
 ): Promise<VillaDetailPageSettingsContent> {
+	const VILLA_DETAIL_PAGE_DATA_FALLBACK = getVillaDetailPageDataFallback();
+
+	const { data: pageSettings, error: pageSettingsError } = await supabase
+		.from("page_settings")
+		.select("id")
+		.eq("type", "villa-detail-page")
+		.maybeSingle();
+
+	if (pageSettingsError) {
+		console.error(`Failed to get page settings: ${pageSettingsError.message}`);
+		return VILLA_DETAIL_PAGE_DATA_FALLBACK;
+	}
+
+	if (!pageSettings) {
+		console.log("Villa detail page settings not found.");
+		return VILLA_DETAIL_PAGE_DATA_FALLBACK;
+	}
+
+	const {
+		data: villaDetailPageLocationSectionSettings,
+		error: villaDetailPageLocationSectionSettingsError,
+	} = await supabase
+		.from("page_section_settings")
+		.select("id, type, content")
+		.eq("page_setting_id", pageSettings.id)
+		.eq("type", "location")
+		.maybeSingle();
+
+	if (villaDetailPageLocationSectionSettingsError) {
+		console.error(
+			`Failed to get page section settings: ${villaDetailPageLocationSectionSettingsError.message}`,
+		);
+		return VILLA_DETAIL_PAGE_DATA_FALLBACK;
+	}
+
+	if (!villaDetailPageLocationSectionSettings) {
+		return VILLA_DETAIL_PAGE_DATA_FALLBACK;
+	}
+
 	const { data: villa, error: fetchError } = await supabase
 		.from("villas")
 		.select(
@@ -79,9 +121,15 @@ export async function getVillaDetailPageContent(
 			galleries,
 		},
 		location: {
-			title: VILLA_DETAIL_PAGE_LOCATION_SECTION_FALLBACK.title,
-			body: VILLA_DETAIL_PAGE_LOCATION_SECTION_FALLBACK.body,
-			locationUrl: VILLA_DETAIL_PAGE_LOCATION_SECTION_FALLBACK.locationUrl,
+			title:
+				(
+					villaDetailPageLocationSectionSettings?.content as VillaDetailPageLocationSection
+				)?.title || VILLA_DETAIL_PAGE_DATA_FALLBACK.location.title,
+			body:
+				(
+					villaDetailPageLocationSectionSettings?.content as VillaDetailPageLocationSection
+				)?.body || VILLA_DETAIL_PAGE_DATA_FALLBACK.location.body,
+			locationUrl: VILLA_DETAIL_PAGE_DATA_FALLBACK.location.locationUrl,
 		},
 	};
 }
