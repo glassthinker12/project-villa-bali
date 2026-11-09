@@ -70,6 +70,11 @@ export const AdminLayout = ({ user, children }: AdminLayoutProps) => {
 				url: "/admin/cave-page-settings",
 				icon: LayoutTemplateIcon,
 			},
+			{
+				title: "Gallery Page",
+				url: "/admin/gallery-page-settings",
+				icon: LayoutTemplateIcon,
+			},
 		],
 	};
 
