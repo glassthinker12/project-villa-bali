@@ -58,7 +58,10 @@ export function HomepageAboutSection({ data }: HomepageAboutSectionProps) {
 						</p>
 					</div>
 
-					<Link to="/" className={buttonVariants({ variant: "ghost-brand" })}>
+					<Link
+						to={data.cta.url}
+						className={buttonVariants({ variant: "ghost-brand" })}
+					>
 						{data.cta.label}
 						<ArrowRightIcon className="size-6" />
 					</Link>

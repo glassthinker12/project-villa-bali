@@ -20,7 +20,7 @@ export const HOMEPAGE_ABOUT_SECTION_FALLBACK: HomepageAboutSection = {
 	body: "Seaview Private Villas offers breathtaking panoramic views across Nusa Lembongan and towards the iconic Mount Agung. Whether you're seeking a romantic retreat, a family holiday, or an island getaway with friends, our collection of private villas combines comfort, privacy, and one of the island's most spectacular locations.",
 	cta: {
 		label: "Read Our Story",
-		url: "/",
+		url: "/about-us",
 	},
 	image: {
 		url: "/homepage/about/about-image.webp",
@@ -33,7 +33,7 @@ export const HOMEPAGE_VILLA_SECTION_FALLBACK: HomepageVillaSection = {
 	heading: "Our Luxury Villas",
 	cta: {
 		label: "View All Villas",
-		url: "/",
+		url: "/villas",
 	},
 	villas: [
 		{
@@ -67,7 +67,7 @@ export const HOMEPAGE_GALLERY_SECTION_FALLBACK: HomepageGallerySection = {
 	heading: "A Glimpse of SEAVIEW Private Villas",
 	cta: {
 		label: "View All",
-		url: "/",
+		url: "/gallery",
 	},
 	galleries: [
 		{

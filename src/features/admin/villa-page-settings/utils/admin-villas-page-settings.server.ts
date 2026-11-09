@@ -1,7 +1,9 @@
+import "@tanstack/react-start/server-only";
+
+import { getVillasPageDataFallback } from "@/features/villas-page/utils/villas-page-fallback";
 import type { Json } from "@/lib/supabase/database.types";
 import type { DB } from "@/lib/supabase/db";
 import { uploadPublicImage } from "@/lib/supabase/storage";
-
 import type {
 	AdminVillasPageHeroSection,
 	AdminVillasPageSettingsContent,
@@ -44,14 +46,24 @@ export async function getAdminVillasPageSettingsContent(
 		(item) => item.type === "villa-list",
 	);
 
+	const VILLAS_PAGE_DATA_FALLBACK = getVillasPageDataFallback();
+
 	return {
 		hero: {
-			eyebrow: (hero?.content as AdminVillasPageHeroSection)?.eyebrow || "",
-			title: (hero?.content as AdminVillasPageHeroSection)?.title || "",
-			imageUrl: (hero?.content as AdminVillasPageHeroSection)?.imageUrl || "",
+			eyebrow:
+				(hero?.content as AdminVillasPageHeroSection)?.eyebrow ||
+				VILLAS_PAGE_DATA_FALLBACK.hero.eyebrow,
+			title:
+				(hero?.content as AdminVillasPageHeroSection)?.title ||
+				VILLAS_PAGE_DATA_FALLBACK.hero.title,
+			imageUrl:
+				(hero?.content as AdminVillasPageHeroSection)?.imageUrl ||
+				VILLAS_PAGE_DATA_FALLBACK.hero.imageUrl,
 		},
 		"villa-list": {
-			body: (villaList?.content as AdminVillasPageVillaListSection)?.body || "",
+			body:
+				(villaList?.content as AdminVillasPageVillaListSection)?.body ||
+				VILLAS_PAGE_DATA_FALLBACK.villa.body,
 		},
 	};
 }

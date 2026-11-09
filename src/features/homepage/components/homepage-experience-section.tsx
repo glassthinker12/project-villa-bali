@@ -112,7 +112,7 @@ export function HomepageExperienceSection({
 						<div className="flex w-max gap-4 px-4 md:px-[max(4rem,calc((100%-80rem)/2+4rem))]">
 							{data.experiences.map((exp, index) => (
 								<div
-									key={exp.title}
+									key={`${index + 1}-${exp.title}`}
 									data-card
 									className="flex w-82 shrink-0 snap-start snap-always flex-col gap-4 md:w-116.25"
 								>
