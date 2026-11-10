@@ -80,6 +80,11 @@ export const AdminLayout = ({ user, children }: AdminLayoutProps) => {
 				url: "/admin/about-us-page-settings",
 				icon: LayoutTemplateIcon,
 			},
+			{
+				title: "Contact Page",
+				url: "/admin/contact-page-settings",
+				icon: LayoutTemplateIcon,
+			},
 		],
 	};
 

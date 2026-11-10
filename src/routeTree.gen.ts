@@ -20,6 +20,7 @@ import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminAboutUsPageSettingsRouteImport } from './routes/admin/about-us-page-settings'
 import { Route as AdminCavePageSettingsRouteImport } from './routes/admin/cave-page-settings'
+import { Route as AdminContactPageSettingsRouteImport } from './routes/admin/contact-page-settings'
 import { Route as AdminGalleriesRouteImport } from './routes/admin/galleries'
 import { Route as AdminGalleryPageSettingsRouteImport } from './routes/admin/gallery-page-settings'
 import { Route as AdminHomepageSettingsRouteImport } from './routes/admin/homepage-settings'
@@ -84,6 +85,12 @@ const AdminCavePageSettingsRoute = AdminCavePageSettingsRouteImport.update({
   path: '/cave-page-settings',
   getParentRoute: () => AdminRouteRoute,
 } as any)
+const AdminContactPageSettingsRoute =
+  AdminContactPageSettingsRouteImport.update({
+    id: '/contact-page-settings',
+    path: '/contact-page-settings',
+    getParentRoute: () => AdminRouteRoute,
+  } as any)
 const AdminGalleriesRoute = AdminGalleriesRouteImport.update({
   id: '/galleries',
   path: '/galleries',
@@ -137,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof PublicGalleryRoute
   '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
+  '/admin/contact-page-settings': typeof AdminContactPageSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/gallery-page-settings': typeof AdminGalleryPageSettingsRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
@@ -156,6 +164,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof PublicGalleryRoute
   '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
+  '/admin/contact-page-settings': typeof AdminContactPageSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/gallery-page-settings': typeof AdminGalleryPageSettingsRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
@@ -177,6 +186,7 @@ export interface FileRoutesById {
   '/_public/gallery': typeof PublicGalleryRoute
   '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
+  '/admin/contact-page-settings': typeof AdminContactPageSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/gallery-page-settings': typeof AdminGalleryPageSettingsRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
@@ -200,6 +210,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/admin/about-us-page-settings'
     | '/admin/cave-page-settings'
+    | '/admin/contact-page-settings'
     | '/admin/galleries'
     | '/admin/gallery-page-settings'
     | '/admin/homepage-settings'
@@ -219,6 +230,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/admin/about-us-page-settings'
     | '/admin/cave-page-settings'
+    | '/admin/contact-page-settings'
     | '/admin/galleries'
     | '/admin/gallery-page-settings'
     | '/admin/homepage-settings'
@@ -239,6 +251,7 @@ export interface FileRouteTypes {
     | '/_public/gallery'
     | '/admin/about-us-page-settings'
     | '/admin/cave-page-settings'
+    | '/admin/contact-page-settings'
     | '/admin/galleries'
     | '/admin/gallery-page-settings'
     | '/admin/homepage-settings'
@@ -342,6 +355,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCavePageSettingsRouteImport
       parentRoute: typeof AdminRouteRoute
     }
+    '/admin/contact-page-settings': {
+      id: '/admin/contact-page-settings'
+      path: '/contact-page-settings'
+      fullPath: '/admin/contact-page-settings'
+      preLoaderRoute: typeof AdminContactPageSettingsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/admin/galleries': {
       id: '/admin/galleries'
       path: '/galleries'
@@ -416,6 +436,7 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 interface AdminRouteRouteChildren {
   AdminAboutUsPageSettingsRoute: typeof AdminAboutUsPageSettingsRoute
   AdminCavePageSettingsRoute: typeof AdminCavePageSettingsRoute
+  AdminContactPageSettingsRoute: typeof AdminContactPageSettingsRoute
   AdminGalleriesRoute: typeof AdminGalleriesRoute
   AdminGalleryPageSettingsRoute: typeof AdminGalleryPageSettingsRoute
   AdminHomepageSettingsRoute: typeof AdminHomepageSettingsRoute
@@ -428,6 +449,7 @@ interface AdminRouteRouteChildren {
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
   AdminAboutUsPageSettingsRoute: AdminAboutUsPageSettingsRoute,
   AdminCavePageSettingsRoute: AdminCavePageSettingsRoute,
+  AdminContactPageSettingsRoute: AdminContactPageSettingsRoute,
   AdminGalleriesRoute: AdminGalleriesRoute,
   AdminGalleryPageSettingsRoute: AdminGalleryPageSettingsRoute,
   AdminHomepageSettingsRoute: AdminHomepageSettingsRoute,
