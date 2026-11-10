@@ -30,6 +30,10 @@ const MENUS = [
 		title: "Contact Us",
 		url: "/contact",
 	},
+	{
+		title: "Policies",
+		url: "/policies",
+	},
 ];
 
 export function PublicNavbar() {

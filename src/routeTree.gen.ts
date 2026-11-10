@@ -17,6 +17,7 @@ import { Route as PublicAboutUsRouteImport } from './routes/_public/about-us'
 import { Route as PublicCaveRouteImport } from './routes/_public/cave'
 import { Route as PublicContactRouteImport } from './routes/_public/contact'
 import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
+import { Route as PublicPoliciesRouteImport } from './routes/_public/policies'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminAboutUsPageSettingsRouteImport } from './routes/admin/about-us-page-settings'
 import { Route as AdminCavePageSettingsRouteImport } from './routes/admin/cave-page-settings'
@@ -67,6 +68,11 @@ const PublicContactRoute = PublicContactRouteImport.update({
 const PublicGalleryRoute = PublicGalleryRouteImport.update({
   id: '/_public/gallery',
   path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicPoliciesRoute = PublicPoliciesRouteImport.update({
+  id: '/_public/policies',
+  path: '/policies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -142,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/cave': typeof PublicCaveRoute
   '/contact': typeof PublicContactRoute
   '/gallery': typeof PublicGalleryRoute
+  '/policies': typeof PublicPoliciesRoute
   '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/contact-page-settings': typeof AdminContactPageSettingsRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/cave': typeof PublicCaveRoute
   '/contact': typeof PublicContactRoute
   '/gallery': typeof PublicGalleryRoute
+  '/policies': typeof PublicPoliciesRoute
   '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/contact-page-settings': typeof AdminContactPageSettingsRoute
@@ -184,6 +192,7 @@ export interface FileRoutesById {
   '/_public/cave': typeof PublicCaveRoute
   '/_public/contact': typeof PublicContactRoute
   '/_public/gallery': typeof PublicGalleryRoute
+  '/_public/policies': typeof PublicPoliciesRoute
   '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/contact-page-settings': typeof AdminContactPageSettingsRoute
@@ -208,6 +217,7 @@ export interface FileRouteTypes {
     | '/cave'
     | '/contact'
     | '/gallery'
+    | '/policies'
     | '/admin/about-us-page-settings'
     | '/admin/cave-page-settings'
     | '/admin/contact-page-settings'
@@ -228,6 +238,7 @@ export interface FileRouteTypes {
     | '/cave'
     | '/contact'
     | '/gallery'
+    | '/policies'
     | '/admin/about-us-page-settings'
     | '/admin/cave-page-settings'
     | '/admin/contact-page-settings'
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '/_public/cave'
     | '/_public/contact'
     | '/_public/gallery'
+    | '/_public/policies'
     | '/admin/about-us-page-settings'
     | '/admin/cave-page-settings'
     | '/admin/contact-page-settings'
@@ -271,6 +283,7 @@ export interface RootRouteChildren {
   PublicCaveRoute: typeof PublicCaveRoute
   PublicContactRoute: typeof PublicContactRoute
   PublicGalleryRoute: typeof PublicGalleryRoute
+  PublicPoliciesRoute: typeof PublicPoliciesRoute
   PublicIndexRoute: typeof PublicIndexRoute
   PublicVillasVillaSlugRoute: typeof PublicVillasVillaSlugRoute
   PublicVillasIndexRoute: typeof PublicVillasIndexRoute
@@ -332,6 +345,13 @@ declare module '@tanstack/react-router' {
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof PublicGalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/policies': {
+      id: '/_public/policies'
+      path: '/policies'
+      fullPath: '/policies'
+      preLoaderRoute: typeof PublicPoliciesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -470,6 +490,7 @@ const rootRouteChildren: RootRouteChildren = {
   PublicCaveRoute: PublicCaveRoute,
   PublicContactRoute: PublicContactRoute,
   PublicGalleryRoute: PublicGalleryRoute,
+  PublicPoliciesRoute: PublicPoliciesRoute,
   PublicIndexRoute: PublicIndexRoute,
   PublicVillasVillaSlugRoute: PublicVillasVillaSlugRoute,
   PublicVillasIndexRoute: PublicVillasIndexRoute,
