@@ -75,6 +75,11 @@ export const AdminLayout = ({ user, children }: AdminLayoutProps) => {
 				url: "/admin/gallery-page-settings",
 				icon: LayoutTemplateIcon,
 			},
+			{
+				title: "About Us Page",
+				url: "/admin/about-us-page-settings",
+				icon: LayoutTemplateIcon,
+			},
 		],
 	};
 

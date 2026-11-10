@@ -18,6 +18,7 @@ import { Route as PublicCaveRouteImport } from './routes/_public/cave'
 import { Route as PublicContactRouteImport } from './routes/_public/contact'
 import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminAboutUsPageSettingsRouteImport } from './routes/admin/about-us-page-settings'
 import { Route as AdminCavePageSettingsRouteImport } from './routes/admin/cave-page-settings'
 import { Route as AdminGalleriesRouteImport } from './routes/admin/galleries'
 import { Route as AdminGalleryPageSettingsRouteImport } from './routes/admin/gallery-page-settings'
@@ -72,6 +73,12 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRouteRoute,
 } as any)
+const AdminAboutUsPageSettingsRoute =
+  AdminAboutUsPageSettingsRouteImport.update({
+    id: '/about-us-page-settings',
+    path: '/about-us-page-settings',
+    getParentRoute: () => AdminRouteRoute,
+  } as any)
 const AdminCavePageSettingsRoute = AdminCavePageSettingsRouteImport.update({
   id: '/cave-page-settings',
   path: '/cave-page-settings',
@@ -128,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/cave': typeof PublicCaveRoute
   '/contact': typeof PublicContactRoute
   '/gallery': typeof PublicGalleryRoute
+  '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/gallery-page-settings': typeof AdminGalleryPageSettingsRoute
@@ -146,6 +154,7 @@ export interface FileRoutesByTo {
   '/cave': typeof PublicCaveRoute
   '/contact': typeof PublicContactRoute
   '/gallery': typeof PublicGalleryRoute
+  '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/gallery-page-settings': typeof AdminGalleryPageSettingsRoute
@@ -166,6 +175,7 @@ export interface FileRoutesById {
   '/_public/cave': typeof PublicCaveRoute
   '/_public/contact': typeof PublicContactRoute
   '/_public/gallery': typeof PublicGalleryRoute
+  '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/gallery-page-settings': typeof AdminGalleryPageSettingsRoute
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/cave'
     | '/contact'
     | '/gallery'
+    | '/admin/about-us-page-settings'
     | '/admin/cave-page-settings'
     | '/admin/galleries'
     | '/admin/gallery-page-settings'
@@ -206,6 +217,7 @@ export interface FileRouteTypes {
     | '/cave'
     | '/contact'
     | '/gallery'
+    | '/admin/about-us-page-settings'
     | '/admin/cave-page-settings'
     | '/admin/galleries'
     | '/admin/gallery-page-settings'
@@ -225,6 +237,7 @@ export interface FileRouteTypes {
     | '/_public/cave'
     | '/_public/contact'
     | '/_public/gallery'
+    | '/admin/about-us-page-settings'
     | '/admin/cave-page-settings'
     | '/admin/galleries'
     | '/admin/gallery-page-settings'
@@ -315,6 +328,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
+    '/admin/about-us-page-settings': {
+      id: '/admin/about-us-page-settings'
+      path: '/about-us-page-settings'
+      fullPath: '/admin/about-us-page-settings'
+      preLoaderRoute: typeof AdminAboutUsPageSettingsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/admin/cave-page-settings': {
       id: '/admin/cave-page-settings'
       path: '/cave-page-settings'
@@ -394,6 +414,7 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 )
 
 interface AdminRouteRouteChildren {
+  AdminAboutUsPageSettingsRoute: typeof AdminAboutUsPageSettingsRoute
   AdminCavePageSettingsRoute: typeof AdminCavePageSettingsRoute
   AdminGalleriesRoute: typeof AdminGalleriesRoute
   AdminGalleryPageSettingsRoute: typeof AdminGalleryPageSettingsRoute
@@ -405,6 +426,7 @@ interface AdminRouteRouteChildren {
 }
 
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminAboutUsPageSettingsRoute: AdminAboutUsPageSettingsRoute,
   AdminCavePageSettingsRoute: AdminCavePageSettingsRoute,
   AdminGalleriesRoute: AdminGalleriesRoute,
   AdminGalleryPageSettingsRoute: AdminGalleryPageSettingsRoute,
