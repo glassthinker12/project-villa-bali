@@ -113,35 +113,33 @@ export function ExperiencePageSecondExperienceSection({
 						style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 					>
 						<div className="flex w-max gap-4 lg:gap-8">
-							{[
-								data.experienceOne,
-								data.experienceTwo,
-								data.experienceThree,
-							].map((item) => (
-								<div
-									key={`second-experience-${item.id}`}
-									data-card
-									className="flex w-82 shrink-0 snap-start snap-always flex-col gap-4 lg:w-76"
-								>
-									<div className="relative aspect-305/313 w-full overflow-hidden rounded-lg">
-										<img
-											src={item.imageUrl}
-											alt={item.title}
-											loading="lazy"
-											decoding="async"
-											className="absolute inset-0 size-full object-cover"
-										/>
+							{[data.experienceOne, data.experienceTwo, data.experienceThree]
+								.filter((item) => item)
+								.map((item) => (
+									<div
+										key={`second-experience-${item.id}`}
+										data-card
+										className="flex w-82 shrink-0 snap-start snap-always flex-col gap-4 lg:w-76"
+									>
+										<div className="relative aspect-305/313 w-full overflow-hidden rounded-lg">
+											<img
+												src={item.imageUrl}
+												alt={item.title}
+												loading="lazy"
+												decoding="async"
+												className="absolute inset-0 size-full object-cover"
+											/>
+										</div>
+										<div className="flex flex-col gap-1">
+											<p className="font-bold font-subheading text-[20px]">
+												{item.title}
+											</p>
+											<p className="text-muted-foreground text-sm">
+												{item.category} • {item.caption}
+											</p>
+										</div>
 									</div>
-									<div className="flex flex-col gap-1">
-										<p className="font-bold font-subheading text-[20px]">
-											{item.title}
-										</p>
-										<p className="text-muted-foreground text-sm">
-											{item.category} • {item.caption}
-										</p>
-									</div>
-								</div>
-							))}
+								))}
 						</div>
 					</div>
 				</motion.div>

@@ -29,12 +29,12 @@ export function ExperiencePageSeventhExperienceSection({
 			>
 				<div className="grid grid-cols-2 gap-4 md:gap-8">
 					<img
-						src={data.experienceOne.imageUrl}
+						src={data.experienceOne?.imageUrl ?? ""}
 						alt="Experience 1"
 						className="aspect-square rounded-lg object-cover"
 					/>
 					<img
-						src={data.experienceTwo.imageUrl}
+						src={data.experienceTwo?.imageUrl ?? ""}
 						alt="Experience 2"
 						className="aspect-square rounded-lg object-cover"
 					/>

@@ -36,8 +36,9 @@ export function ExperiencePageFirstExperienceSection({
 				</motion.div>
 
 				<div className="grid w-full grid-cols-1 gap-8 md:grid-cols-3">
-					{[data.experienceOne, data.experienceTwo, data.experienceThree].map(
-						(item) => (
+					{[data.experienceOne, data.experienceTwo, data.experienceThree]
+						.filter((item) => item)
+						.map((item) => (
 							<motion.div
 								key={`first-experience-${item.id}`}
 								variants={fadeUp}
@@ -63,8 +64,7 @@ export function ExperiencePageFirstExperienceSection({
 									</p>
 								</div>
 							</motion.div>
-						),
-					)}
+						))}
 				</div>
 			</motion.div>
 		</section>

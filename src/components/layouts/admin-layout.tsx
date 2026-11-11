@@ -76,6 +76,11 @@ export const AdminLayout = ({ user, children }: AdminLayoutProps) => {
 				icon: LayoutTemplateIcon,
 			},
 			{
+				title: "Experience Page",
+				url: "/admin/experience-page-settings",
+				icon: LayoutTemplateIcon,
+			},
+			{
 				title: "About Us Page",
 				url: "/admin/about-us-page-settings",
 				icon: LayoutTemplateIcon,

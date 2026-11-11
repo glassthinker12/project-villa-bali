@@ -1,118 +1,112 @@
+import "@tanstack/react-start/server-only";
+
 import type { DB } from "@/lib/supabase/db";
-import type { ExperiencePageSettingsContent } from "../types";
+import type {
+	ExperiencePageAboutSection,
+	ExperiencePageCaptionSection,
+	ExperiencePageContactSection,
+	ExperiencePageEighthExperienceSection,
+	ExperiencePageFifthExperienceSection,
+	ExperiencePageFirstExperienceSection,
+	ExperiencePageFourthExperienceSection,
+	ExperiencePageHeroSection,
+	ExperiencePageSecondExperienceSection,
+	ExperiencePageSettingsContent,
+	ExperiencePageSeventhExperienceSection,
+	ExperiencePageSixthExperienceSection,
+	ExperiencePageThirdExperienceSection,
+} from "../types";
 import { getExperiencePageDataFallback } from "./experience-page-fallback";
 
 export async function getExperiencePageContent(
-	_supabase: DB,
+	supabase: DB,
 ): Promise<ExperiencePageSettingsContent> {
-	await new Promise((resolve) => setTimeout(resolve, 300));
-
 	const EXPERIENCE_PAGE_DATA_FALLBACK = getExperiencePageDataFallback();
 
+	const { data: pageSettings, error: pageSettingsError } = await supabase
+		.from("page_settings")
+		.select("id")
+		.eq("type", "experience-page")
+		.maybeSingle();
+
+	if (pageSettingsError) {
+		console.error(`Failed to get page settings: ${pageSettingsError.message}`);
+		return EXPERIENCE_PAGE_DATA_FALLBACK;
+	}
+
+	if (!pageSettings) {
+		console.error("Experience page settings not found.");
+		return EXPERIENCE_PAGE_DATA_FALLBACK;
+	}
+
+	const { data: pageSectionSettings, error: pageSectionSettingsError } =
+		await supabase
+			.from("page_section_settings")
+			.select("id, type, content")
+			.eq("page_setting_id", pageSettings.id);
+
+	if (pageSectionSettingsError) {
+		console.error(
+			`Failed to get page section settings: ${pageSectionSettingsError.message}`,
+		);
+		return EXPERIENCE_PAGE_DATA_FALLBACK;
+	}
+
+	const getSectionContent = <T>(type: string, fallback: T): T => {
+		const section = pageSectionSettings?.find((item) => item.type === type);
+
+		return (section?.content as T) || fallback;
+	};
+
 	return {
-		hero: {
-			eyebrow: EXPERIENCE_PAGE_DATA_FALLBACK.hero.eyebrow,
-			title: EXPERIENCE_PAGE_DATA_FALLBACK.hero.title,
-			body: EXPERIENCE_PAGE_DATA_FALLBACK.hero.body,
-			imageUrl: EXPERIENCE_PAGE_DATA_FALLBACK.hero.imageUrl,
-		},
-		about: {
-			eyebrow: EXPERIENCE_PAGE_DATA_FALLBACK.about.eyebrow,
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.about.heading,
-			imageUrl: EXPERIENCE_PAGE_DATA_FALLBACK.about.imageUrl,
-		},
-		caption: {
-			body: EXPERIENCE_PAGE_DATA_FALLBACK.caption.body,
-			caption: EXPERIENCE_PAGE_DATA_FALLBACK.caption.caption,
-		},
-		firstExperience: {
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.firstExperience.heading,
-			experienceOne:
-				EXPERIENCE_PAGE_DATA_FALLBACK.firstExperience.experienceOne,
-			experienceTwo:
-				EXPERIENCE_PAGE_DATA_FALLBACK.firstExperience.experienceTwo,
-			experienceThree:
-				EXPERIENCE_PAGE_DATA_FALLBACK.firstExperience.experienceThree,
-		},
-		secondExperience: {
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.secondExperience.heading,
-			caption: EXPERIENCE_PAGE_DATA_FALLBACK.secondExperience.caption,
-			description: EXPERIENCE_PAGE_DATA_FALLBACK.secondExperience.description,
-			experienceOne:
-				EXPERIENCE_PAGE_DATA_FALLBACK.secondExperience.experienceOne,
-			experienceTwo:
-				EXPERIENCE_PAGE_DATA_FALLBACK.secondExperience.experienceTwo,
-			experienceThree:
-				EXPERIENCE_PAGE_DATA_FALLBACK.secondExperience.experienceThree,
-		},
-		thirdExperience: {
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.thirdExperience.heading,
-			caption: EXPERIENCE_PAGE_DATA_FALLBACK.thirdExperience.caption,
-			description: EXPERIENCE_PAGE_DATA_FALLBACK.thirdExperience.description,
-			experienceOne:
-				EXPERIENCE_PAGE_DATA_FALLBACK.thirdExperience.experienceOne,
-			experienceTwo:
-				EXPERIENCE_PAGE_DATA_FALLBACK.thirdExperience.experienceTwo,
-			experienceThree:
-				EXPERIENCE_PAGE_DATA_FALLBACK.thirdExperience.experienceThree,
-		},
-		fourthExperience: {
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.fourthExperience.heading,
-			caption: EXPERIENCE_PAGE_DATA_FALLBACK.fourthExperience.caption,
-			description: EXPERIENCE_PAGE_DATA_FALLBACK.fourthExperience.description,
-			experienceOne:
-				EXPERIENCE_PAGE_DATA_FALLBACK.fourthExperience.experienceOne,
-			experienceTwo:
-				EXPERIENCE_PAGE_DATA_FALLBACK.fourthExperience.experienceTwo,
-			experienceThree:
-				EXPERIENCE_PAGE_DATA_FALLBACK.fourthExperience.experienceThree,
-		},
-		fifthExperience: {
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.fifthExperience.heading,
-			caption: EXPERIENCE_PAGE_DATA_FALLBACK.fifthExperience.caption,
-			description: EXPERIENCE_PAGE_DATA_FALLBACK.fifthExperience.description,
-			experienceOne:
-				EXPERIENCE_PAGE_DATA_FALLBACK.fifthExperience.experienceOne,
-			experienceTwo:
-				EXPERIENCE_PAGE_DATA_FALLBACK.fifthExperience.experienceTwo,
-			experienceThree:
-				EXPERIENCE_PAGE_DATA_FALLBACK.fifthExperience.experienceThree,
-		},
-		sixthExperience: {
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.sixthExperience.heading,
-			caption: EXPERIENCE_PAGE_DATA_FALLBACK.sixthExperience.caption,
-			description: EXPERIENCE_PAGE_DATA_FALLBACK.sixthExperience.description,
-			experienceOne:
-				EXPERIENCE_PAGE_DATA_FALLBACK.sixthExperience.experienceOne,
-			experienceTwo:
-				EXPERIENCE_PAGE_DATA_FALLBACK.sixthExperience.experienceTwo,
-		},
-		seventhExperience: {
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.seventhExperience.heading,
-			caption: EXPERIENCE_PAGE_DATA_FALLBACK.seventhExperience.caption,
-			description: EXPERIENCE_PAGE_DATA_FALLBACK.seventhExperience.description,
-			experienceOne:
-				EXPERIENCE_PAGE_DATA_FALLBACK.seventhExperience.experienceOne,
-			experienceTwo:
-				EXPERIENCE_PAGE_DATA_FALLBACK.seventhExperience.experienceTwo,
-		},
-		eighthExperience: {
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.eighthExperience.heading,
-			caption: EXPERIENCE_PAGE_DATA_FALLBACK.eighthExperience.caption,
-			description: EXPERIENCE_PAGE_DATA_FALLBACK.eighthExperience.description,
-			notes: EXPERIENCE_PAGE_DATA_FALLBACK.eighthExperience.notes,
-			experienceOne:
-				EXPERIENCE_PAGE_DATA_FALLBACK.eighthExperience.experienceOne,
-			experienceTwo:
-				EXPERIENCE_PAGE_DATA_FALLBACK.eighthExperience.experienceTwo,
-		},
-		contact: {
-			heading: EXPERIENCE_PAGE_DATA_FALLBACK.contact.heading,
-			imageUrl: EXPERIENCE_PAGE_DATA_FALLBACK.contact.imageUrl,
-			cta: {
-				label: EXPERIENCE_PAGE_DATA_FALLBACK.contact.cta.label,
-				url: EXPERIENCE_PAGE_DATA_FALLBACK.contact.cta.url,
-			},
-		},
+		hero: getSectionContent<ExperiencePageHeroSection>(
+			"hero",
+			EXPERIENCE_PAGE_DATA_FALLBACK.hero,
+		),
+		about: getSectionContent<ExperiencePageAboutSection>(
+			"about",
+			EXPERIENCE_PAGE_DATA_FALLBACK.about,
+		),
+		caption: getSectionContent<ExperiencePageCaptionSection>(
+			"caption",
+			EXPERIENCE_PAGE_DATA_FALLBACK.caption,
+		),
+		firstExperience: getSectionContent<ExperiencePageFirstExperienceSection>(
+			"firstExperience",
+			EXPERIENCE_PAGE_DATA_FALLBACK.firstExperience,
+		),
+		secondExperience: getSectionContent<ExperiencePageSecondExperienceSection>(
+			"secondExperience",
+			EXPERIENCE_PAGE_DATA_FALLBACK.secondExperience,
+		),
+		thirdExperience: getSectionContent<ExperiencePageThirdExperienceSection>(
+			"thirdExperience",
+			EXPERIENCE_PAGE_DATA_FALLBACK.thirdExperience,
+		),
+		fourthExperience: getSectionContent<ExperiencePageFourthExperienceSection>(
+			"fourthExperience",
+			EXPERIENCE_PAGE_DATA_FALLBACK.fourthExperience,
+		),
+		fifthExperience: getSectionContent<ExperiencePageFifthExperienceSection>(
+			"fifthExperience",
+			EXPERIENCE_PAGE_DATA_FALLBACK.fifthExperience,
+		),
+		sixthExperience: getSectionContent<ExperiencePageSixthExperienceSection>(
+			"sixthExperience",
+			EXPERIENCE_PAGE_DATA_FALLBACK.sixthExperience,
+		),
+		seventhExperience:
+			getSectionContent<ExperiencePageSeventhExperienceSection>(
+				"seventhExperience",
+				EXPERIENCE_PAGE_DATA_FALLBACK.seventhExperience,
+			),
+		eighthExperience: getSectionContent<ExperiencePageEighthExperienceSection>(
+			"eighthExperience",
+			EXPERIENCE_PAGE_DATA_FALLBACK.eighthExperience,
+		),
+		contact: getSectionContent<ExperiencePageContactSection>(
+			"contact",
+			EXPERIENCE_PAGE_DATA_FALLBACK.contact,
+		),
 	};
 }
