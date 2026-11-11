@@ -23,6 +23,10 @@ const MENUS = [
 		url: "/gallery",
 	},
 	{
+		title: "Experience",
+		url: "/experience",
+	},
+	{
 		title: "About Us",
 		url: "/about-us",
 	},

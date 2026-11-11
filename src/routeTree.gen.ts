@@ -16,6 +16,7 @@ import { Route as PublicIndexRouteImport } from './routes/_public/index'
 import { Route as PublicAboutUsRouteImport } from './routes/_public/about-us'
 import { Route as PublicCaveRouteImport } from './routes/_public/cave'
 import { Route as PublicContactRouteImport } from './routes/_public/contact'
+import { Route as PublicExperienceRouteImport } from './routes/_public/experience'
 import { Route as PublicGalleryRouteImport } from './routes/_public/gallery'
 import { Route as PublicPoliciesRouteImport } from './routes/_public/policies'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
@@ -63,6 +64,11 @@ const PublicCaveRoute = PublicCaveRouteImport.update({
 const PublicContactRoute = PublicContactRouteImport.update({
   id: '/_public/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicExperienceRoute = PublicExperienceRouteImport.update({
+  id: '/_public/experience',
+  path: '/experience',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PublicGalleryRoute = PublicGalleryRouteImport.update({
@@ -147,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/about-us': typeof PublicAboutUsRoute
   '/cave': typeof PublicCaveRoute
   '/contact': typeof PublicContactRoute
+  '/experience': typeof PublicExperienceRoute
   '/gallery': typeof PublicGalleryRoute
   '/policies': typeof PublicPoliciesRoute
   '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
@@ -168,6 +175,7 @@ export interface FileRoutesByTo {
   '/about-us': typeof PublicAboutUsRoute
   '/cave': typeof PublicCaveRoute
   '/contact': typeof PublicContactRoute
+  '/experience': typeof PublicExperienceRoute
   '/gallery': typeof PublicGalleryRoute
   '/policies': typeof PublicPoliciesRoute
   '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
@@ -191,6 +199,7 @@ export interface FileRoutesById {
   '/_public/about-us': typeof PublicAboutUsRoute
   '/_public/cave': typeof PublicCaveRoute
   '/_public/contact': typeof PublicContactRoute
+  '/_public/experience': typeof PublicExperienceRoute
   '/_public/gallery': typeof PublicGalleryRoute
   '/_public/policies': typeof PublicPoliciesRoute
   '/admin/about-us-page-settings': typeof AdminAboutUsPageSettingsRoute
@@ -216,6 +225,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/cave'
     | '/contact'
+    | '/experience'
     | '/gallery'
     | '/policies'
     | '/admin/about-us-page-settings'
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/cave'
     | '/contact'
+    | '/experience'
     | '/gallery'
     | '/policies'
     | '/admin/about-us-page-settings'
@@ -259,6 +270,7 @@ export interface FileRouteTypes {
     | '/_public/about-us'
     | '/_public/cave'
     | '/_public/contact'
+    | '/_public/experience'
     | '/_public/gallery'
     | '/_public/policies'
     | '/admin/about-us-page-settings'
@@ -282,6 +294,7 @@ export interface RootRouteChildren {
   PublicAboutUsRoute: typeof PublicAboutUsRoute
   PublicCaveRoute: typeof PublicCaveRoute
   PublicContactRoute: typeof PublicContactRoute
+  PublicExperienceRoute: typeof PublicExperienceRoute
   PublicGalleryRoute: typeof PublicGalleryRoute
   PublicPoliciesRoute: typeof PublicPoliciesRoute
   PublicIndexRoute: typeof PublicIndexRoute
@@ -338,6 +351,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof PublicContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/experience': {
+      id: '/_public/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof PublicExperienceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_public/gallery': {
@@ -489,6 +509,7 @@ const rootRouteChildren: RootRouteChildren = {
   PublicAboutUsRoute: PublicAboutUsRoute,
   PublicCaveRoute: PublicCaveRoute,
   PublicContactRoute: PublicContactRoute,
+  PublicExperienceRoute: PublicExperienceRoute,
   PublicGalleryRoute: PublicGalleryRoute,
   PublicPoliciesRoute: PublicPoliciesRoute,
   PublicIndexRoute: PublicIndexRoute,
