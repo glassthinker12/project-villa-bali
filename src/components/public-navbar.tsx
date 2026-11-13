@@ -3,44 +3,17 @@ import { MenuIcon, XIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
+import { PUBLIC_NAVIGATION } from "@/constant/public-navigation";
+import type { GeneralSettingsSocials } from "@/features/general-settings/types";
+import { normalizeSocialUrl } from "@/features/general-settings/utils/social-links";
+
 import { Button } from "./ui/button";
 
-const MENUS = [
-	{
-		title: "Home",
-		url: "/",
-	},
-	{
-		title: "All Villas",
-		url: "/villas",
-	},
-	{
-		title: "The Cave",
-		url: "/cave",
-	},
-	{
-		title: "Gallery",
-		url: "/gallery",
-	},
-	{
-		title: "Experience",
-		url: "/experience",
-	},
-	{
-		title: "About Us",
-		url: "/about-us",
-	},
-	{
-		title: "Contact Us",
-		url: "/contact",
-	},
-	{
-		title: "Policies",
-		url: "/policies",
-	},
-];
+type PublicNavbarProps = {
+	socials: GeneralSettingsSocials;
+};
 
-export function PublicNavbar() {
+export function PublicNavbar({ socials }: PublicNavbarProps) {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -80,7 +53,7 @@ export function PublicNavbar() {
 				</Link>
 
 				<div className="hidden items-center gap-6 md:flex">
-					{MENUS.map((menu) => (
+					{PUBLIC_NAVIGATION.map((menu) => (
 						<Link
 							key={menu.title}
 							to={menu.url}
@@ -142,7 +115,7 @@ export function PublicNavbar() {
 									</div>
 
 									<div className="flex flex-col items-center gap-6 p-4">
-										{MENUS.map((menu) => (
+										{PUBLIC_NAVIGATION.map((menu) => (
 											<Link
 												key={menu.title}
 												to={menu.url}
@@ -159,27 +132,49 @@ export function PublicNavbar() {
 											Follow us on
 										</p>
 										<div className="mt-4 flex items-center justify-center gap-6">
-											<div className="grid size-10.5 place-items-center rounded-full border">
-												<img
-													alt="envelope"
-													src="/svg/envelope.svg"
-													className="size-5 shrink-0"
-												/>
-											</div>
-											<div className="grid size-10.5 place-items-center rounded-full border">
-												<img
-													alt="instagram"
-													src="/svg/instagram.svg"
-													className="size-5 shrink-0"
-												/>
-											</div>
-											<div className="grid size-10.5 place-items-center rounded-full border">
-												<img
-													alt="facebook"
-													src="/svg/facebook.svg"
-													className="size-5 shrink-0"
-												/>
-											</div>
+											{socials.email && (
+												<a
+													href={normalizeSocialUrl(socials.email)}
+													aria-label="Email us"
+													className="grid size-10.5 place-items-center rounded-full border"
+												>
+													<img
+														alt="envelope"
+														src="/svg/envelope.svg"
+														className="size-5 shrink-0"
+													/>
+												</a>
+											)}
+											{socials.instagram && (
+												<a
+													href={normalizeSocialUrl(socials.instagram)}
+													target="_blank"
+													rel="noreferrer"
+													aria-label="Visit our Instagram"
+													className="grid size-10.5 place-items-center rounded-full border"
+												>
+													<img
+														alt="instagram"
+														src="/svg/instagram.svg"
+														className="size-5 shrink-0"
+													/>
+												</a>
+											)}
+											{socials.facebook && (
+												<a
+													href={normalizeSocialUrl(socials.facebook)}
+													target="_blank"
+													rel="noreferrer"
+													aria-label="Visit our Facebook"
+													className="grid size-10.5 place-items-center rounded-full border"
+												>
+													<img
+														alt="facebook"
+														src="/svg/facebook.svg"
+														className="size-5 shrink-0"
+													/>
+												</a>
+											)}
 										</div>
 									</div>
 								</div>

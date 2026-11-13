@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { PublicFooter } from "@/components/public-footer";
-import { PublicNavbar } from "@/components/public-navbar";
 import { AboutUsPageAboutSection } from "@/features/about-us-page/components/about-us-page-about-section";
 import { AboutUsPageFeatureSection } from "@/features/about-us-page/components/about-us-page-feature-section";
 import { AboutUsPageGallerySection } from "@/features/about-us-page/components/about-us-page-gallery-section";
@@ -19,13 +17,11 @@ function RouteComponent() {
 
 	return (
 		<main id="about-us-page">
-			<PublicNavbar />
 			<AboutUsPageHeroSection data={hero} />
 			<AboutUsPageGallerySection data={gallery} />
 			<AboutUsPageAboutSection data={about} />
 			<AboutUsPageServiceSection data={service} />
 			<AboutUsPageFeatureSection data={feature} />
-			<PublicFooter />
 		</main>
 	);
 }

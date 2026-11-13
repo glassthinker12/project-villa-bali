@@ -8,6 +8,7 @@ import {
 } from "motion/react";
 import { useMemo, useState } from "react";
 
+import { GalleryPreview } from "@/components/gallery-preview";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
 	GALLERY_CATEGORIES,
@@ -33,11 +34,22 @@ export function GalleryPageGalleryListSection({
 }: GalleryPageGalleryListSectionProps) {
 	const [activeCategory, setActiveCategory] =
 		useState<GalleryCategory>("Villas");
+	const [previewIndex, setPreviewIndex] = useState<number | null>(null);
 	const shouldReduceMotion = useReducedMotion();
 
 	const filteredGalleries = useMemo(
 		() => data.galleries.filter((item) => item.category === activeCategory),
 		[data.galleries, activeCategory],
+	);
+
+	const previewItems = useMemo(
+		() =>
+			filteredGalleries.map((item) => ({
+				id: item.id,
+				src: item.imageUrl,
+				title: item.title,
+			})),
+		[filteredGalleries],
 	);
 
 	const containerVariants: Variants = {
@@ -75,7 +87,10 @@ export function GalleryPageGalleryListSection({
 			<div className="flex w-full max-w-6xl flex-col gap-8 md:gap-12">
 				<Tabs
 					value={activeCategory}
-					onValueChange={(value) => setActiveCategory(value as GalleryCategory)}
+					onValueChange={(value) => {
+						setActiveCategory(value as GalleryCategory);
+						setPreviewIndex(null);
+					}}
 					className="flex items-center justify-center"
 				>
 					<TabsList
@@ -124,22 +139,36 @@ export function GalleryPageGalleryListSection({
 								<motion.div
 									key={item.id}
 									variants={itemVariants}
-									className={`${GALLERY_ITEM_PATTERN[index % 5]} h-85.75 overflow-hidden rounded-lg md:h-78`}
+									className={`group ${GALLERY_ITEM_PATTERN[index % 5]} h-85.75 overflow-hidden rounded-lg md:h-78`}
 								>
-									<img
-										src={item.imageUrl}
-										alt={item.title}
-										loading={index === 0 ? "eager" : "lazy"}
-										decoding="async"
-										draggable={false}
-										className="h-full w-full object-cover"
-									/>
+									<button
+										type="button"
+										aria-label={`Open ${item.title}`}
+										onClick={() => setPreviewIndex(index)}
+										className="block size-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset"
+									>
+										<img
+											src={item.imageUrl}
+											alt={item.title}
+											loading={index === 0 ? "eager" : "lazy"}
+											decoding="async"
+											draggable={false}
+											className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+										/>
+									</button>
 								</motion.div>
 							))}
 						</motion.div>
 					</AnimatePresence>
 				)}
 			</div>
+
+			<GalleryPreview
+				items={previewItems}
+				index={previewIndex}
+				onIndexChange={setPreviewIndex}
+				onClose={() => setPreviewIndex(null)}
+			/>
 		</section>
 	);
 }

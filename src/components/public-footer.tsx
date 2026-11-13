@@ -1,10 +1,19 @@
 import { Link } from "@tanstack/react-router";
+import { cn } from "cn";
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
+import type { FooterContent } from "@/features/footer/types";
+import {
+	formatSocialLabel,
+	normalizeSocialUrl,
+} from "@/features/general-settings/utils/social-links";
+import { buttonVariants } from "./ui/button";
 
-import { Button } from "./ui/button";
+type PublicFooterProps = {
+	data: FooterContent;
+};
 
-export function PublicFooter() {
+export function PublicFooter({ data }: PublicFooterProps) {
 	return (
 		<footer
 			id="footer"
@@ -84,21 +93,26 @@ export function PublicFooter() {
 							}}
 						>
 							<p className="text-center font-bold font-heading text-2xl leading-8 md:text-left">
-								Let's craft a stay worth remembering
+								{data.title}
 							</p>
 							<p className="text-center text-base leading-6.5 md:text-left">
-								From your first arrival to your fond farewell, every moment is
-								designed with care, comfort, and you in mind.
+								{data.body}
 							</p>
 							<div>
 								<motion.div
 									whileHover={{ scale: 1.03 }}
 									whileTap={{ scale: 0.97 }}
 								>
-									<Button variant="paper" size="lg" className="rounded-[8px]">
-										Save Your Stay Now
+									<Link
+										to={data.cta.url}
+										className={cn(
+											buttonVariants({ variant: "paper", size: "lg" }),
+											"rounded-[8px]",
+										)}
+									>
+										{data.cta.label}
 										<ArrowRightIcon className="size-6" />
-									</Button>
+									</Link>
 								</motion.div>
 							</div>
 						</motion.div>
@@ -113,51 +127,23 @@ export function PublicFooter() {
 							<div className="w-full shrink-0 md:w-43.75">
 								<div className="flex w-full flex-col items-center gap-4 md:items-start">
 									<p className="font-bold font-heading text-2xl leading-8">
-										Navigation
+										{data.navigationTitle}
 									</p>
 									<ul className="flex flex-col items-center gap-4 md:items-start">
-										<li>
-											<Link to="/" className="hover:underline">
-												Home
-											</Link>
-										</li>
-										<li>
-											<Link to="/" className="hover:underline">
-												About Us
-											</Link>
-										</li>
-										<li>
-											<Link to="/" className="hover:underline">
-												All Villas
-											</Link>
-										</li>
-										<li>
-											<Link to="/" className="hover:underline">
-												The Cave
-											</Link>
-										</li>
-										<li>
-											<Link to="/" className="hover:underline">
-												Experiences/Local Guide
-											</Link>
-										</li>
-										<li>
-											<Link to="/" className="hover:underline">
-												Gallery
-											</Link>
-										</li>
-										<li>
-											<Link to="/" className="hover:underline">
-												Contact Us
-											</Link>
-										</li>
+										{data.navs.map((item) => (
+											<li key={item.url}>
+												<Link to={item.url} className="hover:underline">
+													{item.title}
+												</Link>
+											</li>
+										))}
 									</ul>
 								</div>
 							</div>
 							<div className="w-full shrink-0 md:w-63.75">
 								<div className="flex w-full flex-col items-center gap-8 md:items-start">
 									<p className="font-bold font-heading text-2xl leading-8">
-										Contacts & Socials
+										{data.socialMediaTitle}
 									</p>
 									<ul className="flex flex-col items-center gap-4 md:items-start">
 										<li className="flex items-center gap-2 text-xs">
@@ -166,7 +152,12 @@ export function PublicFooter() {
 												src="/svg/envelope.svg"
 												className="size-4 shrink-0"
 											/>
-											info@seaviewprivatevillas.com
+											<a
+												href={normalizeSocialUrl(data.socials.email)}
+												className="hover:underline"
+											>
+												{formatSocialLabel(data.socials.email)}
+											</a>
 										</li>
 										<li className="flex items-center gap-2 text-xs">
 											<img
@@ -174,7 +165,14 @@ export function PublicFooter() {
 												src="/svg/instagram.svg"
 												className="size-4 shrink-0"
 											/>
-											Seaview Private Villas
+											<a
+												href={normalizeSocialUrl(data.socials.instagram)}
+												target="_blank"
+												rel="noreferrer"
+												className="hover:underline"
+											>
+												{formatSocialLabel(data.socials.instagram)}
+											</a>
 										</li>
 										<li className="flex items-center gap-2 text-xs">
 											<img
@@ -182,13 +180,24 @@ export function PublicFooter() {
 												src="/svg/facebook.svg"
 												className="size-4 shrink-0"
 											/>
-											Seaview Private Villas
+											<a
+												href={normalizeSocialUrl(data.socials.facebook)}
+												target="_blank"
+												rel="noreferrer"
+												className="hover:underline"
+											>
+												{formatSocialLabel(data.socials.facebook)}
+											</a>
 										</li>
 									</ul>
-									<p className="text-center text-xs leading-5 md:text-left">
-										Tamarind Road, Jungutbatu, Kec. Nusa Penida, Kabupaten
-										Klungkung, Bali, Indonesia
-									</p>
+									<a
+										href={data.mapsUrl}
+										target="_blank"
+										rel="noreferrer"
+										className="text-center text-xs leading-5 hover:underline md:text-left"
+									>
+										{data.address}
+									</a>
 								</div>
 							</div>
 						</motion.div>

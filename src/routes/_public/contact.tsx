@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PublicFooter } from "@/components/public-footer";
-import { PublicNavbar } from "@/components/public-navbar";
 import { ContactPageAboutSection } from "@/features/contact-page/components/contact-page-about-section";
 import { ContactPageContactSection } from "@/features/contact-page/components/contact-page-contact-section";
 import { ContactPageHeroSection } from "@/features/contact-page/components/contact-page-hero-section";
@@ -16,11 +14,9 @@ function RouteComponent() {
 
 	return (
 		<main id="contact-page">
-			<PublicNavbar />
 			<ContactPageHeroSection data={hero} />
 			<ContactPageAboutSection data={about} />
 			<ContactPageContactSection data={contact} />
-			<PublicFooter />
 		</main>
 	);
 }

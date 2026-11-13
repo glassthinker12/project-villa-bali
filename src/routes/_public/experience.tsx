@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PublicFooter } from "@/components/public-footer";
-import { PublicNavbar } from "@/components/public-navbar";
 import { ExperiencePageAboutSection } from "@/features/experience-page/components/experience-page-about-section";
 import { ExperiencePageCaptionSection } from "@/features/experience-page/components/experience-page-caption-section";
 import { ExperiencePageContactSection } from "@/features/experience-page/components/experience-page-contact-section";
@@ -38,7 +36,6 @@ function RouteComponent() {
 
 	return (
 		<main id="experience-page">
-			<PublicNavbar />
 			<ExperiencePageHeroSection data={hero} />
 			<ExperiencePageAboutSection data={about} />
 			<ExperiencePageCaptionSection data={caption} />
@@ -51,7 +48,6 @@ function RouteComponent() {
 			<ExperiencePageSeventhExperienceSection data={seventhExperience} />
 			<ExperiencePageEighthExperienceSection data={eighthExperience} />
 			<ExperiencePageContactSection data={contact} />
-			<PublicFooter />
 		</main>
 	);
 }

@@ -1,4 +1,8 @@
 import { motion } from "motion/react";
+import {
+	formatSocialLabel,
+	normalizeSocialUrl,
+} from "@/features/general-settings/utils/social-links";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import {
 	defaultTransition,
@@ -47,7 +51,7 @@ export function ContactPageContactSection({
 					<motion.a
 						variants={staggerItem}
 						transition={defaultTransition}
-						href="/"
+						href={normalizeSocialUrl(data.email)}
 						className="flex flex-col items-center gap-2 py-4"
 					>
 						<img
@@ -56,12 +60,14 @@ export function ContactPageContactSection({
 							className="shrink-0"
 						/>
 						<p className="font-bold text-brand">EMAIL</p>
-						<p>{data.email}</p>
+						<p>{formatSocialLabel(data.email)}</p>
 					</motion.a>
 					<motion.a
 						variants={staggerItem}
 						transition={defaultTransition}
-						href="/"
+						href={normalizeSocialUrl(data.instagram)}
+						target="_blank"
+						rel="noreferrer"
 						className="flex flex-col items-center gap-2 py-4"
 					>
 						<img
@@ -70,12 +76,14 @@ export function ContactPageContactSection({
 							className="shrink-0"
 						/>
 						<p className="font-bold text-brand">INSTAGRAM</p>
-						<p>{data.instagram}</p>
+						<p>{formatSocialLabel(data.instagram)}</p>
 					</motion.a>
 					<motion.a
 						variants={staggerItem}
 						transition={defaultTransition}
-						href="/"
+						href={normalizeSocialUrl(data.facebook)}
+						target="_blank"
+						rel="noreferrer"
 						className="flex flex-col items-center gap-2 py-4"
 					>
 						<img
@@ -84,7 +92,7 @@ export function ContactPageContactSection({
 							className="shrink-0"
 						/>
 						<p className="font-bold text-brand">FACEBOOK</p>
-						<p>{data.facebook}</p>
+						<p>{formatSocialLabel(data.facebook)}</p>
 					</motion.a>
 				</motion.div>
 			</motion.div>

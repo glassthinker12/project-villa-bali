@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
+import { Route as PublicRouteRouteImport } from './routes/_public/route'
 import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
@@ -24,17 +25,26 @@ import { Route as AdminAboutUsPageSettingsRouteImport } from './routes/admin/abo
 import { Route as AdminCavePageSettingsRouteImport } from './routes/admin/cave-page-settings'
 import { Route as AdminContactPageSettingsRouteImport } from './routes/admin/contact-page-settings'
 import { Route as AdminExperiencePageSettingsRouteImport } from './routes/admin/experience-page-settings'
+import { Route as AdminFooterSettingsRouteImport } from './routes/admin/footer-settings'
 import { Route as AdminGalleriesRouteImport } from './routes/admin/galleries'
 import { Route as AdminGalleryPageSettingsRouteImport } from './routes/admin/gallery-page-settings'
+import { Route as AdminGeneralSettingsRouteRouteImport } from './routes/admin/general-settings/route'
 import { Route as AdminHomepageSettingsRouteImport } from './routes/admin/homepage-settings'
 import { Route as AdminVillaDetailPageSettingsRouteImport } from './routes/admin/villa-detail-page-settings'
 import { Route as AdminVillaManagementRouteImport } from './routes/admin/villa-management'
 import { Route as AdminVillasPageSettingsRouteImport } from './routes/admin/villas-page-settings'
 import { Route as PublicVillasIndexRouteImport } from './routes/_public/villas/index'
 import { Route as PublicVillasVillaSlugRouteImport } from './routes/_public/villas/$villaSlug'
+import { Route as AdminGeneralSettingsIndexRouteImport } from './routes/admin/general-settings/index'
+import { Route as AdminGeneralSettingsLocationRouteImport } from './routes/admin/general-settings/location'
+import { Route as AdminGeneralSettingsSocialsRouteImport } from './routes/admin/general-settings/socials'
 
 const AuthRouteRoute = AuthRouteRouteImport.update({
   id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicRouteRoute = PublicRouteRouteImport.update({
+  id: '/_public',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRouteRoute = AdminRouteRouteImport.update({
@@ -48,39 +58,39 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   getParentRoute: () => AuthRouteRoute,
 } as any)
 const PublicIndexRoute = PublicIndexRouteImport.update({
-  id: '/_public/',
+  id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PublicRouteRoute,
 } as any)
 const PublicAboutUsRoute = PublicAboutUsRouteImport.update({
-  id: '/_public/about-us',
+  id: '/about-us',
   path: '/about-us',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PublicRouteRoute,
 } as any)
 const PublicCaveRoute = PublicCaveRouteImport.update({
-  id: '/_public/cave',
+  id: '/cave',
   path: '/cave',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PublicRouteRoute,
 } as any)
 const PublicContactRoute = PublicContactRouteImport.update({
-  id: '/_public/contact',
+  id: '/contact',
   path: '/contact',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PublicRouteRoute,
 } as any)
 const PublicExperienceRoute = PublicExperienceRouteImport.update({
-  id: '/_public/experience',
+  id: '/experience',
   path: '/experience',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PublicRouteRoute,
 } as any)
 const PublicGalleryRoute = PublicGalleryRouteImport.update({
-  id: '/_public/gallery',
+  id: '/gallery',
   path: '/gallery',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PublicRouteRoute,
 } as any)
 const PublicPoliciesRoute = PublicPoliciesRouteImport.update({
-  id: '/_public/policies',
+  id: '/policies',
   path: '/policies',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PublicRouteRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
@@ -110,6 +120,11 @@ const AdminExperiencePageSettingsRoute =
     path: '/experience-page-settings',
     getParentRoute: () => AdminRouteRoute,
   } as any)
+const AdminFooterSettingsRoute = AdminFooterSettingsRouteImport.update({
+  id: '/footer-settings',
+  path: '/footer-settings',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 const AdminGalleriesRoute = AdminGalleriesRouteImport.update({
   id: '/galleries',
   path: '/galleries',
@@ -119,6 +134,12 @@ const AdminGalleryPageSettingsRoute =
   AdminGalleryPageSettingsRouteImport.update({
     id: '/gallery-page-settings',
     path: '/gallery-page-settings',
+    getParentRoute: () => AdminRouteRoute,
+  } as any)
+const AdminGeneralSettingsRouteRoute =
+  AdminGeneralSettingsRouteRouteImport.update({
+    id: '/general-settings',
+    path: '/general-settings',
     getParentRoute: () => AdminRouteRoute,
   } as any)
 const AdminHomepageSettingsRoute = AdminHomepageSettingsRouteImport.update({
@@ -143,19 +164,38 @@ const AdminVillasPageSettingsRoute = AdminVillasPageSettingsRouteImport.update({
   getParentRoute: () => AdminRouteRoute,
 } as any)
 const PublicVillasIndexRoute = PublicVillasIndexRouteImport.update({
-  id: '/_public/villas/',
+  id: '/villas/',
   path: '/villas/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PublicRouteRoute,
 } as any)
 const PublicVillasVillaSlugRoute = PublicVillasVillaSlugRouteImport.update({
-  id: '/_public/villas/$villaSlug',
+  id: '/villas/$villaSlug',
   path: '/villas/$villaSlug',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PublicRouteRoute,
 } as any)
+const AdminGeneralSettingsIndexRoute =
+  AdminGeneralSettingsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AdminGeneralSettingsRouteRoute,
+  } as any)
+const AdminGeneralSettingsLocationRoute =
+  AdminGeneralSettingsLocationRouteImport.update({
+    id: '/location',
+    path: '/location',
+    getParentRoute: () => AdminGeneralSettingsRouteRoute,
+  } as any)
+const AdminGeneralSettingsSocialsRoute =
+  AdminGeneralSettingsSocialsRouteImport.update({
+    id: '/socials',
+    path: '/socials',
+    getParentRoute: () => AdminGeneralSettingsRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
   '/admin': typeof AdminRouteRouteWithChildren
+  '/admin/general-settings': typeof AdminGeneralSettingsRouteRouteWithChildren
   '/login': typeof AuthLoginRoute
   '/about-us': typeof PublicAboutUsRoute
   '/cave': typeof PublicCaveRoute
@@ -167,6 +207,7 @@ export interface FileRoutesByFullPath {
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/contact-page-settings': typeof AdminContactPageSettingsRoute
   '/admin/experience-page-settings': typeof AdminExperiencePageSettingsRoute
+  '/admin/footer-settings': typeof AdminFooterSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/gallery-page-settings': typeof AdminGalleryPageSettingsRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
@@ -175,7 +216,10 @@ export interface FileRoutesByFullPath {
   '/admin/villas-page-settings': typeof AdminVillasPageSettingsRoute
   '/admin/': typeof AdminIndexRoute
   '/villas/$villaSlug': typeof PublicVillasVillaSlugRoute
+  '/admin/general-settings/location': typeof AdminGeneralSettingsLocationRoute
+  '/admin/general-settings/socials': typeof AdminGeneralSettingsSocialsRoute
   '/villas/': typeof PublicVillasIndexRoute
+  '/admin/general-settings/': typeof AdminGeneralSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof PublicIndexRoute
@@ -190,6 +234,7 @@ export interface FileRoutesByTo {
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/contact-page-settings': typeof AdminContactPageSettingsRoute
   '/admin/experience-page-settings': typeof AdminExperiencePageSettingsRoute
+  '/admin/footer-settings': typeof AdminFooterSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/gallery-page-settings': typeof AdminGalleryPageSettingsRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
@@ -198,12 +243,17 @@ export interface FileRoutesByTo {
   '/admin/villas-page-settings': typeof AdminVillasPageSettingsRoute
   '/admin': typeof AdminIndexRoute
   '/villas/$villaSlug': typeof PublicVillasVillaSlugRoute
+  '/admin/general-settings/location': typeof AdminGeneralSettingsLocationRoute
+  '/admin/general-settings/socials': typeof AdminGeneralSettingsSocialsRoute
   '/villas': typeof PublicVillasIndexRoute
+  '/admin/general-settings': typeof AdminGeneralSettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_auth': typeof AuthRouteRouteWithChildren
+  '/_public': typeof PublicRouteRouteWithChildren
   '/admin': typeof AdminRouteRouteWithChildren
+  '/admin/general-settings': typeof AdminGeneralSettingsRouteRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/_public/about-us': typeof PublicAboutUsRoute
   '/_public/cave': typeof PublicCaveRoute
@@ -215,6 +265,7 @@ export interface FileRoutesById {
   '/admin/cave-page-settings': typeof AdminCavePageSettingsRoute
   '/admin/contact-page-settings': typeof AdminContactPageSettingsRoute
   '/admin/experience-page-settings': typeof AdminExperiencePageSettingsRoute
+  '/admin/footer-settings': typeof AdminFooterSettingsRoute
   '/admin/galleries': typeof AdminGalleriesRoute
   '/admin/gallery-page-settings': typeof AdminGalleryPageSettingsRoute
   '/admin/homepage-settings': typeof AdminHomepageSettingsRoute
@@ -224,13 +275,17 @@ export interface FileRoutesById {
   '/_public/': typeof PublicIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/_public/villas/$villaSlug': typeof PublicVillasVillaSlugRoute
+  '/admin/general-settings/location': typeof AdminGeneralSettingsLocationRoute
+  '/admin/general-settings/socials': typeof AdminGeneralSettingsSocialsRoute
   '/_public/villas/': typeof PublicVillasIndexRoute
+  '/admin/general-settings/': typeof AdminGeneralSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/admin'
+    | '/admin/general-settings'
     | '/login'
     | '/about-us'
     | '/cave'
@@ -242,6 +297,7 @@ export interface FileRouteTypes {
     | '/admin/cave-page-settings'
     | '/admin/contact-page-settings'
     | '/admin/experience-page-settings'
+    | '/admin/footer-settings'
     | '/admin/galleries'
     | '/admin/gallery-page-settings'
     | '/admin/homepage-settings'
@@ -250,7 +306,10 @@ export interface FileRouteTypes {
     | '/admin/villas-page-settings'
     | '/admin/'
     | '/villas/$villaSlug'
+    | '/admin/general-settings/location'
+    | '/admin/general-settings/socials'
     | '/villas/'
+    | '/admin/general-settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -265,6 +324,7 @@ export interface FileRouteTypes {
     | '/admin/cave-page-settings'
     | '/admin/contact-page-settings'
     | '/admin/experience-page-settings'
+    | '/admin/footer-settings'
     | '/admin/galleries'
     | '/admin/gallery-page-settings'
     | '/admin/homepage-settings'
@@ -273,11 +333,16 @@ export interface FileRouteTypes {
     | '/admin/villas-page-settings'
     | '/admin'
     | '/villas/$villaSlug'
+    | '/admin/general-settings/location'
+    | '/admin/general-settings/socials'
     | '/villas'
+    | '/admin/general-settings'
   id:
     | '__root__'
     | '/_auth'
+    | '/_public'
     | '/admin'
+    | '/admin/general-settings'
     | '/_auth/login'
     | '/_public/about-us'
     | '/_public/cave'
@@ -289,6 +354,7 @@ export interface FileRouteTypes {
     | '/admin/cave-page-settings'
     | '/admin/contact-page-settings'
     | '/admin/experience-page-settings'
+    | '/admin/footer-settings'
     | '/admin/galleries'
     | '/admin/gallery-page-settings'
     | '/admin/homepage-settings'
@@ -298,21 +364,16 @@ export interface FileRouteTypes {
     | '/_public/'
     | '/admin/'
     | '/_public/villas/$villaSlug'
+    | '/admin/general-settings/location'
+    | '/admin/general-settings/socials'
     | '/_public/villas/'
+    | '/admin/general-settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  PublicRouteRoute: typeof PublicRouteRouteWithChildren
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
-  PublicAboutUsRoute: typeof PublicAboutUsRoute
-  PublicCaveRoute: typeof PublicCaveRoute
-  PublicContactRoute: typeof PublicContactRoute
-  PublicExperienceRoute: typeof PublicExperienceRoute
-  PublicGalleryRoute: typeof PublicGalleryRoute
-  PublicPoliciesRoute: typeof PublicPoliciesRoute
-  PublicIndexRoute: typeof PublicIndexRoute
-  PublicVillasVillaSlugRoute: typeof PublicVillasVillaSlugRoute
-  PublicVillasIndexRoute: typeof PublicVillasIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -322,6 +383,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public': {
+      id: '/_public'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof PublicRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -343,49 +411,49 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof PublicIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PublicRouteRoute
     }
     '/_public/about-us': {
       id: '/_public/about-us'
       path: '/about-us'
       fullPath: '/about-us'
       preLoaderRoute: typeof PublicAboutUsRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PublicRouteRoute
     }
     '/_public/cave': {
       id: '/_public/cave'
       path: '/cave'
       fullPath: '/cave'
       preLoaderRoute: typeof PublicCaveRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PublicRouteRoute
     }
     '/_public/contact': {
       id: '/_public/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof PublicContactRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PublicRouteRoute
     }
     '/_public/experience': {
       id: '/_public/experience'
       path: '/experience'
       fullPath: '/experience'
       preLoaderRoute: typeof PublicExperienceRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PublicRouteRoute
     }
     '/_public/gallery': {
       id: '/_public/gallery'
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof PublicGalleryRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PublicRouteRoute
     }
     '/_public/policies': {
       id: '/_public/policies'
       path: '/policies'
       fullPath: '/policies'
       preLoaderRoute: typeof PublicPoliciesRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PublicRouteRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -422,6 +490,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminExperiencePageSettingsRouteImport
       parentRoute: typeof AdminRouteRoute
     }
+    '/admin/footer-settings': {
+      id: '/admin/footer-settings'
+      path: '/footer-settings'
+      fullPath: '/admin/footer-settings'
+      preLoaderRoute: typeof AdminFooterSettingsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/admin/galleries': {
       id: '/admin/galleries'
       path: '/galleries'
@@ -434,6 +509,13 @@ declare module '@tanstack/react-router' {
       path: '/gallery-page-settings'
       fullPath: '/admin/gallery-page-settings'
       preLoaderRoute: typeof AdminGalleryPageSettingsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/general-settings': {
+      id: '/admin/general-settings'
+      path: '/general-settings'
+      fullPath: '/admin/general-settings'
+      preLoaderRoute: typeof AdminGeneralSettingsRouteRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/homepage-settings': {
@@ -469,14 +551,35 @@ declare module '@tanstack/react-router' {
       path: '/villas'
       fullPath: '/villas/'
       preLoaderRoute: typeof PublicVillasIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PublicRouteRoute
     }
     '/_public/villas/$villaSlug': {
       id: '/_public/villas/$villaSlug'
       path: '/villas/$villaSlug'
       fullPath: '/villas/$villaSlug'
       preLoaderRoute: typeof PublicVillasVillaSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PublicRouteRoute
+    }
+    '/admin/general-settings/': {
+      id: '/admin/general-settings/'
+      path: '/'
+      fullPath: '/admin/general-settings/'
+      preLoaderRoute: typeof AdminGeneralSettingsIndexRouteImport
+      parentRoute: typeof AdminGeneralSettingsRouteRoute
+    }
+    '/admin/general-settings/location': {
+      id: '/admin/general-settings/location'
+      path: '/location'
+      fullPath: '/admin/general-settings/location'
+      preLoaderRoute: typeof AdminGeneralSettingsLocationRouteImport
+      parentRoute: typeof AdminGeneralSettingsRouteRoute
+    }
+    '/admin/general-settings/socials': {
+      id: '/admin/general-settings/socials'
+      path: '/socials'
+      fullPath: '/admin/general-settings/socials'
+      preLoaderRoute: typeof AdminGeneralSettingsSocialsRouteImport
+      parentRoute: typeof AdminGeneralSettingsRouteRoute
     }
   }
 }
@@ -493,11 +596,59 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
   AuthRouteRouteChildren,
 )
 
+interface PublicRouteRouteChildren {
+  PublicAboutUsRoute: typeof PublicAboutUsRoute
+  PublicCaveRoute: typeof PublicCaveRoute
+  PublicContactRoute: typeof PublicContactRoute
+  PublicExperienceRoute: typeof PublicExperienceRoute
+  PublicGalleryRoute: typeof PublicGalleryRoute
+  PublicPoliciesRoute: typeof PublicPoliciesRoute
+  PublicIndexRoute: typeof PublicIndexRoute
+  PublicVillasVillaSlugRoute: typeof PublicVillasVillaSlugRoute
+  PublicVillasIndexRoute: typeof PublicVillasIndexRoute
+}
+
+const PublicRouteRouteChildren: PublicRouteRouteChildren = {
+  PublicAboutUsRoute: PublicAboutUsRoute,
+  PublicCaveRoute: PublicCaveRoute,
+  PublicContactRoute: PublicContactRoute,
+  PublicExperienceRoute: PublicExperienceRoute,
+  PublicGalleryRoute: PublicGalleryRoute,
+  PublicPoliciesRoute: PublicPoliciesRoute,
+  PublicIndexRoute: PublicIndexRoute,
+  PublicVillasVillaSlugRoute: PublicVillasVillaSlugRoute,
+  PublicVillasIndexRoute: PublicVillasIndexRoute,
+}
+
+const PublicRouteRouteWithChildren = PublicRouteRoute._addFileChildren(
+  PublicRouteRouteChildren,
+)
+
+interface AdminGeneralSettingsRouteRouteChildren {
+  AdminGeneralSettingsLocationRoute: typeof AdminGeneralSettingsLocationRoute
+  AdminGeneralSettingsSocialsRoute: typeof AdminGeneralSettingsSocialsRoute
+  AdminGeneralSettingsIndexRoute: typeof AdminGeneralSettingsIndexRoute
+}
+
+const AdminGeneralSettingsRouteRouteChildren: AdminGeneralSettingsRouteRouteChildren =
+  {
+    AdminGeneralSettingsLocationRoute: AdminGeneralSettingsLocationRoute,
+    AdminGeneralSettingsSocialsRoute: AdminGeneralSettingsSocialsRoute,
+    AdminGeneralSettingsIndexRoute: AdminGeneralSettingsIndexRoute,
+  }
+
+const AdminGeneralSettingsRouteRouteWithChildren =
+  AdminGeneralSettingsRouteRoute._addFileChildren(
+    AdminGeneralSettingsRouteRouteChildren,
+  )
+
 interface AdminRouteRouteChildren {
+  AdminGeneralSettingsRouteRoute: typeof AdminGeneralSettingsRouteRouteWithChildren
   AdminAboutUsPageSettingsRoute: typeof AdminAboutUsPageSettingsRoute
   AdminCavePageSettingsRoute: typeof AdminCavePageSettingsRoute
   AdminContactPageSettingsRoute: typeof AdminContactPageSettingsRoute
   AdminExperiencePageSettingsRoute: typeof AdminExperiencePageSettingsRoute
+  AdminFooterSettingsRoute: typeof AdminFooterSettingsRoute
   AdminGalleriesRoute: typeof AdminGalleriesRoute
   AdminGalleryPageSettingsRoute: typeof AdminGalleryPageSettingsRoute
   AdminHomepageSettingsRoute: typeof AdminHomepageSettingsRoute
@@ -508,10 +659,12 @@ interface AdminRouteRouteChildren {
 }
 
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminGeneralSettingsRouteRoute: AdminGeneralSettingsRouteRouteWithChildren,
   AdminAboutUsPageSettingsRoute: AdminAboutUsPageSettingsRoute,
   AdminCavePageSettingsRoute: AdminCavePageSettingsRoute,
   AdminContactPageSettingsRoute: AdminContactPageSettingsRoute,
   AdminExperiencePageSettingsRoute: AdminExperiencePageSettingsRoute,
+  AdminFooterSettingsRoute: AdminFooterSettingsRoute,
   AdminGalleriesRoute: AdminGalleriesRoute,
   AdminGalleryPageSettingsRoute: AdminGalleryPageSettingsRoute,
   AdminHomepageSettingsRoute: AdminHomepageSettingsRoute,
@@ -527,16 +680,8 @@ const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   AuthRouteRoute: AuthRouteRouteWithChildren,
+  PublicRouteRoute: PublicRouteRouteWithChildren,
   AdminRouteRoute: AdminRouteRouteWithChildren,
-  PublicAboutUsRoute: PublicAboutUsRoute,
-  PublicCaveRoute: PublicCaveRoute,
-  PublicContactRoute: PublicContactRoute,
-  PublicExperienceRoute: PublicExperienceRoute,
-  PublicGalleryRoute: PublicGalleryRoute,
-  PublicPoliciesRoute: PublicPoliciesRoute,
-  PublicIndexRoute: PublicIndexRoute,
-  PublicVillasVillaSlugRoute: PublicVillasVillaSlugRoute,
-  PublicVillasIndexRoute: PublicVillasIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,8 +1,9 @@
-import { Link } from "@tanstack/react-router";
 import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
+import { useMemo, useState } from "react";
 
-import { buttonVariants } from "@/components/ui/button";
+import { GalleryPreview } from "@/components/gallery-preview";
+import { Button } from "@/components/ui/button";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import {
 	defaultTransition,
@@ -29,6 +30,17 @@ export function VillaDetailPageGallerySection({
 	data,
 }: VillaDetailPageGallerySectionProps) {
 	const { ref, isInView } = useScrollReveal();
+	const [previewIndex, setPreviewIndex] = useState<number | null>(null);
+
+	const previewItems = useMemo(
+		() =>
+			data.galleries.map((gallery) => ({
+				id: gallery.id,
+				src: gallery.imageUrl,
+				title: gallery.title || "Villa photo",
+			})),
+		[data.galleries],
+	);
 
 	if (data.galleries.length < 1) return;
 
@@ -50,32 +62,56 @@ export function VillaDetailPageGallerySection({
 				>
 					{data.galleries
 						.slice(0, GALLERY_ITEM_CLASSES.length)
-						.map((gallery, index) => (
-							<motion.div
-								key={gallery.id}
-								variants={scaleIn}
-								transition={defaultTransition}
-								className={`group ${GALLERY_ITEM_CLASSES[index]}`}
-							>
-								<img
-									src={gallery.imageUrl}
-									alt={gallery.title}
-									loading="lazy"
-									decoding="async"
-									className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-								/>
-							</motion.div>
-						))}
+						.map((gallery, index) => {
+							const title = gallery.title || "Villa photo";
+
+							return (
+								<motion.div
+									key={gallery.id}
+									variants={scaleIn}
+									transition={defaultTransition}
+									className={`group ${GALLERY_ITEM_CLASSES[index]}`}
+								>
+									<button
+										type="button"
+										aria-label={`Open ${title}`}
+										onClick={() => setPreviewIndex(index)}
+										className="block size-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-inset"
+									>
+										<img
+											src={gallery.imageUrl}
+											alt={title}
+											loading="lazy"
+											decoding="async"
+											draggable={false}
+											className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+										/>
+									</button>
+								</motion.div>
+							);
+						})}
 				</motion.div>
 
 				{/* CTA */}
 				<motion.div variants={fadeUp} transition={defaultTransition}>
-					<Link to="/" className={buttonVariants({ variant: "ghost-brand" })}>
+					<Button
+						type="button"
+						variant="ghost-brand"
+						aria-label="View all villa photos"
+						onClick={() => setPreviewIndex(0)}
+					>
 						View All
 						<ArrowRightIcon className="size-6 transition-transform duration-300 group-hover/button:translate-x-1" />
-					</Link>
+					</Button>
 				</motion.div>
 			</motion.div>
+
+			<GalleryPreview
+				items={previewItems}
+				index={previewIndex}
+				onIndexChange={setPreviewIndex}
+				onClose={() => setPreviewIndex(null)}
+			/>
 		</section>
 	);
 }

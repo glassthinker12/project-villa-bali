@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { PublicFooter } from "@/components/public-footer";
-import { PublicNavbar } from "@/components/public-navbar";
 import { HomepageAboutSection } from "@/features/homepage/components/homepage-about-section";
 import { HomepageExperienceSection } from "@/features/homepage/components/homepage-experience-section";
 import { HomepageGallerySection } from "@/features/homepage/components/homepage-gallery-section";
@@ -19,13 +17,11 @@ function App() {
 
 	return (
 		<main id="homepage">
-			<PublicNavbar />
 			<HomepageHeroSection data={hero} />
 			<HomepageAboutSection data={about} />
 			<HomepageVillaSection data={villa} />
 			<HomepageExperienceSection data={experience} />
 			<HomepageGallerySection data={gallery} />
-			<PublicFooter />
 		</main>
 	);
 }

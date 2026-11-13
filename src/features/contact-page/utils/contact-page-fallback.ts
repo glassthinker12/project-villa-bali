@@ -23,9 +23,9 @@ export const CONTACT_PAGE_ABOUT_SECTION_FALLBACK: ContactPageAboutSection = {
 export const CONTACT_PAGE_CONTACT_SECTION_FALLBACK: ContactPageContactSection =
 	{
 		eyebrow: "OUR CONTACTS",
-		email: "info@seaviewprivatevillas.com",
-		instagram: "Seaview Private Villas",
-		facebook: "Seaview Private Villas",
+		email: "mailto:info@seaviewprivatevillas.com",
+		instagram: "https://www.instagram.com/seaviewprivatevillas",
+		facebook: "https://www.facebook.com/seaviewprivatevillas",
 	};
 
 export function getContactPageDataFallback(): ContactPageSettingsContent {

@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { PublicFooter } from "@/components/public-footer";
-import { PublicNavbar } from "@/components/public-navbar";
 import { VillaDetailPageAboutSection } from "@/features/villa-detail-page/components/villa-detail-page-about-section";
 import { VillaDetailPageGallerySection } from "@/features/villa-detail-page/components/villa-detail-page-gallery-section";
 import { VillaDetailPageHeroSection } from "@/features/villa-detail-page/components/villa-detail-page-hero-section";
@@ -18,12 +16,10 @@ function RouteComponent() {
 	const { hero, about, gallery, location } = Route.useLoaderData();
 	return (
 		<main id="villa-detail-page">
-			<PublicNavbar />
 			<VillaDetailPageHeroSection data={hero} />
 			<VillaDetailPageAboutSection data={about} />
 			<VillaDetailPageGallerySection data={gallery} />
 			<VillaDetailPageLocationSection data={location} />
-			<PublicFooter />
 		</main>
 	);
 }

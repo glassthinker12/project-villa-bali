@@ -5,6 +5,7 @@ import {
 	ImagesIcon,
 	LayoutTemplateIcon,
 	LogOutIcon,
+	SettingsIcon,
 } from "lucide-react";
 import type React from "react";
 
@@ -90,12 +91,27 @@ export const AdminLayout = ({ user, children }: AdminLayoutProps) => {
 				url: "/admin/contact-page-settings",
 				icon: LayoutTemplateIcon,
 			},
+			{
+				title: "Footer",
+				url: "/admin/footer-settings",
+				icon: LayoutTemplateIcon,
+			},
+		],
+		settings: [
+			{
+				title: "General Settings",
+				url: "/admin/general-settings",
+				icon: SettingsIcon,
+			},
 		],
 	};
 
 	const pathname = useRouterState({
 		select: (state) => state.location.pathname,
 	});
+
+	const isActivePath = (url: string) =>
+		pathname === url || pathname.startsWith(`${url}/`);
 
 	const handleLogout = async () => {
 		try {
@@ -150,7 +166,7 @@ export const AdminLayout = ({ user, children }: AdminLayoutProps) => {
 									<SidebarMenuItem key={item.title}>
 										<SidebarMenuButton
 											tooltip={item.title}
-											isActive={pathname === item.url}
+											isActive={isActivePath(item.url)}
 											render={
 												<Link to={item.url}>
 													<item.icon />
@@ -171,7 +187,28 @@ export const AdminLayout = ({ user, children }: AdminLayoutProps) => {
 									<SidebarMenuItem key={item.title}>
 										<SidebarMenuButton
 											tooltip={item.title}
-											isActive={pathname === item.url}
+											isActive={isActivePath(item.url)}
+											render={
+												<Link to={item.url}>
+													<item.icon />
+													<span>{item.title}</span>
+												</Link>
+											}
+										/>
+									</SidebarMenuItem>
+								))}
+							</SidebarMenu>
+						</SidebarGroupContent>
+					</SidebarGroup>
+					<SidebarGroup>
+						<SidebarGroupLabel>Settings</SidebarGroupLabel>
+						<SidebarGroupContent className="flex flex-col gap-2">
+							<SidebarMenu>
+								{data.settings.map((item) => (
+									<SidebarMenuItem key={item.title}>
+										<SidebarMenuButton
+											tooltip={item.title}
+											isActive={isActivePath(item.url)}
 											render={
 												<Link to={item.url}>
 													<item.icon />

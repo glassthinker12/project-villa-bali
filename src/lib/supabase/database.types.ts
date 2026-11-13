@@ -68,6 +68,30 @@ export type Database = {
 				};
 				Relationships: [];
 			};
+			general_settings: {
+				Row: {
+					content: Json;
+					created_at: string | null;
+					id: string;
+					type: string;
+					updated_at: string | null;
+				};
+				Insert: {
+					content?: Json;
+					created_at?: string | null;
+					id?: string;
+					type: string;
+					updated_at?: string | null;
+				};
+				Update: {
+					content?: Json;
+					created_at?: string | null;
+					id?: string;
+					type?: string;
+					updated_at?: string | null;
+				};
+				Relationships: [];
+			};
 			page_section_settings: {
 				Row: {
 					content: Json | null;

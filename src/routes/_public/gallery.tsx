@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PublicFooter } from "@/components/public-footer";
-import { PublicNavbar } from "@/components/public-navbar";
 import { GalleryPageGalleryListSection } from "@/features/gallery-page/components/gallery-page-gallery-list-section";
 import { GalleryPageHeroSection } from "@/features/gallery-page/components/gallery-page-hero-section";
 import { getGalleryPageContentFn } from "@/features/gallery-page/utils/gallery-page.functions";
@@ -15,10 +13,8 @@ function RouteComponent() {
 
 	return (
 		<main id="gallery-page">
-			<PublicNavbar />
 			<GalleryPageHeroSection data={hero} />
 			<GalleryPageGalleryListSection data={gallery} />
-			<PublicFooter />
 		</main>
 	);
 }
