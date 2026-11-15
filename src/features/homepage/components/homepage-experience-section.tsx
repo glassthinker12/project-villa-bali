@@ -156,7 +156,7 @@ export function HomepageExperienceSection({
 				>
 					<div className="flex items-center gap-4">
 						<Button
-							variant="outline"
+							variant="outline-brand"
 							size="icon"
 							onClick={() => scroll("left")}
 							disabled={!canScrollLeft}
@@ -164,7 +164,7 @@ export function HomepageExperienceSection({
 							<ArrowLeftIcon className="size-6" />
 						</Button>
 						<Button
-							variant="outline"
+							variant="outline-brand"
 							size="icon"
 							onClick={() => scroll("right")}
 							disabled={!canScrollRight}
@@ -173,7 +173,10 @@ export function HomepageExperienceSection({
 						</Button>
 					</div>
 
-					<Link to="/" className={buttonVariants({ variant: "ghost-brand" })}>
+					<Link
+						to={data.cta.url}
+						className={buttonVariants({ variant: "ghost-brand" })}
+					>
 						{data.cta.label}
 						<ArrowRightIcon className="size-6" />
 					</Link>

@@ -93,31 +93,36 @@ export function GalleryPageGalleryListSection({
 					}}
 					className="flex items-center justify-center"
 				>
-					<TabsList
-						variant="line"
-						className="mx-auto flex w-full max-w-full flex-wrap justify-center border-brand/50 border-b p-0"
+					<motion.div
+						layoutScroll
+						className="no-scrollbar w-full overflow-x-auto"
 					>
-						{GALLERY_CATEGORIES.map((category) => (
-							<TabsTrigger
-								key={category}
-								value={category}
-								className="after:hidden hover:text-brand data-active:text-brand"
-							>
-								{category === activeCategory && (
-									<motion.span
-										layoutId="gallery-tab-indicator"
-										className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-brand"
-										transition={{
-											type: "spring",
-											stiffness: 500,
-											damping: 40,
-										}}
-									/>
-								)}
-								<span className="relative z-10">{category}</span>
-							</TabsTrigger>
-						))}
-					</TabsList>
+						<TabsList
+							variant="line"
+							className="mx-auto flex w-fit min-w-full justify-center border-brand/50 border-b p-0"
+						>
+							{GALLERY_CATEGORIES.map((category) => (
+								<TabsTrigger
+									key={category}
+									value={category}
+									className="after:hidden hover:text-brand data-active:text-brand"
+								>
+									{category === activeCategory && (
+										<motion.span
+											layoutId="gallery-tab-indicator"
+											className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-brand"
+											transition={{
+												type: "spring",
+												stiffness: 500,
+												damping: 40,
+											}}
+										/>
+									)}
+									<span className="relative z-10">{category}</span>
+								</TabsTrigger>
+							))}
+						</TabsList>
+					</motion.div>
 				</Tabs>
 
 				{filteredGalleries.length === 0 ? (

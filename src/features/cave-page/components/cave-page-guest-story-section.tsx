@@ -37,7 +37,7 @@ export function CavePageGuestStorySection({
 					<motion.h2
 						variants={fadeUp}
 						transition={defaultTransition}
-						className="font-bold font-heading text-3xl text-foreground md:text-4xl"
+						className="text-center font-bold font-heading text-3xl text-foreground md:text-4xl"
 					>
 						{data.heading}
 					</motion.h2>

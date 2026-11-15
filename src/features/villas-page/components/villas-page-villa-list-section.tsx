@@ -41,7 +41,7 @@ export function VillasPageVillaListSection({
 					className="flex flex-1 flex-col items-center justify-center gap-8 text-center"
 				>
 					<div className="flex w-full flex-col items-center gap-2">
-						<p className="text-[20px] text-mist leading-7 md:w-180">
+						<p className="text-base text-mist leading-7 md:w-180 md:text-[20px]">
 							{data.body}
 						</p>
 					</div>

@@ -1,7 +1,8 @@
+import { useRouterState } from "@tanstack/react-router";
+import { cn } from "cn";
 import { ArrowRightIcon, SparklesIcon } from "lucide-react";
 import { motion } from "motion/react";
-
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import {
 	defaultTransition,
@@ -11,7 +12,6 @@ import {
 } from "@/lib/animation-variants";
 import { formatToIDR } from "@/lib/currency";
 import { getIcon } from "@/lib/icons";
-
 import type { VillaDetailPageAboutSection as VillaDetailPageAboutSectionType } from "../types";
 
 type VillaDetailPageAboutSectionProps = {
@@ -21,6 +21,23 @@ type VillaDetailPageAboutSectionProps = {
 export function VillaDetailPageAboutSection({
 	data,
 }: VillaDetailPageAboutSectionProps) {
+	const pathname = useRouterState({
+		select: (state) => state.location.pathname,
+	});
+
+	const villaDetailsUrl = () => {
+		switch (pathname) {
+			case "/villas/villa-chloe":
+				return "https://seaviewprivatevillas.guestybookings.com/en/properties/68e1c2be52deb400138b499f";
+			case "/villas/villa-cara":
+				return "https://seaviewprivatevillas.guestybookings.com/en/properties/68e1c2b709a8d6001009e0cb";
+			case "/villas/villa-sofia":
+				return "https://seaviewprivatevillas.guestybookings.com/en/properties/68e1c2b45f90a700130b30a1";
+			default:
+				return "https://seaviewprivatevillas.guestybookings.com";
+		}
+	};
+
 	const { ref, isInView } = useScrollReveal();
 
 	return (
@@ -54,7 +71,7 @@ export function VillaDetailPageAboutSection({
 					className="flex flex-1 flex-col items-center justify-center gap-8"
 				>
 					<div className="flex w-full flex-col items-start justify-between gap-8 md:flex-row md:gap-2">
-						<p className="text-[20px] text-mist leading-7 md:w-180">
+						<p className="text-base text-mist leading-7 md:w-180 md:text-[20px]">
 							{data.description}
 						</p>
 						<div className="flex w-full flex-row justify-between gap-4 md:w-auto md:flex-col md:justify-start">
@@ -64,10 +81,18 @@ export function VillaDetailPageAboutSection({
 									{formatToIDR(data.pricePerNight)}
 								</p>
 							</div>
-							<Button variant="brand" size="lg" className="rounded-[8px]">
+							<a
+								href={villaDetailsUrl()}
+								className={cn(
+									buttonVariants({ variant: "brand", size: "lg" }),
+									"rounded-[8px]",
+								)}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								Check Availability
 								<ArrowRightIcon className="size-6 transition-transform duration-300 group-hover/button:translate-x-1" />
-							</Button>
+							</a>
 						</div>
 					</div>
 				</motion.div>

@@ -46,7 +46,9 @@ export function ExperiencePageHeroSection({
 						</div>
 
 						<div className="flex w-full flex-col items-center gap-4 md:w-1/2 md:items-start md:gap-1">
-							<p className="text-center text-xl md:text-left">{data.body}</p>
+							<p className="text-center text-base md:text-left md:text-xl">
+								{data.body}
+							</p>
 						</div>
 					</motion.div>
 				</div>
