@@ -23,12 +23,13 @@ export const postUploadHomepageHeroVideoFn = createServerFn({
 	.validator((data: FormData) => data)
 	.handler(async ({ data: formData, context }) => {
 		const file = formData.get("file") as File;
+		const variant = formData.get("variant") === "mobile" ? "mobile" : "desktop";
 
 		if (!file) {
 			throw new Error("No file provided");
 		}
 
-		return uploadHomepageHeroVideo(context.supabase, file);
+		return uploadHomepageHeroVideo(context.supabase, file, variant);
 	});
 
 export const postUploadHomepageAboutImageFn = createServerFn({

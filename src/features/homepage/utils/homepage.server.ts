@@ -114,6 +114,9 @@ export async function getHomepageContent(
 			videoUrl:
 				(hero?.content as HomepageHeroSection)?.videoUrl ||
 				HOMEPAGE_DATA_FALLBACK.hero.videoUrl,
+			mobileVideoUrl:
+				(hero?.content as HomepageHeroSection)?.mobileVideoUrl ||
+				HOMEPAGE_DATA_FALLBACK.hero.mobileVideoUrl,
 		},
 		about: {
 			eyebrow:

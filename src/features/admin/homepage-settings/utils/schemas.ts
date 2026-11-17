@@ -5,6 +5,7 @@ export const heroSchema = z.object({
 	title: z.string().min(1, "Title is required"),
 	subtitle: z.string().min(1, "Subtitle is required"),
 	videoUrl: z.string().min(1, "URL video is required"),
+	mobileVideoUrl: z.string(),
 });
 
 export type HeroInput = z.infer<typeof heroSchema>;

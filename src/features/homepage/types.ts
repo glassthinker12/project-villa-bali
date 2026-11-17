@@ -3,6 +3,7 @@ export type HomepageHeroSection = {
 	title: string;
 	subtitle: string;
 	videoUrl: string;
+	mobileVideoUrl: string;
 };
 
 export type HomepageAboutSection = {
