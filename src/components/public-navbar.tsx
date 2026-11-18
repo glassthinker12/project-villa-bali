@@ -3,11 +3,13 @@ import { MenuIcon, XIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-import { PUBLIC_NAVIGATION } from "@/constant/public-navigation";
+import { PUBLIC_NAVBAR_NAVIGATION } from "@/constant/public-navigation";
 import type { GeneralSettingsSocials } from "@/features/general-settings/types";
 import { normalizeSocialUrl } from "@/features/general-settings/utils/social-links";
 
 import { Button } from "./ui/button";
+
+const BOOK_NOW_URL = "https://seaviewprivatevillas.guestybookings.com/en";
 
 type PublicNavbarProps = {
 	socials: GeneralSettingsSocials;
@@ -53,7 +55,7 @@ export function PublicNavbar({ socials }: PublicNavbarProps) {
 				</Link>
 
 				<div className="hidden items-center gap-6 md:flex">
-					{PUBLIC_NAVIGATION.map((menu) => (
+					{PUBLIC_NAVBAR_NAVIGATION.map((menu) => (
 						<Link
 							key={menu.title}
 							to={menu.url}
@@ -62,6 +64,15 @@ export function PublicNavbar({ socials }: PublicNavbarProps) {
 							{menu.title}
 						</Link>
 					))}
+					<Button
+						variant="paper"
+						className="cursor-pointer rounded-[8px]"
+						render={
+							<a href={BOOK_NOW_URL} target="_blank" rel="noopener noreferrer">
+								Book Now
+							</a>
+						}
+					/>
 				</div>
 
 				<motion.div
@@ -93,7 +104,7 @@ export function PublicNavbar({ socials }: PublicNavbarProps) {
 							transition={{ duration: 0.35, ease: "easeOut" }}
 						>
 							<div className="h-full w-full bg-[url('/images/navbar-bg.png')] bg-center bg-cover before:absolute before:inset-0 before:bg-brand/50">
-								<div className="relative z-10 flex h-full flex-col">
+								<div className="relative z-10 flex h-full flex-col overflow-y-auto">
 									<div className="flex items-center justify-between p-4">
 										<Link to="/" onClick={() => setIsOpen(false)}>
 											<img
@@ -115,7 +126,7 @@ export function PublicNavbar({ socials }: PublicNavbarProps) {
 									</div>
 
 									<div className="flex flex-col items-center gap-6 p-4">
-										{PUBLIC_NAVIGATION.map((menu) => (
+										{PUBLIC_NAVBAR_NAVIGATION.map((menu) => (
 											<Link
 												key={menu.title}
 												to={menu.url}
@@ -125,6 +136,21 @@ export function PublicNavbar({ socials }: PublicNavbarProps) {
 												{menu.title}
 											</Link>
 										))}
+										<Button
+											variant="paper"
+											size="lg"
+											className="mt-2 w-full cursor-pointer rounded-[8px]"
+											onClick={() => setIsOpen(false)}
+											render={
+												<a
+													href={BOOK_NOW_URL}
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													Book Now
+												</a>
+											}
+										/>
 									</div>
 
 									<div className="mt-auto mb-16 p-4">

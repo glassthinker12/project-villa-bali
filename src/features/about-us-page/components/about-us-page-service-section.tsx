@@ -31,7 +31,7 @@ export function AboutUsPageServiceSection({
 				<motion.div
 					variants={fadeUp}
 					transition={defaultTransition}
-					className="relative aspect-4/3 w-full flex-1 overflow-hidden rounded-lg md:aspect-auto md:h-92"
+					className="relative order-2 aspect-4/3 w-full flex-1 overflow-hidden rounded-lg md:order-1 md:aspect-auto md:h-92"
 				>
 					<img
 						src={data.imageUrl}
@@ -46,7 +46,7 @@ export function AboutUsPageServiceSection({
 				<motion.div
 					variants={fadeUp}
 					transition={defaultTransition}
-					className="flex flex-1 flex-col items-center justify-center gap-8 text-center"
+					className="order-1 flex flex-1 flex-col items-center justify-center gap-8 text-center md:order-2"
 				>
 					<div className="flex w-full flex-col items-center gap-2">
 						<p className="font-subheading text-base text-brand uppercase tracking-wider">
