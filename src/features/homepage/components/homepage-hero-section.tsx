@@ -1,6 +1,8 @@
 import { StarIcon } from "lucide-react";
 import { motion } from "motion/react";
 
+import { useMediaQuery } from "@/hooks/use-media-query";
+
 import type { HomepageHeroSection as HomepageHeroSectionType } from "../types";
 
 type HomepageHeroSectionProps = {
@@ -8,17 +10,28 @@ type HomepageHeroSectionProps = {
 };
 
 export function HomepageHeroSection({ data }: HomepageHeroSectionProps) {
+	const isMobile = useMediaQuery("(max-width: 767px)");
+	const videoSrc =
+		isMobile === undefined
+			? null
+			: isMobile
+				? data.mobileVideoUrl || data.videoUrl
+				: data.videoUrl;
+
 	return (
-		<section className="relative -mt-20 h-dvh w-full overflow-hidden">
-			<video
-				src={data.videoUrl}
-				autoPlay
-				muted
-				loop
-				playsInline
-				preload="auto"
-				className="absolute inset-0 size-full object-cover"
-			/>
+		<section className="relative -mt-20 h-dvh w-full overflow-hidden bg-[#242121]">
+			{videoSrc && (
+				<video
+					key={videoSrc}
+					src={videoSrc}
+					autoPlay
+					muted
+					loop
+					playsInline
+					preload="auto"
+					className="absolute inset-0 size-full object-cover"
+				/>
+			)}
 			<div className="absolute inset-0 bg-[linear-gradient(180.03deg,rgba(36,33,33,0.5)_0%,rgba(36,33,33,0.3)_99.986%)]" />
 
 			<div className="absolute inset-x-0 top-20 flex h-[calc(100%-8rem)] flex-col justify-between">

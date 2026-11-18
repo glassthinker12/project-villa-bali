@@ -10,6 +10,7 @@ export type AdminHomepageHeroSection = {
 	title: string;
 	subtitle: string;
 	videoUrl: string;
+	mobileVideoUrl: string;
 };
 
 export type AdminHomepageAboutSection = {

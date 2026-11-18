@@ -12,6 +12,7 @@ export const HOMEPAGE_HERO_SECTION_FALLBACK: HomepageHeroSection = {
 	title: "SEAVIEW",
 	subtitle: "Private Villas",
 	videoUrl: "/homepage/hero/hero-video-bg.mp4",
+	mobileVideoUrl: "",
 };
 
 export const HOMEPAGE_ABOUT_SECTION_FALLBACK: HomepageAboutSection = {

@@ -83,6 +83,9 @@ export async function getAdminHomepageSettingsContent(
 			videoUrl:
 				(hero?.content as AdminHomepageHeroSection)?.videoUrl ||
 				HOMEPAGE_DATA_FALLBACK.hero.videoUrl,
+			mobileVideoUrl:
+				(hero?.content as AdminHomepageHeroSection)?.mobileVideoUrl ||
+				HOMEPAGE_DATA_FALLBACK.hero.mobileVideoUrl,
 		},
 		about: {
 			eyebrow:
@@ -256,8 +259,11 @@ export async function getAdminHomepageSettingsContent(
 export async function uploadHomepageHeroVideo(
 	supabase: DB,
 	file: File,
+	variant: "desktop" | "mobile" = "desktop",
 ): Promise<string> {
-	return uploadPublicVideo(supabase, "homepage", file, "/hero");
+	const folder = variant === "mobile" ? "/hero/mobile" : "/hero";
+
+	return uploadPublicVideo(supabase, "homepage", file, folder);
 }
 
 export async function uploadHomepageAboutImage(
