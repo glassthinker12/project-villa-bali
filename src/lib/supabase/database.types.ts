@@ -188,6 +188,7 @@ export type Database = {
 					amenities: Json | null;
 					bathrooms: number | null;
 					bedrooms: number | null;
+					booking_url: string | null;
 					created_at: string | null;
 					description: string | null;
 					features: Json | null;
@@ -205,6 +206,7 @@ export type Database = {
 					amenities?: Json | null;
 					bathrooms?: number | null;
 					bedrooms?: number | null;
+					booking_url?: string | null;
 					created_at?: string | null;
 					description?: string | null;
 					features?: Json | null;
@@ -222,6 +224,7 @@ export type Database = {
 					amenities?: Json | null;
 					bathrooms?: number | null;
 					bedrooms?: number | null;
+					booking_url?: string | null;
 					created_at?: string | null;
 					description?: string | null;
 					features?: Json | null;

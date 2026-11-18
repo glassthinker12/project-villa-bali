@@ -150,6 +150,30 @@ export function AdminVillaManagementEditSheet(
 									)}
 								/>
 							</div>
+							<div>
+								<Controller
+									name="bookingUrl"
+									control={form.control}
+									render={({ field, fieldState }) => (
+										<Field data-invalid={fieldState.invalid}>
+											<FieldLabel htmlFor="edit-villa-form-booking-url">
+												Booking URL
+											</FieldLabel>
+											<Input
+												{...field}
+												type="url"
+												id="edit-villa-form-booking-url"
+												aria-invalid={fieldState.invalid}
+												placeholder="https://seaviewprivatevillas.guestybookings.com/en/properties/..."
+												autoComplete="off"
+											/>
+											{fieldState.invalid && fieldState.error && (
+												<FieldError errors={[fieldState.error]} />
+											)}
+										</Field>
+									)}
+								/>
+							</div>
 							<div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-4">
 								<div>
 									<Controller

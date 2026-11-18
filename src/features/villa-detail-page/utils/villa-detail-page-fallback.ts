@@ -23,6 +23,7 @@ export const VILLA_DETAIL_PAGE_ABOUT_SECTION_FALLBACK: VillaDetailPageAboutSecti
 		description:
 			"Villa Sofia is a spacious two-bedroom villa designed for families, friends, or couples travelling together. Featuring one queen bedroom and one twin bedroom, both with private ensuites, a fully equipped kitchen, and comfortable living spaces, it offers the perfect balance of convenience and island charm.",
 		pricePerNight: 4178300,
+		bookingUrl: "https://seaviewprivatevillas.guestybookings.com",
 		features: [
 			{
 				icon: "Bed",

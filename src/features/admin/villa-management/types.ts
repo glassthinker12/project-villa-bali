@@ -12,6 +12,7 @@ export type Villa = {
 	summary: string | null;
 	description: string | null;
 	pricePerNight: number;
+	bookingUrl: string;
 	guests: number;
 	bedrooms: number;
 	bathrooms: number;

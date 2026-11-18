@@ -12,6 +12,7 @@ export type VillaDetailPageAboutSection = {
 	id: string;
 	description: string;
 	pricePerNight: number;
+	bookingUrl: string;
 	features: {
 		icon: string;
 		label: string;

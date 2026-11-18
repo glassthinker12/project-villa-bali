@@ -26,6 +26,7 @@ export async function createVilla(
 		summary: payload.summary,
 		description: payload.description,
 		price_per_night: payload.pricePerNight,
+		booking_url: payload.bookingUrl || null,
 		guests: payload.guests,
 		bedrooms: payload.bedrooms,
 		bathrooms: payload.bathrooms,
@@ -56,6 +57,7 @@ export async function updateVilla(
 			summary: payload.summary,
 			description: payload.description,
 			price_per_night: payload.pricePerNight,
+			booking_url: payload.bookingUrl || null,
 			guests: payload.guests,
 			bedrooms: payload.bedrooms,
 			bathrooms: payload.bathrooms,
@@ -123,7 +125,7 @@ export async function findVillas(supabase: DB): Promise<Villa[]> {
 	const { data, error } = await supabase
 		.from("villas")
 		.select(
-			"id, name, summary, description, price_per_night, guests, bedrooms, bathrooms, thumbnail_url, features, amenities, is_active",
+			"id, name, summary, description, price_per_night, booking_url, guests, bedrooms, bathrooms, thumbnail_url, features, amenities, is_active",
 		)
 		.order("is_active", { ascending: false })
 		.order("created_at", { ascending: false });
@@ -139,6 +141,7 @@ export async function findVillas(supabase: DB): Promise<Villa[]> {
 		summary: item.summary,
 		description: item.description,
 		pricePerNight: item.price_per_night ?? 0,
+		bookingUrl: item.booking_url ?? "",
 		guests: item.guests ?? 0,
 		bedrooms: item.bedrooms ?? 0,
 		bathrooms: item.bathrooms ?? 0,

@@ -8,6 +8,7 @@ export function AdminVillaDetailPageSettingsAboutSectionPreview() {
 				id: VILLA_DETAIL_PAGE_ABOUT_SECTION_FALLBACK.id,
 				description: VILLA_DETAIL_PAGE_ABOUT_SECTION_FALLBACK.description,
 				pricePerNight: VILLA_DETAIL_PAGE_ABOUT_SECTION_FALLBACK.pricePerNight,
+				bookingUrl: VILLA_DETAIL_PAGE_ABOUT_SECTION_FALLBACK.bookingUrl,
 				features: VILLA_DETAIL_PAGE_ABOUT_SECTION_FALLBACK.features,
 				amenities: VILLA_DETAIL_PAGE_ABOUT_SECTION_FALLBACK.amenities,
 			}}

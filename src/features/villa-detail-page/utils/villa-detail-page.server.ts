@@ -58,7 +58,7 @@ export async function getVillaDetailPageContent(
 	const { data: villa, error: fetchError } = await supabase
 		.from("villas")
 		.select(
-			"id, name, slug, summary, description, price_per_night, guests, bedrooms, bathrooms, thumbnail_url, features, amenities",
+			"id, name, slug, summary, description, price_per_night, booking_url, guests, bedrooms, bathrooms, thumbnail_url, features, amenities",
 		)
 		.eq("slug", payload.slug)
 		.eq("is_active", true)
@@ -112,6 +112,8 @@ export async function getVillaDetailPageContent(
 			id: villa.id,
 			description: villa.description ?? "",
 			pricePerNight: villa.price_per_night ?? 0,
+			bookingUrl:
+				villa.booking_url || VILLA_DETAIL_PAGE_DATA_FALLBACK.about.bookingUrl,
 			features:
 				villa.features as VillaDetailPageSettingsContent["about"]["features"],
 			amenities:

@@ -1,4 +1,3 @@
-import { useRouterState } from "@tanstack/react-router";
 import { cn } from "cn";
 import { ArrowRightIcon, SparklesIcon } from "lucide-react";
 import { motion } from "motion/react";
@@ -21,23 +20,6 @@ type VillaDetailPageAboutSectionProps = {
 export function VillaDetailPageAboutSection({
 	data,
 }: VillaDetailPageAboutSectionProps) {
-	const pathname = useRouterState({
-		select: (state) => state.location.pathname,
-	});
-
-	const villaDetailsUrl = () => {
-		switch (pathname) {
-			case "/villas/villa-chloe":
-				return "https://seaviewprivatevillas.guestybookings.com/en/properties/68e1c2be52deb400138b499f";
-			case "/villas/villa-cara":
-				return "https://seaviewprivatevillas.guestybookings.com/en/properties/68e1c2b709a8d6001009e0cb";
-			case "/villas/villa-sofia":
-				return "https://seaviewprivatevillas.guestybookings.com/en/properties/68e1c2b45f90a700130b30a1";
-			default:
-				return "https://seaviewprivatevillas.guestybookings.com";
-		}
-	};
-
 	const { ref, isInView } = useScrollReveal();
 
 	return (
@@ -82,7 +64,7 @@ export function VillaDetailPageAboutSection({
 								</p>
 							</div>
 							<a
-								href={villaDetailsUrl()}
+								href={data.bookingUrl}
 								className={cn(
 									buttonVariants({ variant: "brand", size: "lg" }),
 									"rounded-[8px]",

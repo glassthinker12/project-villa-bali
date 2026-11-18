@@ -5,11 +5,16 @@ const villaFeatureSchema = z.object({
 	label: z.string().min(1, "Label is required"),
 });
 
+const bookingUrlSchema = z
+	.union([z.literal(""), z.url("Enter a valid URL")])
+	.optional();
+
 export const createVillaSchema = z.object({
 	name: z.string().min(1, "Name is required"),
 	summary: z.string().optional(),
 	description: z.string().optional(),
 	pricePerNight: z.number().min(0, "Price must be at least 0"),
+	bookingUrl: bookingUrlSchema,
 	guests: z.number().min(0, "Must allow at least 0 guest"),
 	bedrooms: z.number().min(0, "Must have at least 0 bedroom"),
 	bathrooms: z.number().min(0, "Must have at least 0 bathroom"),
@@ -26,6 +31,7 @@ export const updateVillaSchema = z.object({
 	summary: z.string().optional(),
 	description: z.string().optional(),
 	pricePerNight: z.number().min(0, "Price must be at least 0"),
+	bookingUrl: bookingUrlSchema,
 	guests: z.number().min(0, "Must allow at least 0 guest"),
 	bedrooms: z.number().min(0, "Must have at least 0 bedroom"),
 	bathrooms: z.number().min(0, "Must have at least 0 bathroom"),
