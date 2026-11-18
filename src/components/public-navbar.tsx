@@ -44,16 +44,18 @@ export function PublicNavbar({ socials }: PublicNavbarProps) {
 			animate={{ y: 0 }}
 			transition={{ duration: 0.6, ease: "easeOut" }}
 		>
-			<div className="mx-auto flex max-w-7xl justify-between p-4">
-				<Link to="/">
+			<div className="mx-auto flex max-w-7xl items-center justify-between gap-4 p-4">
+				{/* Logo (left-aligned on all breakpoints) */}
+				<Link to="/" className="shrink-0">
 					<img
 						alt="Seaview Private Villas"
 						src="/images/logo-big-white.png"
-						className="h-12 w-34 object-contain"
+						className="h-10 w-28 object-contain sm:h-12 sm:w-34"
 						loading="eager"
 					/>
 				</Link>
 
+				{/* Desktop navigation */}
 				<div className="hidden items-center gap-6 md:flex">
 					{PUBLIC_NAVBAR_NAVIGATION.map((menu) => (
 						<Link
@@ -75,23 +77,32 @@ export function PublicNavbar({ socials }: PublicNavbarProps) {
 					/>
 				</div>
 
-				<motion.div
-					whileHover={{ scale: 1.1 }}
-					whileTap={{ scale: 0.9 }}
-					className="block md:hidden"
-				>
+				{/* Mobile: CTA Book Now and Hamburger (right-aligned with 16px gap) */}
+				<div className="flex items-center gap-4 md:hidden">
 					<Button
-						variant="ghost"
-						size="icon"
-						className="cursor-pointer hover:bg-muted/10"
-						aria-label="Open navigation menu"
-						aria-expanded={isOpen}
-						aria-controls="mobile-navigation-menu"
-						onClick={() => setIsOpen(true)}
-					>
-						<MenuIcon className="size-6 text-white" />
-					</Button>
-				</motion.div>
+						variant="paper"
+						size="sm"
+						className="cursor-pointer rounded-[8px]"
+						render={
+							<a href={BOOK_NOW_URL} target="_blank" rel="noopener noreferrer">
+								Book Now
+							</a>
+						}
+					/>
+					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+						<Button
+							variant="ghost"
+							size="icon"
+							className="cursor-pointer hover:bg-muted/10"
+							aria-label="Open navigation menu"
+							aria-expanded={isOpen}
+							aria-controls="mobile-navigation-menu"
+							onClick={() => setIsOpen(true)}
+						>
+							<MenuIcon className="size-6 text-white" />
+						</Button>
+					</motion.div>
+				</div>
 
 				<AnimatePresence>
 					{isOpen && (
